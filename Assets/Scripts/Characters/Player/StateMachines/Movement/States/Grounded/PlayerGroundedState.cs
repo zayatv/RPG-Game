@@ -23,7 +23,7 @@ public class PlayerGroundedState : PlayerMovementState
 
     protected virtual void OnMove()
     {
-        if (shouldWalk)
+        if (stateMachine.ReusableData.ShouldWalk)
         {
             stateMachine.ChangeState(stateMachine.WalkingState);
 

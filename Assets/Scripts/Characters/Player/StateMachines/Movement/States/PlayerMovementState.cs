@@ -8,8 +8,6 @@ public class PlayerMovementState : IState
 
     protected PlayerGroundedData movementData;
 
-    protected bool shouldWalk;
-
     public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
     {
         stateMachine = playerMovementStateMachine;
@@ -185,6 +183,6 @@ public class PlayerMovementState : IState
 
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
-        shouldWalk = !shouldWalk;
+        stateMachine.ReusableData.ShouldWalk = !stateMachine.ReusableData.ShouldWalk;
     }
 }

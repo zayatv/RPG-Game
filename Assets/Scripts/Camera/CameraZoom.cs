@@ -44,6 +44,4 @@ public class CameraZoom : MonoBehaviour
 
         framingTransposer.m_CameraDistance = lerpedZoomValue;
     }
-
-    //This is a test
 }

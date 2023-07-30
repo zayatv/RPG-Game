@@ -1423,6 +1423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ede10b722c3664fabc510d92356c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: 30106f595d10e78429ee916bfe42e034, type: 2}
 --- !u!114 &803682131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,7 +1470,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803682128}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 28071b51107743542b63fc79a49b7e90, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

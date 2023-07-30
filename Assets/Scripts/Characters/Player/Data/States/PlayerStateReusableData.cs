@@ -7,6 +7,7 @@ public class PlayerStateReusableData
     public Vector2 MovementInput { get; set; }
 
     public float MovementSpeedModifier { get; set; } = 1f;
+    public float MovementOnSlopesSpeedModifier { get; set; } = 1f;
     
     public bool ShouldWalk { get; set; }
 

@@ -129,6 +129,11 @@ public class PlayerMovementState : IState
         return playerHorizontalVelocity;
     }
 
+    protected Vector3 GetPlayerVerticalVelocity()
+    {
+        return new Vector3(0f, stateMachine.Player.Rigidbody.velocity.y, 0f);
+    }
+
     protected void RotateTowardsTargetRotation()
     {
         float currentYAngle = stateMachine.Player.Rigidbody.rotation.eulerAngles.y;

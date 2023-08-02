@@ -8,10 +8,18 @@ public class PlayerWalkingState : PlayerMovingState
 
     public override void Enter()
     {
+        base.Enter();
+
         stateMachine.ReusableData.MovementSpeedModifier = movementData.WalkData.SpeedModifier;
 
-        base.Enter();
+        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.WeakForce;
     }
+
+    protected override void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.LightStoppingState);
+    }
+
     protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
         base.OnWalkToggleStarted(context);

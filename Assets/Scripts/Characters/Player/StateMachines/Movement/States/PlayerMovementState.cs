@@ -7,19 +7,21 @@ public class PlayerMovementState : IState
     protected PlayerMovementStateMachine stateMachine;
 
     protected PlayerGroundedData movementData;
+    protected PlayerAirborneData airborneData;
 
     public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
     {
         stateMachine = playerMovementStateMachine;
 
         movementData = stateMachine.Player.Data.GroundedData;
+        airborneData = stateMachine.Player.Data.AirborneData;
 
         InititalizeData();
     }
 
     private void InititalizeData()
     {
-        stateMachine.ReusableData.TimeToReachTargetRotation = movementData.BaseRotationData.TargetRotationReachTime;
+        SetBaseRotationData();
     }
 
     public virtual void Enter()
@@ -46,6 +48,30 @@ public class PlayerMovementState : IState
     public virtual void PhysicsUpdate()
     {
         Move();
+    }
+
+    public virtual void OnAnimationEnterEvent()
+    {
+        
+    }
+
+    public virtual void OnAnimationExitEvent()
+    {
+        
+    }
+
+    public virtual void OnAnimationTransitionEvent()
+    {
+        
+    }
+
+    public virtual void OnTriggerEnter(Collider collider)
+    {
+        if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
+        {
+            OnContactWithGround(collider);
+            return;
+        }
     }
 
     private void ReadMovementInput()
@@ -110,6 +136,13 @@ public class PlayerMovementState : IState
         return directionAngle;
     }
 
+    protected void SetBaseRotationData()
+    {
+        stateMachine.ReusableData.RotationData = movementData.BaseRotationData;
+
+        stateMachine.ReusableData.TimeToReachTargetRotation = stateMachine.ReusableData.RotationData.TargetRotationReachTime;
+    }
+
     protected Vector3 GetMovementInputDirection()
     {
         return new Vector3(stateMachine.ReusableData.MovementInput.x, 0f, stateMachine.ReusableData.MovementInput.y);
@@ -117,7 +150,7 @@ public class PlayerMovementState : IState
 
     protected float GetMovementSpeed()
     {
-        return movementData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
+        return movementData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier * stateMachine.ReusableData.MovementOnSlopesSpeedModifier;
     }
 
     protected Vector3 GetPlayerHorizontalVelocity()
@@ -186,8 +219,29 @@ public class PlayerMovementState : IState
         stateMachine.Player.Input.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
     }
 
+    protected void DecelerateHorizontally()
+    {
+        Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
+
+        stateMachine.Player.Rigidbody.AddForce(-playerHorizontalVelocity * stateMachine.ReusableData.MovementDecelerationForce, ForceMode.Acceleration);
+    }
+
+    protected bool IsMovingHorizontally(float minimumMagnitude = 0.1f)
+    {
+        Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
+
+        Vector2 playerHorizontalMovement = new Vector2(playerHorizontalVelocity.x, playerHorizontalVelocity.z);
+
+        return playerHorizontalMovement.magnitude > minimumMagnitude;
+    }
+
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
         stateMachine.ReusableData.ShouldWalk = !stateMachine.ReusableData.ShouldWalk;
+    }
+
+    protected virtual void OnContactWithGround(Collider collider)
+    {
+        
     }
 }

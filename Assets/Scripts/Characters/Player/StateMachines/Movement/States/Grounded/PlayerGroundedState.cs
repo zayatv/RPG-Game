@@ -28,7 +28,12 @@ public class PlayerGroundedState : PlayerMovementState
         {
             float groundAngle = Vector3.Angle(hit.normal, -downwardsRayFromCapsuleCenter.direction);
 
-            SetSlopeSpeedModifierOnAngle(groundAngle);
+            float slopeSpeedModifier = SetSlopeSpeedModifierOnAngle(groundAngle);
+
+            if (slopeSpeedModifier == 0f)
+            {
+                return;
+            }
 
             float distanceToFloatingPoint = stateMachine.Player.ColliderUtility.CapsuleColliderData.ColliderCenterInLocalSpace.y * stateMachine.Player.transform.localScale.y - hit.distance;
 
@@ -45,9 +50,13 @@ public class PlayerGroundedState : PlayerMovementState
         }
     }
 
-    private void SetSlopeSpeedModifierOnAngle(float angle)
+    private float SetSlopeSpeedModifierOnAngle(float angle)
     {
-        
+        float slopeSpeedModifier = movementData.SlopeSpeedAngles.Evaluate(angle);
+
+        stateMachine.ReusableData.MovementOnSlopesSpeedModifier = slopeSpeedModifier;
+
+        return slopeSpeedModifier;
     }
 
     protected override void AddInputActionsCallbacks()
@@ -55,6 +64,10 @@ public class PlayerGroundedState : PlayerMovementState
         base.AddInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
+
+        stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
+
+        stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -62,6 +75,10 @@ public class PlayerGroundedState : PlayerMovementState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
+
+        stateMachine.Player.Input.PlayerActions.Dash.started -= OnDashStarted;
+
+        stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
     }
 
     protected virtual void OnMove()
@@ -79,5 +96,15 @@ public class PlayerGroundedState : PlayerMovementState
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.IdlingState);
+    }
+
+    protected virtual void OnDashStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.DashingState);
+    }
+
+    protected virtual void OnJumpStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.JumpingState);
     }
 }

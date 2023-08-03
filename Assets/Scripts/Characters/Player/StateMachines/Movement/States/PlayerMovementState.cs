@@ -235,6 +235,16 @@ public class PlayerMovementState : IState
         return playerHorizontalMovement.magnitude > minimumMagnitude;
     }
 
+    protected bool IsMovingUp(float minimumVelocity = 0.1f)
+    {
+        return GetPlayerVerticalVelocity().y > minimumVelocity;
+    }
+
+    protected bool IsMovingDown(float minimumVelocity = 0.1f)
+    {
+        return GetPlayerVerticalVelocity().y < -minimumVelocity;
+    }
+
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
         stateMachine.ReusableData.ShouldWalk = !stateMachine.ReusableData.ShouldWalk;

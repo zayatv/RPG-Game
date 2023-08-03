@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,8 @@ public class PlayerMovementState : IState
 
         movementData = stateMachine.Player.Data.GroundedData;
         airborneData = stateMachine.Player.Data.AirborneData;
+
+        SetBaseCameraRecenteringData();
 
         InititalizeData();
     }
@@ -70,6 +73,16 @@ public class PlayerMovementState : IState
         if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
         {
             OnContactWithGround(collider);
+            return;
+        }
+    }
+
+    public void OnTriggerExit(Collider collider)
+    {
+        if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
+        {
+            OnContactWithGroundExited(collider);
+
             return;
         }
     }
@@ -136,6 +149,22 @@ public class PlayerMovementState : IState
         return directionAngle;
     }
 
+    protected void StartAnimation(int animationHash)
+    {
+        stateMachine.Player.Animator.SetBool(animationHash, true);
+    }
+
+    protected void StopAnimation(int animationHash)
+    {
+        stateMachine.Player.Animator.SetBool(animationHash, false);
+    }
+
+    protected void SetBaseCameraRecenteringData()
+    {
+        stateMachine.ReusableData.BackwardsCameraRecenteringData = movementData.BackwardsCameraRecenteringData;
+        stateMachine.ReusableData.SidewaysCameraRecenteringData = movementData.SidewaysCameraRecenteringData;
+    }
+
     protected void SetBaseRotationData()
     {
         stateMachine.ReusableData.RotationData = movementData.BaseRotationData;
@@ -148,9 +177,16 @@ public class PlayerMovementState : IState
         return new Vector3(stateMachine.ReusableData.MovementInput.x, 0f, stateMachine.ReusableData.MovementInput.y);
     }
 
-    protected float GetMovementSpeed()
+    protected float GetMovementSpeed(bool shouldConsiderSlopes = true)
     {
-        return movementData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier * stateMachine.ReusableData.MovementOnSlopesSpeedModifier;
+        float movementSpeed = movementData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
+
+        if (shouldConsiderSlopes)
+        {
+            movementSpeed *= stateMachine.ReusableData.MovementOnSlopesSpeedModifier;
+        }
+
+        return movementSpeed;
     }
 
     protected Vector3 GetPlayerHorizontalVelocity()
@@ -209,14 +245,33 @@ public class PlayerMovementState : IState
         stateMachine.Player.Rigidbody.velocity = Vector3.zero;
     }
 
+    protected void ResetVerticalVelocity()
+    {
+        Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
+
+        stateMachine.Player.Rigidbody.velocity = playerHorizontalVelocity;
+    }
+
     protected virtual void AddInputActionsCallbacks()
     {
         stateMachine.Player.Input.PlayerActions.WalkToggle.started += OnWalkToggleStarted;
+
+        stateMachine.Player.Input.PlayerActions.Look.started += OnMouseMovementStarted;
+
+        stateMachine.Player.Input.PlayerActions.Movement.performed += OnMovementPerformed;
+
+        stateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
     }
 
     protected virtual void RemoveInputActionsCallbacks()
     {
         stateMachine.Player.Input.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
+
+        stateMachine.Player.Input.PlayerActions.Look.started -= OnMouseMovementStarted;
+
+        stateMachine.Player.Input.PlayerActions.Movement.performed -= OnMovementPerformed;
+
+        stateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
     }
 
     protected void DecelerateHorizontally()
@@ -224,6 +279,13 @@ public class PlayerMovementState : IState
         Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
 
         stateMachine.Player.Rigidbody.AddForce(-playerHorizontalVelocity * stateMachine.ReusableData.MovementDecelerationForce, ForceMode.Acceleration);
+    }
+
+    protected void DecelerateVertically()
+    {
+        Vector3 playerVerticalVelocity = GetPlayerVerticalVelocity();
+
+        stateMachine.Player.Rigidbody.AddForce(-playerVerticalVelocity * stateMachine.ReusableData.MovementDecelerationForce, ForceMode.Acceleration);
     }
 
     protected bool IsMovingHorizontally(float minimumMagnitude = 0.1f)
@@ -245,13 +307,97 @@ public class PlayerMovementState : IState
         return GetPlayerVerticalVelocity().y < -minimumVelocity;
     }
 
+    protected virtual void OnContactWithGround(Collider collider)
+    {
+    }
+
+    protected virtual void OnContactWithGroundExited(Collider collider)
+    {
+    }
+
+    protected void UpdateCameraRecenteringState(Vector2 movementInput)
+    {
+        if (movementInput == Vector2.zero)
+        {
+            return;
+        }
+
+        if (movementInput == Vector2.up)
+        {
+            DisableCameraRecentering();
+            return;
+        }
+
+        float cameraVerticalAngle = stateMachine.Player.MainCameraTransform.eulerAngles.x;
+
+        if (cameraVerticalAngle >= 270f)
+        {
+            cameraVerticalAngle -= 360f;
+        }
+
+        cameraVerticalAngle = Mathf.Abs(cameraVerticalAngle);
+
+        if (movementInput == Vector2.down)
+        {
+            SetCameraRecenteringState(cameraVerticalAngle, stateMachine.ReusableData.BackwardsCameraRecenteringData);
+
+            return;
+        }
+
+        SetCameraRecenteringState(cameraVerticalAngle, stateMachine.ReusableData.SidewaysCameraRecenteringData);
+    }
+
+    protected void SetCameraRecenteringState(float cameraVerticalAngle, List<PlayerCameraRecenteringData> cameraRecenteringData)
+    {
+        foreach (PlayerCameraRecenteringData recenteringData in cameraRecenteringData)
+        {
+            if (!recenteringData.IsWithinRange(cameraVerticalAngle))
+            {
+                continue;
+            }
+
+            EnableCameraRecentering(recenteringData.WaitTime, recenteringData.RecenteringTime);
+
+            return;
+        }
+
+        DisableCameraRecentering();
+    }
+
+    protected void EnableCameraRecentering(float waitTime = -1f, float recenteringTime = -1f)
+    {
+        float movementSpeed = GetMovementSpeed();
+
+        if (movementSpeed == 0f)
+        {
+            movementSpeed = movementData.BaseSpeed;
+        }
+
+        stateMachine.Player.CameraUtility.EnableRecentering(waitTime, recenteringTime, movementData.BaseSpeed, movementSpeed);
+    }
+
+    protected void DisableCameraRecentering()
+    {
+        stateMachine.Player.CameraUtility.DisableRecentering();
+    }
+
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
         stateMachine.ReusableData.ShouldWalk = !stateMachine.ReusableData.ShouldWalk;
     }
 
-    protected virtual void OnContactWithGround(Collider collider)
+    private void OnMouseMovementStarted(InputAction.CallbackContext context)
     {
-        
+        UpdateCameraRecenteringState(stateMachine.ReusableData.MovementInput);
+    }
+
+    private void OnMovementPerformed(InputAction.CallbackContext context)
+    {
+        UpdateCameraRecenteringState(context.ReadValue<Vector2>());
+    }
+
+    protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        DisableCameraRecentering();
     }
 }

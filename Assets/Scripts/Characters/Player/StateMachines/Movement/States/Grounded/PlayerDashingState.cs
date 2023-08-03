@@ -21,15 +21,17 @@ public class PlayerDashingState : PlayerGroundedState
 
     public override void Enter()
     {
+        stateMachine.ReusableData.MovementSpeedModifier = dashData.SpeedModifier;
+        
         base.Enter();
 
-        stateMachine.ReusableData.MovementSpeedModifier = dashData.SpeedModifier;
+        StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
 
         stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
 
         stateMachine.ReusableData.RotationData = dashData.RotationData;
 
-        AddForceOnTransitionFromStationaryState();
+        Dash();
 
         shouldKeepRotating = stateMachine.ReusableData.MovementInput != Vector2.zero;
 
@@ -41,6 +43,8 @@ public class PlayerDashingState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
+
+        StopAnimation(stateMachine.Player.AnimationData.DashParameterHash);
 
         SetBaseRotationData();
     }
@@ -68,20 +72,22 @@ public class PlayerDashingState : PlayerGroundedState
         stateMachine.ChangeState(stateMachine.SprintingState);
     }
 
-    private void AddForceOnTransitionFromStationaryState()
+    private void Dash()
     {
+        Vector3 dashDirection = stateMachine.Player.transform.forward;
+
+        dashDirection.y = 0f;
+
+        UpdateTargetRotation(dashDirection, false);
+
         if (stateMachine.ReusableData.MovementInput != Vector2.zero)
         {
-            return;
+            UpdateTargetRotation(GetMovementInputDirection());
+
+            dashDirection = GetTargetRotationDirection(stateMachine.ReusableData.CurrentTargetRotation.y);
         }
 
-        Vector3 characterRotationDirection = stateMachine.Player.transform.forward;
-
-        characterRotationDirection.y = 0f;
-
-        UpdateTargetRotation(characterRotationDirection, false);
-
-        stateMachine.Player.Rigidbody.velocity = characterRotationDirection * GetMovementSpeed();
+        stateMachine.Player.Rigidbody.velocity = dashDirection * GetMovementSpeed(false);
     }
 
     private void UpdateConsecutiveDashes()
@@ -118,11 +124,6 @@ public class PlayerDashingState : PlayerGroundedState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.performed -= OnMovementPerformed;
-    }
-
-    protected override void OnMovementCanceled(InputAction.CallbackContext context)
-    {
-        
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext context)

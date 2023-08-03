@@ -11,4 +11,5 @@ public interface IState
     public void OnAnimationExitEvent();
     public void OnAnimationTransitionEvent();
     public void OnTriggerEnter(Collider collider);
+    public void OnTriggerExit(Collider collider);
 }

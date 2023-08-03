@@ -12,7 +12,14 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerMediumStoppingState MediumStoppingState { get; }
     public PlayerHardStoppingState HardStoppingState { get; }
 
+    public PlayerLightLandingState LightLandingState { get; }
+    
+    public PlayerRollingState RollingState { get; }
+    
+    public PlayerHardLandingState HardLandingState { get; }
+
     public PlayerJumpingState JumpingState { get; }
+    public PlayerFallingState FallingState { get; }
 
     public PlayerMovementStateMachine(Player player)
     {
@@ -30,5 +37,10 @@ public class PlayerMovementStateMachine : StateMachine
         HardStoppingState = new PlayerHardStoppingState(this);
 
         JumpingState = new PlayerJumpingState(this);
+        FallingState = new PlayerFallingState(this);
+
+        LightLandingState = new PlayerLightLandingState(this);
+        RollingState = new PlayerRollingState(this);
+        HardLandingState = new PlayerHardLandingState(this);
     }
 }

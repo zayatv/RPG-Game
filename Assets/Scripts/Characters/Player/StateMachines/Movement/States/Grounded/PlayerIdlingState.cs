@@ -2,20 +2,35 @@ using UnityEngine;
 
 public class PlayerIdlingState : PlayerGroundedState
 {
+    private PlayerIdleData idleData;
+
     public PlayerIdlingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
+        idleData = movementData.IdleData;
     }
 
     public override void Enter()
     {
+        stateMachine.ReusableData.MovementSpeedModifier = 0f;
+
+        stateMachine.ReusableData.BackwardsCameraRecenteringData = idleData.BackwardsCameraRecenteringData;
+        
         base.Enter();
 
-        stateMachine.ReusableData.MovementSpeedModifier = 0f;
+        StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
 
         stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
 
         ResetVelocity();
     }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        StopAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
+    }
+
     public override void Update()
     {
         base.Update();
@@ -26,5 +41,17 @@ public class PlayerIdlingState : PlayerGroundedState
         }
 
         OnMove();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        if (!IsMovingHorizontally())
+        {
+            return;
+        }
+
+        ResetVelocity();
     }
 }

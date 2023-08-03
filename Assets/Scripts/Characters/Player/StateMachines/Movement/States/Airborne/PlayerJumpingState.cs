@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerJumpingState : PlayerAirborneState
 {
     private PlayerJumpData jumpData;
 
     private bool shouldKeepRotating;
+    private bool canStartFalling;
 
     public PlayerJumpingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
@@ -20,6 +22,8 @@ public class PlayerJumpingState : PlayerAirborneState
 
         stateMachine.ReusableData.RotationData = jumpData.RotationData;
 
+        stateMachine.ReusableData.MovementDecelerationForce = jumpData.DecelerationForce;
+
         shouldKeepRotating = stateMachine.ReusableData.MovementInput != Vector2.zero;
 
         Jump();
@@ -30,6 +34,25 @@ public class PlayerJumpingState : PlayerAirborneState
         base.Exit();
 
         SetBaseRotationData();
+
+        canStartFalling = false;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (!canStartFalling && IsMovingUp(0f))
+        {
+            canStartFalling = true;
+        }
+
+        if (!canStartFalling || GetPlayerVerticalVelocity().y > 0)
+        {
+            return;
+        }
+
+        stateMachine.ChangeState(stateMachine.FallingState);
     }
 
     public override void PhysicsUpdate()
@@ -38,6 +61,16 @@ public class PlayerJumpingState : PlayerAirborneState
         {
             RotateTowardsTargetRotation();
         }
+
+        if (IsMovingUp())
+        {
+            DecelerateVertically();
+        }
+    }
+
+    protected override void ResetSprintState()
+    {
+        
     }
 
     private void Jump()
@@ -48,6 +81,8 @@ public class PlayerJumpingState : PlayerAirborneState
 
         if (shouldKeepRotating)
         {
+            UpdateTargetRotation(GetMovementInputDirection());
+
             jumpDirection = GetTargetRotationDirection(stateMachine.ReusableData.CurrentTargetRotation.y);
         }
 
@@ -81,5 +116,9 @@ public class PlayerJumpingState : PlayerAirborneState
         ResetVelocity();
 
         stateMachine.Player.Rigidbody.AddForce(jumpForce, ForceMode.VelocityChange);
+    }
+
+    protected override void OnMovementCanceled(InputAction.CallbackContext context)
+    {
     }
 }

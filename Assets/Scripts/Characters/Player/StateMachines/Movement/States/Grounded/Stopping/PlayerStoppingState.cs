@@ -12,9 +12,20 @@ public class PlayerStoppingState : PlayerGroundedState
 
     public override void Enter()
     {
+        stateMachine.ReusableData.MovementSpeedModifier = 0f;
+
+        SetBaseCameraRecenteringData();
+        
         base.Enter();
 
-        stateMachine.ReusableData.MovementSpeedModifier = 0f;
+        StartAnimation(stateMachine.Player.AnimationData.StoppingParameterHash);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        StopAnimation(stateMachine.Player.AnimationData.StoppingParameterHash);
     }
 
     public override void PhysicsUpdate()
@@ -48,11 +59,6 @@ public class PlayerStoppingState : PlayerGroundedState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.started -= OnMovementStarted;
-    }
-
-    protected override void OnMovementCanceled(InputAction.CallbackContext context)
-    {
-        
     }
 
     private void OnMovementStarted(InputAction.CallbackContext context)

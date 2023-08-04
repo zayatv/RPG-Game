@@ -27,27 +27,45 @@ public class PlayerSwordAttackingState : PlayerAttackingState
 
     public override void OnAnimationTransitionEvent()
     {
-        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
-    }
+        base.OnAnimationTransitionEvent();
 
-    private void OnAttackStarted(InputAction.CallbackContext context)
-    {
-        useNextConcurrentAttack = true;
+        if (useNextConcurrentAttack)
+        {
+            useNextConcurrentAttack = false;
+            NextConcurrentAttack(stateMachine.Player.AnimationData.SwordAttackParameterName);
+           if (!IsNextAttackConcurrent(swordAttackData.StartingSwordAttackAnimationIndex, swordAttackData.LastConcurrentSwordAttackAnimationIndex, stateMachine.Player.AnimationData.SwordAttackParameterName))
+           {
+                stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+           }
+            return;
+        }
     }
 
     public override void OnAnimationExitEvent()
     {
         base.OnAnimationExitEvent();
 
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
-
         if (useNextConcurrentAttack)
         {
-            useNextConcurrentAttack = false;
-            NextConcurrentAttack(swordAttackData.StartingSwordAttackAnimationId, swordAttackData.LastConcurrentSwordAttackAnimationId, stateMachine.Player.AnimationData.SwordAttackParameterName);
             return;
         }
-
+        
+        ResetAnimationIndex(swordAttackData.StartingSwordAttackAnimationIndex, stateMachine.Player.AnimationData.SwordAttackParameterName);
         stateMachine.ChangeState(stateMachine.IdlingState);
+    }
+
+    protected override void AddInputActionsCallbacks()
+    {
+        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+    }
+
+    protected override void RemoveInputActionsCallbacks()
+    {
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+    }
+
+    private void OnAttackStarted(InputAction.CallbackContext context)
+    {
+        useNextConcurrentAttack = true;
     }
 }

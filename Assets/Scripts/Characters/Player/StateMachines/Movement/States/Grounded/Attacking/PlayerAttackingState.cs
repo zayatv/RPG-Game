@@ -14,9 +14,11 @@ public class PlayerAttackingState : PlayerGroundedState
 
         base.Enter();
 
+        StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+
         stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
 
-        StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+        ResetVelocity();
     }
 
     public override void Exit()
@@ -42,22 +44,25 @@ public class PlayerAttackingState : PlayerGroundedState
         return currentAttack < maxConcurrentAttacks && currentAttack >= startAttack;
     }
 
-    protected void NextConcurrentAttack(int startAttack, int maxConcurrentAttacks, string parameterName)
+    protected void ResetAnimationIndex(int startAttackIndex, string attackType)
     {
-        if (!IsNextAttackConcurrent(startAttack, maxConcurrentAttacks, parameterName))
-        {
-            Debug.Log("Attack non-concurrent");
-            SetAnimationInteger(parameterName, startAttack);
-            return;
-        }
+        SetAnimationInteger(attackType, startAttackIndex);
+    }
 
-        Debug.Log("Attack concurrent");
+    protected void NextConcurrentAttack(string parameterName)
+    {
+        // Debug.Log(GetAnimationInteger("swordAttackState"));
+
+        // if (!IsNextAttackConcurrent(startAttack, maxConcurrentAttacks, parameterName))
+        // {
+        //     Debug.Log("Attack non-concurrent");
+        //     StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+        //     SetAnimationInteger(parameterName, startAttack);
+        //     return;
+        // }
         
-        StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
-        Debug.Log("1");
+        // Debug.Log("Attack concurrent");
+
         SetAnimationInteger(parameterName, GetAnimationInteger(parameterName) + 1);
-        Debug.Log("2");
-        StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
-        Debug.Log("3");
     }
 }

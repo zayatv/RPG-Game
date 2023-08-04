@@ -33,7 +33,7 @@ public class PlayerAttackingState : PlayerGroundedState
         stateMachine.Player.Animator.SetInteger(parameterName, parameterValue);
     }
 
-    protected int GetAnimationInteger(string parameterName)
+    protected int GetAnimationIndex(string parameterName)
     {
         return stateMachine.Player.Animator.GetInteger(parameterName);
     }
@@ -51,18 +51,13 @@ public class PlayerAttackingState : PlayerGroundedState
 
     protected void NextConcurrentAttack(string parameterName)
     {
-        // Debug.Log(GetAnimationInteger("swordAttackState"));
-
         // if (!IsNextAttackConcurrent(startAttack, maxConcurrentAttacks, parameterName))
         // {
-        //     Debug.Log("Attack non-concurrent");
         //     StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
         //     SetAnimationInteger(parameterName, startAttack);
         //     return;
         // }
-        
-        // Debug.Log("Attack concurrent");
 
-        SetAnimationInteger(parameterName, GetAnimationInteger(parameterName) + 1);
+        SetAnimationInteger(parameterName, GetAnimationIndex(parameterName) + 1);
     }
 }

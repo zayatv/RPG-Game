@@ -52,6 +52,7 @@ public class PlayerStoppingState : PlayerGroundedState
         base.AddInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.started += OnMovementStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -59,10 +60,16 @@ public class PlayerStoppingState : PlayerGroundedState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.started -= OnMovementStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
     }
 
     private void OnMovementStarted(InputAction.CallbackContext context)
     {
         OnMove();
+    }
+
+    private void OnAttackStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.SwordAttackingState);
     }
 }

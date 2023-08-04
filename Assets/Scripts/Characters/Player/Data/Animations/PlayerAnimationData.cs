@@ -10,6 +10,7 @@ public class PlayerAnimationData
     [SerializeField] private string stoppingParameterName = "Stopping";
     [SerializeField] private string landingParameterName = "Landing";
     [SerializeField] private string airborneParameterName = "Airborne";
+    [SerializeField] private string attackParameterName = "Attacking";
 
     [Header("Grounded Parameter Names")]
     [SerializeField] private string idleParameterName = "isIdling";
@@ -25,11 +26,15 @@ public class PlayerAnimationData
     [Header("Airborne Parameter Names")]
     [SerializeField] private string fallParameterName = "isFalling";
 
+    [field: Header("Attacking Parameter Names")]
+    [SerializeField] public string SwordAttackParameterName {get; private set; } = "swordAttackState";
+
     public int GroundedParameterHash { get; private set; }
     public int MovingParameterHash { get; private set; }
     public int StoppingParameterHash { get; private set; }
     public int LandingParameterHash { get; private set; }
     public int AirborneParameterHash { get; private set; }
+    public int AttackParameterHash { get; private set; }
 
     public int IdleParameterHash { get; private set; }
     public int DashParameterHash { get; private set; }
@@ -50,6 +55,7 @@ public class PlayerAnimationData
         StoppingParameterHash = Animator.StringToHash(stoppingParameterName);
         LandingParameterHash = Animator.StringToHash(landingParameterName);
         AirborneParameterHash = Animator.StringToHash(airborneParameterName);
+        AttackParameterHash = Animator.StringToHash(attackParameterName);
 
         IdleParameterHash = Animator.StringToHash(idleParameterName);
         DashParameterHash = Animator.StringToHash(dashParameterName);

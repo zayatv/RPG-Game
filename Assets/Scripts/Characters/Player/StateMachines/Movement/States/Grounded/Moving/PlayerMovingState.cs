@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovingState : PlayerGroundedState
 {
@@ -18,5 +20,24 @@ public class PlayerMovingState : PlayerGroundedState
         base.Exit();
 
         StopAnimation(stateMachine.Player.AnimationData.MovingParameterHash);
+    }
+
+    protected override void AddInputActionsCallbacks()
+    {
+        base.AddInputActionsCallbacks();
+
+        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+    }
+
+    protected override void RemoveInputActionsCallbacks()
+    {
+        base.RemoveInputActionsCallbacks();
+
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+    }
+
+    private void OnAttackStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.SwordAttackingState);
     }
 }

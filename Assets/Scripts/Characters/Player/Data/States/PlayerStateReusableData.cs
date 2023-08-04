@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,10 @@ public class PlayerStateReusableData
     public float MovementSpeedModifier { get; set; } = 1f;
     public float MovementOnSlopesSpeedModifier { get; set; } = 1f;
     public float MovementDecelerationForce { get; set; } = 1f;
+
+    public float TimeToBeConcurrentSwordAttack { get; set; } = 1f;
+    public int CurrentSwordAttack { get; set; }
+
     public List<PlayerCameraRecenteringData> BackwardsCameraRecenteringData { get; set; }
     public List<PlayerCameraRecenteringData> SidewaysCameraRecenteringData { get; set; }
     

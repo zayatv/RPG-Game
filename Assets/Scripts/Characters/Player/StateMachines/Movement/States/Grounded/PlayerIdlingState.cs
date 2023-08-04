@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerIdlingState : PlayerGroundedState
 {
@@ -53,5 +54,24 @@ public class PlayerIdlingState : PlayerGroundedState
         }
 
         ResetVelocity();
+    }
+
+    protected override void AddInputActionsCallbacks()
+    {
+        base.AddInputActionsCallbacks();
+
+        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+    }
+
+    protected override void RemoveInputActionsCallbacks()
+    {
+        base.RemoveInputActionsCallbacks();
+
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+    }
+
+    private void OnAttackStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.SwordAttackingState);
     }
 }

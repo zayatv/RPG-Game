@@ -41,6 +41,16 @@ public abstract class StateMachine
         currentState?.OnAnimationTransitionEvent();
     }
 
+    public void EnableWeapon()
+    {
+        currentState?.EnableWeapon();
+    }
+    
+    public void DisableWeapon()
+    {
+        currentState?.DisableWeapon();
+    }
+
     public void OnTriggerEnter(Collider collider) 
     {
         currentState?.OnTriggerEnter(collider);

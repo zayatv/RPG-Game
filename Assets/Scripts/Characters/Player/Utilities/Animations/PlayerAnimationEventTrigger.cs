@@ -41,6 +41,28 @@ public class PlayerAnimationEventTrigger : MonoBehaviour
         player.OnMovementStateAnimationTransitionEvent();
     }
 
+    public void TriggerOnEnableWeapon()
+    {
+        if (IsInAnimationTransition())
+        {
+            return;
+        }
+        
+        player.OnEnableWeapon();
+    }
+
+
+    public void TriggerOnDisableWeapon()
+    {
+        if (IsInAnimationTransition())
+        {
+            return;
+        }
+        
+        player.OnDisableWeapon();
+    }
+
+
     private bool IsInAnimationTransition(int layerIndex = 0)
     {
         return player.Animator.IsInTransition(layerIndex);

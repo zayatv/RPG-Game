@@ -68,6 +68,16 @@ public class PlayerMovementState : IState
         
     }
 
+    public virtual void EnableWeapon()
+    {
+
+    }
+
+    public virtual void DisableWeapon()
+    {
+        
+    }
+
     public virtual void OnTriggerEnter(Collider collider)
     {
         if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))

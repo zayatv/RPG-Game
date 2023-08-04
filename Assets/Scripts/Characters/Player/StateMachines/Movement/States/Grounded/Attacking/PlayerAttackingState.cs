@@ -28,6 +28,22 @@ public class PlayerAttackingState : PlayerGroundedState
         StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
     }
 
+    public override void EnableWeapon()
+    {
+        base.EnableWeapon();
+
+        stateMachine.Player.SwordGameObject.GetComponent<CapsuleCollider>().enabled = true;
+        Debug.Log("Weapon Enabled");
+    }
+
+    public override void DisableWeapon()
+    {
+        base.DisableWeapon();
+
+        stateMachine.Player.SwordGameObject.GetComponent<CapsuleCollider>().enabled = false;
+        Debug.Log("Weapon Disabled");
+    }
+
     protected void SetAnimationInteger(string parameterName, int parameterValue)
     {
         stateMachine.Player.Animator.SetInteger(parameterName, parameterValue);

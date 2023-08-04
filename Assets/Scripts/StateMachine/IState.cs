@@ -10,6 +10,8 @@ public interface IState
     public void OnAnimationEnterEvent();
     public void OnAnimationExitEvent();
     public void OnAnimationTransitionEvent();
+    public void EnableWeapon();
+    public void DisableWeapon();
     public void OnTriggerEnter(Collider collider);
     public void OnTriggerExit(Collider collider);
 }

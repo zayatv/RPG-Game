@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
+    [field: Header("Weapons")]
+    [field: SerializeField] public GameObject SwordGameObject { get; private set; }
+
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
 
@@ -88,5 +91,15 @@ public class Player : MonoBehaviour
     public void OnMovementStateAnimationTransitionEvent()
     {
         movementStateMachine.OnAnimationTransitionEvent();
+    }
+
+    public void OnEnableWeapon()
+    {
+        movementStateMachine.EnableWeapon();
+    }
+
+    public void OnDisableWeapon()
+    {
+        movementStateMachine.DisableWeapon();
     }
 }

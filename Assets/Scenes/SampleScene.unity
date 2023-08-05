@@ -2129,7 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ede10b722c3664fabc510d92356c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 30106f595d10e78429ee916bfe42e034, type: 2}
+  <PlayerData>k__BackingField: {fileID: 11400000, guid: 30106f595d10e78429ee916bfe42e034, type: 2}
   <ColliderUtility>k__BackingField:
     <DefaultColliderData>k__BackingField:
       <Height>k__BackingField: 1.8

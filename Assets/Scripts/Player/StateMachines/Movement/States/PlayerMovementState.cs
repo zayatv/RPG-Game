@@ -14,8 +14,8 @@ public class PlayerMovementState : IState
     {
         stateMachine = playerMovementStateMachine;
 
-        movementData = stateMachine.Player.Data.GroundedData;
-        airborneData = stateMachine.Player.Data.AirborneData;
+        movementData = stateMachine.Player.PlayerData.GroundedData;
+        airborneData = stateMachine.Player.PlayerData.AirborneData;
 
         SetBaseCameraRecenteringData();
 

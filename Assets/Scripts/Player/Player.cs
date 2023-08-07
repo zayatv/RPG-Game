@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     [field: Header("References")]
     [field: SerializeField] public PlayerSO PlayerData { get; private set; }
-    [field: SerializeField] public PlayableCharacterSO CurrentCharacter { get; private set;} 
 
     [field: Header("Collisions")]
     [field: SerializeField] public PlayerCapsuleColliderUtility ColliderUtility { get; private set; }

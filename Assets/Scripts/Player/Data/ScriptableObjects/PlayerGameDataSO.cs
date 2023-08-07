@@ -11,7 +11,6 @@ public class PlayerGameDataSO : ScriptableObject
     [field: Header("Playable Character Data")]
     [field: SerializeField] public List<PlayableCharacterSO> AllPlayableCharacters { get; private set; }
     [field: SerializeField] public List<PlayableCharacterSO> OwnedPlayableCharacters { get; private set; }
-    [field: SerializeField] public List<PlayableCharacterSO> EquipedPlayableCharacters { get; private set; }
 
     [field: Header("Weapon Data")]
     [field: SerializeField] public List<WeaponSO> AllWeapons { get; private set; }
@@ -19,7 +18,7 @@ public class PlayerGameDataSO : ScriptableObject
 
     [field: Header("Inventory Item Data")]
     [field: SerializeField] public List<string> OwnedItemsPlaceholder { get; private set; }
-    
+
     [field: Header("Currency")]
     [field: SerializeField] public Currency FreeCurrency { get; private set; }
     [field: SerializeField] public Currency AnotherFreeCurrency { get; private set; }

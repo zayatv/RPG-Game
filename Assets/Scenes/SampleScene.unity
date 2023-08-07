@@ -2130,6 +2130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField: {fileID: 11400000, guid: 30106f595d10e78429ee916bfe42e034, type: 2}
+  <CurrentCharacter>k__BackingField: {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
   <ColliderUtility>k__BackingField:
     <DefaultColliderData>k__BackingField:
       <Height>k__BackingField: 1.8

@@ -60,14 +60,14 @@ public class PlayerIdlingState : PlayerGroundedState
     {
         base.AddInputActionsCallbacks();
 
-        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+        //stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
     {
         base.RemoveInputActionsCallbacks();
 
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+        //stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
     }
 
     private void OnAttackStarted(InputAction.CallbackContext context)

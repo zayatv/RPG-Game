@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AllPlayableCharacters>k__BackingField:
   - {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
-  - {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
-  - {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
+  - {fileID: 11400000, guid: 6823b84446a83f74e9023cbfab046e9c, type: 2}
   <OwnedPlayableCharacters>k__BackingField:
   - {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
-  - {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
-  - {fileID: 11400000, guid: 33b6b07e0440e8c4880ffb28989d8ab9, type: 2}
+  - {fileID: 11400000, guid: 6823b84446a83f74e9023cbfab046e9c, type: 2}

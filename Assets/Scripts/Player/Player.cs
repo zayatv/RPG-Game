@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public GameObject SwordGameObject { get; private set; }
 
     public Rigidbody Rigidbody { get; private set; }
-    public Animator Animator { get; private set; }
+    public Animator Animator { get; set; }
 
     public Transform MainCameraTransform { get; private set; }
 

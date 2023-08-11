@@ -3,6 +3,7 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -179,6 +180,9 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         Debug.Log(eventData.pointerDrag.name);
 
+        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (isDraggingCharacterModel)
             Cursor.lockState = CursorLockMode.Confined;
     }
@@ -188,7 +192,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (isDraggingCharacterModel)
             Debug.Log(eventData.pointerDrag.name);
 
-        mousePositionDelta = eventData.position - prevMousePosition;
+        Debug.Log("Dragged");
+        mousePositionDelta = Mouse.current.delta.ReadValue();
         characterModelTransform.Rotate(transform.up, -Vector2.Dot(mousePositionDelta, uiCamera.transform.right) * characterRotationModifier);
         prevMousePosition = eventData.position;
     }
@@ -198,6 +203,9 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (eventData.pointerDrag.transform == characterModelParent) isDraggingCharacterModel = false;
 
         prevMousePosition = Vector2.zero;
+
+        //Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         if (isDraggingCharacterModel)
             Cursor.lockState = CursorLockMode.None;

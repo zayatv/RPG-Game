@@ -2606,21 +2606,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 539740928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0fb8fa9364bf340af768467c225f0f, type: 3}
+  m_Script: {fileID: 11500000, guid: f236086e71472c7449e63c4e5d735967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiCamera: {fileID: 407439842}
-  playerObject: {fileID: 803682128}
-  controller: {fileID: 9100000, guid: 32c29eb85ebd7c04a9da3f6f34e67015, type: 2}
-  characterData: {fileID: 11400000, guid: d5c5edab61914704e86db996d28f5d33, type: 2}
-  characterMenuUIParent: {fileID: 1559762836}
-  characterButton: {fileID: 3231801869512965637, guid: 125d717647fdab046bae94116c2e137c, type: 3}
-  selectCharacterButton: {fileID: 1296952699}
-  container: {fileID: 1211458238}
-  characterModelParent: {fileID: 330523580}
-  characterMenuKey: 99
-  idleAnimatorController: {fileID: 9100000, guid: ed39e605d4093fd40bee00a8a86b53c1, type: 2}
-  characterRotationModifier: 0.1
+  characterMenuObject: {fileID: 1559762836}
+  <OpenCharacterMenuKeyCode>k__BackingField: 99
 --- !u!1 &645711111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5306,13 +5296,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559762837}
+  - component: {fileID: 1559762838}
   m_Layer: 5
   m_Name: CharacterMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1559762837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5338,6 +5329,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1559762838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559762836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0fb8fa9364bf340af768467c225f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 539740933}
+  uiCamera: {fileID: 407439842}
+  playerObject: {fileID: 803682128}
+  playerAnimationController: {fileID: 9100000, guid: 32c29eb85ebd7c04a9da3f6f34e67015, type: 2}
+  characterData: {fileID: 11400000, guid: d5c5edab61914704e86db996d28f5d33, type: 2}
+  characterButton: {fileID: 3231801869512965637, guid: 125d717647fdab046bae94116c2e137c, type: 3}
+  selectCharacterButton: {fileID: 1296952699}
+  scrollViewContainer: {fileID: 1211458238}
+  characterModelParent: {fileID: 330523580}
+  idleAnimatorController: {fileID: 9100000, guid: ed39e605d4093fd40bee00a8a86b53c1, type: 2}
+  characterRotationModifier: 0.1
 --- !u!1 &1679752216
 GameObject:
   m_ObjectHideFlags: 0

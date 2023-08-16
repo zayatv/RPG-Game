@@ -61,6 +61,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Animator animator = character.GetComponent<Animator>();
         animator.runtimeAnimatorController = playerAnimationController;
         player.Animator = animator;
+        player.Animator.cullingMode = AnimatorCullingMode.CullUpdateTransforms;
     }
 
     private void OnSelectCharacterClick()
@@ -114,6 +115,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         Animator animator = characterModel.AddComponent<Animator>();
         animator.runtimeAnimatorController = idleAnimatorController;
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.cullingMode = AnimatorCullingMode.CullUpdateTransforms;
 
         characterModel.transform.localPosition = new Vector3(0f, -820f, 0f);
         characterModel.transform.eulerAngles = new Vector3(0f, 0f, 0f);

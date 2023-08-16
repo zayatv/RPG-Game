@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Genral Information")]
+    [SerializeField] private GameObject menusGameObjectParent;
+
     [Header("Character Menu")]
     [SerializeField] private GameObject characterMenuObject;
     [field: SerializeField] public KeyCode OpenCharacterMenuKeyCode { get; private set; }
@@ -17,14 +20,28 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(OpenCharacterMenuKeyCode))
         {
-            characterMenuObject.SetActive(true);
-            OpenUiMenu();
+            OpenCharacterMenu();
         }
+    }
+
+    public void OpenCharacterMenu()
+    {
+        OpenUiMenu();
+        characterMenuObject.SetActive(true);
     }
 
     private void OpenUiMenu()
     {
         StopTime();
+        CloseAllMenus();
+    }
+
+    private void CloseAllMenus()
+    {
+        foreach (Transform child in menusGameObjectParent.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 
     private void StopTime()

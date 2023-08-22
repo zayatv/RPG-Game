@@ -150,6 +150,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         ContinueTime();
         UnloadCharacterList();
+
+        uiManager.IsInMenu = false;
     }
 
     private void ContinueTime()

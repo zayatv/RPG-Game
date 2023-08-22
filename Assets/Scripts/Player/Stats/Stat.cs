@@ -5,44 +5,25 @@ using UnityEngine;
 [Serializable]
 public class Stat
 {
-    [field: SerializeField] private float baseValue;
-    [field: SerializeField] private float flatModifier;
-    [field: SerializeField] private float percentageModifier;
+    [field: SerializeField] public StatType StatType { get; private set; }
+    [field: SerializeField] public float BaseValue { get; private set; }
+    [field: SerializeField] public float FlatModifier { get; private set; }
+    [field: SerializeField] public float PercentageModifier { get; private set; }
     
-    private float totalValue;
+    public float TotalValue { get; private set; }
 
-    public float GetTotalValue()
-    {
-        return totalValue;
-    }
-
-    public float GetBaseValue()
-    {
-        return baseValue;
-    }
-
-    public float GetFlatModifierValue()
-    {
-        return flatModifier;
-    }
-
-    public float GetPercentageModifierValue()
-    {
-        return percentageModifier;
-    }
-
-    public void AddValue(float valueToAdd, StatType valueType)
+    public void AddValue(float valueToAdd, StatValueType valueType)
     {
         switch (valueType)
         {
-            case StatType.FLAT:
+            case StatValueType.Flat:
             {
-                flatModifier += valueToAdd;
+                FlatModifier += valueToAdd;
                 break;
             }
-            case StatType.PERCENTAGE:
+            case StatValueType.Percentage:
             {
-                percentageModifier += valueToAdd;
+                PercentageModifier += valueToAdd;
                 break;
             }
             default:
@@ -54,18 +35,18 @@ public class Stat
         CalculateTotalStatValue();
     }
 
-    public void RemoveValue(float valueToRemove, StatType valueType)
+    public void RemoveValue(float valueToRemove, StatValueType valueType)
     {
         switch (valueType)
         {
-            case StatType.FLAT:
+            case StatValueType.Flat:
             {
-                flatModifier -= valueToRemove;
+                FlatModifier -= valueToRemove;
                 break;
             }
-            case StatType.PERCENTAGE:
+            case StatValueType.Percentage:
             {
-                percentageModifier -= valueToRemove;
+                PercentageModifier -= valueToRemove;
                 break;
             }
             default:
@@ -79,12 +60,12 @@ public class Stat
 
     public void CalculateTotalStatValue()
     {
-        totalValue = (baseValue + flatModifier) * (percentageModifier / 100 + 1);
+        TotalValue = (BaseValue + FlatModifier) * (PercentageModifier / 100 + 1);
     }
 }
 
-public enum StatType
+public enum StatValueType
 {
-    FLAT,
-    PERCENTAGE
+    Flat,
+    Percentage
 }

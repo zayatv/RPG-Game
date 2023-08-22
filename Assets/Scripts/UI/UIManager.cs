@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Genral Information")]
+    [Header("General Information")]
     [SerializeField] private GameObject menusGameObjectParent;
+    [field: SerializeField] public bool IsInMenu { get; set; } = false;
 
     [Header("Character Menu")]
     [SerializeField] private GameObject characterMenuObject;
     [field: SerializeField] public KeyCode OpenCharacterMenuKeyCode { get; private set; }
-    
+
+    [Header("Pause Menu")]
+    [SerializeField] private GameObject pauseMenuObject;
+    [field: SerializeField] public KeyCode OpenPauseMenuKeyCode { get; private set; }
+
     void Start()
     {
         characterMenuObject.SetActive(false);
@@ -18,10 +23,22 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        if (IsInMenu) return;
+
         if (Input.GetKeyDown(OpenCharacterMenuKeyCode))
         {
             OpenCharacterMenu();
         }
+        else if (Input.GetKeyDown(OpenPauseMenuKeyCode))
+        {
+            OpenPauseMenu();
+        }
+    }
+
+    public void OpenPauseMenu()
+    {
+        OpenUiMenu();
+        pauseMenuObject.SetActive(true);
     }
 
     public void OpenCharacterMenu()
@@ -34,6 +51,8 @@ public class UIManager : MonoBehaviour
     {
         StopTime();
         CloseAllMenus();
+
+        IsInMenu = true;
     }
 
     private void CloseAllMenus()

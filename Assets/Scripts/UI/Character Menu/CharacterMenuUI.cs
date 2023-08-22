@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -10,13 +9,13 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField] private UIManager uiManager;
     [SerializeField] private Camera uiCamera;
     [SerializeField] private GameObject playerObject;
-    [SerializeField] private AnimatorController playerAnimationController;
+    [SerializeField] private RuntimeAnimatorController playerAnimationController;
     [SerializeField] private PlayerCharacterDataSO characterData;
     [SerializeField] private GameObject characterButton;
     [SerializeField] private Button selectCharacterButton;
     [SerializeField] private Transform scrollViewContainer;
     [SerializeField] private Transform characterModelParent;
-    [SerializeField] private AnimatorController idleAnimatorController;
+    [SerializeField] private RuntimeAnimatorController idleAnimatorController;
 
     [SerializeField] private float characterRotationModifier = 0.1f;
 

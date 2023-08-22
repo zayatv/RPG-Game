@@ -12,32 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de23edf20bbf8a1449e11aee905f4ae2, type: 3}
   m_Name: PlayerBaseStats
   m_EditorClassIdentifier: 
-  <PlayerBaseStats>k__BackingField:
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  - <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
+  <PlayerBaseHealth>k__BackingField: 1000
+  <PlayerBaseMana>k__BackingField: 100
+  <PlayerBaseStrength>k__BackingField: 100
+  <PlayerBaseDefense>k__BackingField: 100
+  <PlayerBaseAttackSpeed>k__BackingField: 100
+  <PlayerBaseCriticalHitChance>k__BackingField: 10
+  <PlayerBaseCriticalHitDamage>k__BackingField: 20

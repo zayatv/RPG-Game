@@ -12,21 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cf16bb0295c2645b24b53e4bace322, type: 3}
   m_Name: BasicSword
   m_EditorClassIdentifier: 
-  <WeaponName>k__BackingField: 
-  <WeaponDescription>k__BackingField: 
-  <Rarity>k__BackingField: 0
+  <WeaponName>k__BackingField: Basic Sword
+  <WeaponDescription>k__BackingField: It's just a basic sword
+  <Rarity>k__BackingField: 5
   <WeaponType>k__BackingField: 0
-  <WeaponModel>k__BackingField: {fileID: 0}
+  <WeaponModel>k__BackingField: {fileID: -927199367670048503, guid: dd0682cd55d7f8342b8026ebb1cfc4a5, type: 3}
   <BaseAttack>k__BackingField:
-    baseValue: 0
-    flatModifier: 0
-    percentageModifier: 0
+    <StatType>k__BackingField: 0
+    <BaseValue>k__BackingField: 0
+    <FlatModifier>k__BackingField: 0
+    <PercentageModifier>k__BackingField: 0
   <PrimaryStat>k__BackingField:
-    baseValue: 0
-    flatModifier: 0
-    percentageModifier: 0
+    <StatType>k__BackingField: 0
+    <BaseValue>k__BackingField: 0
+    <FlatModifier>k__BackingField: 0
+    <PercentageModifier>k__BackingField: 0
   <SecondaryStat>k__BackingField:
-    baseValue: 0
-    flatModifier: 0
-    percentageModifier: 0
+    <StatType>k__BackingField: 0
+    <BaseValue>k__BackingField: 0
+    <FlatModifier>k__BackingField: 0
+    <PercentageModifier>k__BackingField: 0
   <EquippedSkills>k__BackingField: []

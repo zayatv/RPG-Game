@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackingState : PlayerGroundedState
@@ -19,6 +17,7 @@ public class PlayerAttackingState : PlayerGroundedState
         stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
 
         ResetVelocity();
+        EnableWeaponObject();
     }
 
     public override void Exit()
@@ -26,13 +25,15 @@ public class PlayerAttackingState : PlayerGroundedState
         base.Exit();
 
         StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+
+        DisableWeaponObject();
     }
 
     public override void EnableWeapon()
     {
         base.EnableWeapon();
 
-        stateMachine.Player.SwordGameObject.GetComponent<CapsuleCollider>().enabled = true;
+        stateMachine.Player.CurrentEquippedWeapon.WeaponModel.GetComponent<CapsuleCollider>().enabled = true;
         Debug.Log("Weapon Enabled");
     }
 
@@ -40,7 +41,7 @@ public class PlayerAttackingState : PlayerGroundedState
     {
         base.DisableWeapon();
 
-        stateMachine.Player.SwordGameObject.GetComponent<CapsuleCollider>().enabled = false;
+        stateMachine.Player.CurrentEquippedWeapon.WeaponModel.GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Weapon Disabled");
     }
 
@@ -75,5 +76,15 @@ public class PlayerAttackingState : PlayerGroundedState
         // }
 
         SetAnimationInteger(parameterName, GetAnimationIndex(parameterName) + 1);
+    }
+
+    private void EnableWeaponObject()
+    {
+        stateMachine.Player.WeaponParentTranform.gameObject.SetActive(true);
+    }
+
+    private void DisableWeaponObject()
+    {
+        stateMachine.Player.WeaponParentTranform.gameObject.SetActive(false);
     }
 }

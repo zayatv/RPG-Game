@@ -9,7 +9,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField] private UIManager uiManager;
     [SerializeField] private Camera uiCamera;
     [SerializeField] private GameObject playerObject;
-    [SerializeField] private RuntimeAnimatorController playerAnimationController;
+
     [SerializeField] private PlayerCharacterDataSO characterData;
     [SerializeField] private GameObject characterButton;
     [SerializeField] private Button selectCharacterButton;
@@ -54,13 +54,10 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         GameObject character = Instantiate(selectedCharacter.CharacterModel, playerObject.transform);
         character.transform.SetAsFirstSibling();
 
-        character.AddComponent<Animator>();
-        character.AddComponent<PlayerAnimationEventTrigger>();
-
         Animator animator = character.GetComponent<Animator>();
-        animator.runtimeAnimatorController = playerAnimationController;
         player.Animator = animator;
-        player.Animator.cullingMode = AnimatorCullingMode.CullUpdateTransforms;
+
+        //player.WeaponParentTranform = character.transform.Find("Weapon").transform;
     }
 
     private void OnSelectCharacterClick()
@@ -112,7 +109,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             child.gameObject.layer = LayerMask.NameToLayer("UICharacterModel");
         }
 
-        Animator animator = characterModel.AddComponent<Animator>();
+        Animator animator = characterModel.GetComponent<Animator>();
         animator.runtimeAnimatorController = idleAnimatorController;
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.cullingMode = AnimatorCullingMode.CullUpdateTransforms;

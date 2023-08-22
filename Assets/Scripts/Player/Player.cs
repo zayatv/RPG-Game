@@ -18,10 +18,11 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
     [field: Header("Weapons")]
-    [field: SerializeField] public GameObject SwordGameObject { get; private set; }
+    [field: SerializeField] public WeaponSO CurrentEquippedWeapon { get; private set; }
 
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; set; }
+    public Transform WeaponParentTranform { get; set; }
 
     public Transform MainCameraTransform { get; private set; }
 
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();
+        //WeaponParentTranform = transform.GetChild(0).Find("Weapon").transform;
 
         ColliderUtility.Initialize(gameObject);
         ColliderUtility.CalculateCapsuleColliderDimensions();

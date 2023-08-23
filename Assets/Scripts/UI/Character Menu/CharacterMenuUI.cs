@@ -57,7 +57,19 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Animator animator = character.GetComponent<Animator>();
         player.Animator = animator;
 
-        //player.WeaponParentTranform = character.transform.Find("Weapon").transform;
+        player.WeaponParentTransform = FindChild.RecursiveFindChild(character.transform, "Weapon");
+        ApplyWeaponToCharacter();
+    }
+
+    private void ApplyWeaponToCharacter()
+    {
+        foreach (Transform child in player.WeaponParentTransform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        var currentWeapon = Instantiate(player.CurrentEquippedWeapon.WeaponModel, player.WeaponParentTransform);
+        currentWeapon.transform.SetParent(player.WeaponParentTransform);
     }
 
     private void OnSelectCharacterClick()
@@ -147,7 +159,9 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         ContinueTime();
         UnloadCharacterList();
 
-        uiManager.IsInMenu = false;
+        player.Input.PlayerActions.Enable();
+
+        UIManager.IsInMenu = false;
     }
 
     private void ContinueTime()

@@ -6,7 +6,8 @@ public class UIManager : MonoBehaviour
 {
     [Header("General Information")]
     [SerializeField] private GameObject menusGameObjectParent;
-    [field: SerializeField] public bool IsInMenu { get; set; } = false;
+    [SerializeField] private Player player;
+    public static bool IsInMenu = false;
 
     [Header("Character Menu")]
     [SerializeField] private GameObject characterMenuObject;
@@ -23,7 +24,10 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (IsInMenu) return;
+        if (IsInMenu)
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(OpenCharacterMenuKeyCode))
         {
@@ -51,6 +55,8 @@ public class UIManager : MonoBehaviour
     {
         StopTime();
         CloseAllMenus();
+
+        player.Input.PlayerActions.Disable();
 
         IsInMenu = true;
     }

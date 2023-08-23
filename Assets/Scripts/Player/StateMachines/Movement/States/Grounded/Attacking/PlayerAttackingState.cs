@@ -33,7 +33,7 @@ public class PlayerAttackingState : PlayerGroundedState
     {
         base.EnableWeapon();
 
-        stateMachine.Player.CurrentEquippedWeapon.WeaponModel.GetComponent<CapsuleCollider>().enabled = true;
+        stateMachine.Player.WeaponParentTransform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
         Debug.Log("Weapon Enabled");
     }
 
@@ -41,7 +41,7 @@ public class PlayerAttackingState : PlayerGroundedState
     {
         base.DisableWeapon();
 
-        stateMachine.Player.CurrentEquippedWeapon.WeaponModel.GetComponent<CapsuleCollider>().enabled = false;
+        stateMachine.Player.WeaponParentTransform.GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Weapon Disabled");
     }
 
@@ -80,11 +80,11 @@ public class PlayerAttackingState : PlayerGroundedState
 
     private void EnableWeaponObject()
     {
-        stateMachine.Player.WeaponParentTranform.gameObject.SetActive(true);
+        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(true);
     }
 
     private void DisableWeaponObject()
     {
-        stateMachine.Player.WeaponParentTranform.gameObject.SetActive(false);
+        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(false);
     }
 }

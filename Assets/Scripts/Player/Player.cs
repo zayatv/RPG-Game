@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; set; }
-    public Transform WeaponParentTranform { get; set; }
+    public Transform WeaponParentTransform { get; set; }
 
     public Transform MainCameraTransform { get; private set; }
 
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();
-        //WeaponParentTranform = transform.GetChild(0).Find("Weapon").transform;
+        WeaponParentTransform = FindChild.RecursiveFindChild(transform.GetChild(0), "Weapon");
 
         ColliderUtility.Initialize(gameObject);
         ColliderUtility.CalculateCapsuleColliderDimensions();

@@ -88,6 +88,13 @@ MonoBehaviour:
         <MaximumAngle>k__BackingField: 90
         <WaitTime>k__BackingField: 0.25
         <RecenteringTime>k__BackingField: 0.5
+    <DashData>k__BackingField:
+      <SpeedModifier>k__BackingField: 2
+      <RotationData>k__BackingField:
+        <TargetRotationReachTime>k__BackingField: {x: 0, y: 0.02, z: 0}
+      <TimeToBeConsideredConsecutive>k__BackingField: 1
+      <ConsecutiveDashesLimitAmount>k__BackingField: 2
+      <DashLimitReachedCooldown>k__BackingField: 1.75
     <WalkData>k__BackingField:
       <SpeedModifier>k__BackingField: 0.255
       <BackwardsCameraRecenteringData>k__BackingField:
@@ -101,19 +108,15 @@ MonoBehaviour:
       <SpeedModifier>k__BackingField: 1.7
       <SprintToRunTime>k__BackingField: 1
       <RunToWalkTime>k__BackingField: 0.5
-    <DashData>k__BackingField:
-      <SpeedModifier>k__BackingField: 2
-      <RotationData>k__BackingField:
-        <TargetRotationReachTime>k__BackingField: {x: 0, y: 0.02, z: 0}
-      <TimeToBeConsideredConsecutive>k__BackingField: 1
-      <ConsecutiveDashesLimitAmount>k__BackingField: 2
-      <DashLimitReachedCooldown>k__BackingField: 1.75
     <StopData>k__BackingField:
       <LightDecelerationForce>k__BackingField: 5
       <MediumDecelerationForce>k__BackingField: 6.5
       <HardDecelerationForce>k__BackingField: 5
     <RollData>k__BackingField:
       <SpeedModifier>k__BackingField: 1
+    <SwordAttackData>k__BackingField:
+      <StartingSwordAttackAnimationIndex>k__BackingField: 0
+      <LastConcurrentSwordAttackAnimationIndex>k__BackingField: 2
   <AirborneData>k__BackingField:
     <JumpData>k__BackingField:
       <RotationData>k__BackingField:

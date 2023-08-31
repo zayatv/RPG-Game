@@ -29,8 +29,6 @@ public class PlayerMovementState : IState
 
     public virtual void Enter()
     {
-        Debug.Log("State: " + GetType().Name);
-
         AddInputActionsCallbacks();
     }
     public virtual void Exit()

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerSwordAttackingState : PlayerAttackingState
+public class PlayerSwordAttackingState : PlayerMovementAttackingState
 {
     private PlayerSwordAttackData swordAttackData;
 
@@ -50,7 +50,7 @@ public class PlayerSwordAttackingState : PlayerAttackingState
             return;
         }
         
-        ResetAnimationIndex(swordAttackData.StartingSwordAttackAnimationIndex, stateMachine.Player.AnimationData.SwordAttackParameterName);
+        ResetAnimationIndex(stateMachine.Player.AnimationData.SwordAttackParameterName);
         stateMachine.ChangeState(stateMachine.IdlingState);
     }
 

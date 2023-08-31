@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerAttackingState : PlayerGroundedState
+public class PlayerMovementAttackingState : PlayerGroundedState
 {
-    public PlayerAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public PlayerMovementAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
     }
 
@@ -61,7 +61,7 @@ public class PlayerAttackingState : PlayerGroundedState
         return currentAttack < maxConcurrentAttacks && currentAttack >= startAttack;
     }
 
-    protected void ResetAnimationIndex(int startAttackIndex, string attackType)
+    protected void ResetAnimationIndex(string attackType, int startAttackIndex = 0)
     {
         SetAnimationInteger(attackType, startAttackIndex);
     }

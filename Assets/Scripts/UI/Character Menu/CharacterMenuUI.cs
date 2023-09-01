@@ -51,6 +51,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         Destroy(playerObject.transform.GetChild(0).gameObject);
 
+        characterData.CurrentPlayableCharacter = selectedCharacter;
+
         GameObject character = Instantiate(selectedCharacter.CharacterModel, playerObject.transform);
         character.transform.SetAsFirstSibling();
 

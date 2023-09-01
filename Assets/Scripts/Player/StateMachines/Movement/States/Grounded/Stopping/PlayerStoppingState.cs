@@ -67,9 +67,4 @@ public class PlayerStoppingState : PlayerGroundedState
     {
         OnMove();
     }
-
-    private void OnAttackStarted(InputAction.CallbackContext context)
-    {
-        stateMachine.ChangeState(stateMachine.SwordAttackingState);
-    }
 }

@@ -69,11 +69,4 @@ public class PlayerIdlingState : PlayerGroundedState
 
         stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
     }
-
-    private void OnAttackStarted(InputAction.CallbackContext context)
-    {
-        if (UIManager.IsInMenu) return;
-
-        stateMachine.ChangeState(stateMachine.SwordAttackingState);
-    }
 }

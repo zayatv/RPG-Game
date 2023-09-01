@@ -178,4 +178,43 @@ public class PlayerGroundedState : PlayerMovementState
     {
         stateMachine.ChangeState(stateMachine.JumpingState);
     }
+
+    protected void OnAttackStarted(InputAction.CallbackContext context)
+    {
+        if (UIManager.IsInMenu) return;
+
+        switch (stateMachine.Player.CurrentEquippedWeapon.WeaponType)
+        {
+            case WeaponType.Sword:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            case WeaponType.Spear:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            case WeaponType.Wand:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            case WeaponType.Hammer:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            case WeaponType.Gauntlet:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            case WeaponType.Dagger:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            case WeaponType.Bow:
+                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                break;
+
+            default:
+                break;
+        }
+    }
 }

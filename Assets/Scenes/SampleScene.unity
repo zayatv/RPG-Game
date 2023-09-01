@@ -1695,8 +1695,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterMale
       objectReference: {fileID: 0}
+    - target: {fileID: 2321036222514913830, guid: ce49e3550b3e7eb4ea37189b538674a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7636803315863874488, guid: ce49e3550b3e7eb4ea37189b538674a6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce49e3550b3e7eb4ea37189b538674a6, type: 3}
@@ -5221,6 +5226,7 @@ GameObject:
   - component: {fileID: 803682132}
   - component: {fileID: 803682130}
   - component: {fileID: 803682131}
+  - component: {fileID: 803682134}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5358,6 +5364,21 @@ CapsuleCollider:
   m_Height: 1.3499999
   m_Direction: 1
   m_Center: {x: 0, y: 1.125, z: 0}
+--- !u!114 &803682134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803682128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeff303c5c28aa64bb41e6584b877ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 803682129}
+  player: {fileID: 803682130}
+  characterData: {fileID: 11400000, guid: d5c5edab61914704e86db996d28f5d33, type: 2}
 --- !u!43 &866451168
 Mesh:
   m_ObjectHideFlags: 0

@@ -12,8 +12,11 @@ public class LoadInitialData : MonoBehaviour
         Destroy(playerObject.GetChild(0).gameObject);
 
         var playableCharacter = Instantiate(characterData.CurrentPlayableCharacter.CharacterModel, playerObject);
+
         playableCharacter.transform.SetParent(playerObject);
         playableCharacter.transform.SetAsFirstSibling();
+
+        player.Animator = playableCharacter.GetComponent<Animator>();
 
         player.WeaponParentTransform = FindChild.RecursiveFindChild(playableCharacter.transform, "Weapon");
         ApplyWeaponToCharacter();

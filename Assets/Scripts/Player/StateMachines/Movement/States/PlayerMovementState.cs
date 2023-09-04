@@ -381,7 +381,10 @@ public class PlayerMovementState : IState
             movementSpeed = movementData.BaseSpeed;
         }
 
-        stateMachine.Player.CameraUtility.EnableRecentering(waitTime, recenteringTime, movementData.BaseSpeed, movementSpeed);
+        if (!UIManager.IsInMenu && !stateMachine.Player.IsAttacking)
+        {
+            stateMachine.Player.CameraUtility.EnableRecentering(waitTime, recenteringTime, movementData.BaseSpeed, movementSpeed);
+        }
     }
 
     protected void DisableCameraRecentering()

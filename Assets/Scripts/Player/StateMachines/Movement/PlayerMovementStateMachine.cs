@@ -13,6 +13,7 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerHardStoppingState HardStoppingState { get; }
 
     public PlayerSwordAttackingState SwordAttackingState { get; }
+    public PlayerSpearAttackingState SpearAttackingState { get; }
 
     public PlayerLightLandingState LightLandingState { get; }
     
@@ -39,6 +40,7 @@ public class PlayerMovementStateMachine : StateMachine
         HardStoppingState = new PlayerHardStoppingState(this);
 
         SwordAttackingState = new PlayerSwordAttackingState(this);
+        SpearAttackingState = new PlayerSpearAttackingState(this);
 
         JumpingState = new PlayerJumpingState(this);
         FallingState = new PlayerFallingState(this);

@@ -19,4 +19,5 @@ public class PlayerGroundedData
     [field: SerializeField] public PlayerStopData StopData { get; private set; }
     [field: SerializeField] public PlayerRollData RollData { get; private set; }
     [field: SerializeField] public PlayerSwordAttackData SwordAttackData { get; private set; }
+    [field: SerializeField] public PlayerSpearAttackData SpearAttackData { get; private set; }
 }

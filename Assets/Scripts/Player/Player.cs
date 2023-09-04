@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     public PlayerInput Input { get; private set; }
 
+    public bool IsAttacking { get; set; }
+
     private PlayerMovementStateMachine movementStateMachine;
 
     private void Awake()
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
         AnimationData.Initialize();
 
         MainCameraTransform = Camera.main.transform;
+
+        IsAttacking = false;
 
         movementStateMachine = new PlayerMovementStateMachine(this);
     }

@@ -27,7 +27,9 @@ public class PlayerAnimationData
     [SerializeField] private string fallParameterName = "isFalling";
 
     [field: Header("Attacking Parameter Names")]
-    [SerializeField] public string SwordAttackParameterName {get; private set; } = "swordAttackState";
+    [SerializeField] public string SwordAttackParameterName { get; private set; } = "swordAttackState";
+    [SerializeField] public string SpearAttackParameterName { get; private set; } = "spearAttackState";
+    [SerializeField] private string spearEquippedParameterName = "hasEquippedSpear";
 
     public int GroundedParameterHash { get; private set; }
     public int MovingParameterHash { get; private set; }
@@ -47,6 +49,8 @@ public class PlayerAnimationData
     public int HardLandParameterHash { get; private set; }
     
     public int FallParameterHash { get; private set; }
+
+    public int SpearEquippedParameterHash {  get; private set; }
 
     public void Initialize()
     {
@@ -68,5 +72,7 @@ public class PlayerAnimationData
         HardLandParameterHash = Animator.StringToHash(hardLandParameterName);
 
         FallParameterHash = Animator.StringToHash(fallParameterName);
+
+        SpearEquippedParameterHash = Animator.StringToHash(spearEquippedParameterName);
     }
 }

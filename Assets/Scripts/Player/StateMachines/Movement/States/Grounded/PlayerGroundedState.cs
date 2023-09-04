@@ -190,7 +190,8 @@ public class PlayerGroundedState : PlayerMovementState
                 break;
 
             case WeaponType.Spear:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                StartAnimation(stateMachine.Player.AnimationData.SpearEquippedParameterHash);
+                stateMachine.ChangeState(stateMachine.SpearAttackingState);
                 break;
 
             case WeaponType.Wand:

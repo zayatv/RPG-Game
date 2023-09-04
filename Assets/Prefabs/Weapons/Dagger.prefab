@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135580356159273160, guid: 374571717594b43609ceb649d90246b6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7457979150171668952, guid: 374571717594b43609ceb649d90246b6, type: 3}
       propertyPath: m_Name
-      value: Dagger Variant
+      value: Dagger
       objectReference: {fileID: 0}
     - target: {fileID: 7839570860824386402, guid: 374571717594b43609ceb649d90246b6, type: 3}
       propertyPath: m_LocalScale.x

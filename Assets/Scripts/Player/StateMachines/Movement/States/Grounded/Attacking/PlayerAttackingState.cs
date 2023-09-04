@@ -18,6 +18,8 @@ public class PlayerAttackingState : PlayerGroundedState
 
         ResetVelocity();
         EnableWeaponObject();
+
+        stateMachine.Player.IsAttacking = true;
     }
 
     public override void Exit()
@@ -27,22 +29,28 @@ public class PlayerAttackingState : PlayerGroundedState
         StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
 
         DisableWeaponObject();
+
+        stateMachine.Player.IsAttacking = false;
     }
 
     public override void EnableWeapon()
     {
         base.EnableWeapon();
 
-        stateMachine.Player.WeaponParentTransform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
-        Debug.Log("Weapon Enabled");
+        if(stateMachine.Player.WeaponParentTransform.GetChild(0).TryGetComponent<CapsuleCollider>(out CapsuleCollider collider))
+        {
+            collider.enabled = true;
+        }
     }
 
     public override void DisableWeapon()
     {
         base.DisableWeapon();
 
-        stateMachine.Player.WeaponParentTransform.GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
-        Debug.Log("Weapon Disabled");
+        if(stateMachine.Player.WeaponParentTransform.GetChild(0).TryGetComponent<CapsuleCollider>(out CapsuleCollider collider))
+        {
+            collider.enabled = false;
+        }
     }
 
     protected void SetAnimationInteger(string parameterName, int parameterValue)
@@ -76,6 +84,15 @@ public class PlayerAttackingState : PlayerGroundedState
         // }
 
         SetAnimationInteger(parameterName, GetAnimationIndex(parameterName) + 1);
+    }
+
+    protected void SetRotationForAttack(Vector3 newRotationVector, out Quaternion initialRotation)
+    {
+        var weapon = stateMachine.Player.WeaponParentTransform.GetChild(0);
+        initialRotation = weapon.transform.rotation;
+
+        Quaternion newRotation = Quaternion.Euler(newRotationVector.x, newRotationVector.y, newRotationVector.z);
+        weapon.transform.rotation = newRotation;
     }
 
     private void EnableWeaponObject()

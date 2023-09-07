@@ -32,9 +32,12 @@ public class PlayerSwordAttackingState : PlayerMeleeAttackingState
             NextConcurrentAttack(stateMachine.Player.AnimationData.SwordAttackParameterName);
             if (!IsNextAttackConcurrent(swordAttackData.StartingSwordAttackAnimationIndex, swordAttackData.LastConcurrentSwordAttackAnimationIndex, stateMachine.Player.AnimationData.SwordAttackParameterName))
             {
+                stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
                 stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
             }
             return;
         }
+
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
     }
 }

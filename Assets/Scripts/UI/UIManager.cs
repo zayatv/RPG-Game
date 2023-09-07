@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        SetCursorStatus();
+
         if (Input.GetKeyDown(OpenCharacterMenuKeyCode))
         {
             OpenCharacterMenu();
@@ -56,6 +59,9 @@ public class UIManager : MonoBehaviour
         StopTime();
         CloseAllMenus();
 
+        SetCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));
+        Cursor.visible = true;
+
         player.Input.PlayerActions.Disable();
 
         IsInMenu = true;
@@ -72,5 +78,29 @@ public class UIManager : MonoBehaviour
     private void StopTime()
     {
         Time.timeScale = 0f;
+    }
+
+    private void SetCursorStatus()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            SetCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));
+        }
+
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+    }
+
+    private void SetCursorPosition(Vector2 newCusorPos)
+    {
+        Mouse.current.WarpCursorPosition(newCusorPos);
     }
 }

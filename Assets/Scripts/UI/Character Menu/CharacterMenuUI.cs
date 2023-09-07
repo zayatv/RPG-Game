@@ -10,7 +10,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField] private Camera uiCamera;
     [SerializeField] private GameObject playerObject;
 
-    [SerializeField] private PlayerCharacterDataSO characterData;
+    [SerializeField] private Player player;
     [SerializeField] private GameObject characterButton;
     [SerializeField] private Button selectCharacterButton;
     [SerializeField] private Transform scrollViewContainer;
@@ -19,9 +19,9 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     [SerializeField] private float characterRotationModifier = 0.1f;
 
-    private Player player;
     private PlayableCharacterSO selectedCharacter;
 
+    private Vector2 mousePositionWhenEnteredDragging;
     private Vector2 prevMousePosition = Vector2.zero;
     private Vector2 mousePositionDelta = Vector2.zero;
 
@@ -29,8 +29,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void Start()
     {
-        selectedCharacter = characterData.OwnedPlayableCharacters[0];
-        player = playerObject.GetComponent<Player>();
+        selectedCharacter = player.CharacterData.CurrentPlayableCharacter;
 
         LoadCharacterModel();
 
@@ -39,6 +38,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void OnEnable()
     {
+        selectedCharacter = player.CharacterData.CurrentPlayableCharacter;
+
         OpenCharacterMenu();
     }
 
@@ -51,7 +52,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         Destroy(playerObject.transform.GetChild(0).gameObject);
 
-        characterData.CurrentPlayableCharacter = selectedCharacter;
+        player.CharacterData.CurrentPlayableCharacter = selectedCharacter;
 
         GameObject character = Instantiate(selectedCharacter.CharacterModel, playerObject.transform);
         character.transform.SetAsFirstSibling();
@@ -83,14 +84,14 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void OnMenuItemClick(GameObject button)
     {
         int siblingIndex = button.transform.GetSiblingIndex();
-        selectedCharacter = characterData.OwnedPlayableCharacters[siblingIndex];
+        selectedCharacter = player.CharacterData.OwnedPlayableCharacters[siblingIndex];
         LoadCharacterModel();
     }
 
     private void LoadCharacterList()
     {
         UnloadCharacterList();
-        foreach (PlayableCharacterSO playableCharacter in characterData.OwnedPlayableCharacters)
+        foreach (PlayableCharacterSO playableCharacter in player.CharacterData.OwnedPlayableCharacters)
         {
             var characterUIItem = Instantiate(characterButton);
             characterUIItem.GetComponent<Button>().onClick.AddListener(delegate { OnMenuItemClick(characterUIItem); });
@@ -174,6 +175,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         Cursor.visible = false;
+
+        mousePositionWhenEnteredDragging = Mouse.current.position.value;
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
@@ -186,6 +189,8 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         prevMousePosition = Vector2.zero;
+
+        Mouse.current.WarpCursorPosition(mousePositionWhenEnteredDragging);
 
         Cursor.visible = true;
     }

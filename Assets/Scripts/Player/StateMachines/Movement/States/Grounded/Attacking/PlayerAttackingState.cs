@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerAttackingState : PlayerGroundedState
 {
+    protected bool useNextConcurrentAttack;
+
     public PlayerAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
     }
@@ -18,6 +20,7 @@ public class PlayerAttackingState : PlayerGroundedState
 
         ResetVelocity();
         EnableWeaponObject();
+        DisableCameraRecentering();
 
         stateMachine.Player.IsAttacking = true;
     }
@@ -69,6 +72,12 @@ public class PlayerAttackingState : PlayerGroundedState
         return currentAttack < maxConcurrentAttacks && currentAttack >= startAttack;
     }
 
+    protected bool IsCurrentAttackLastAttack(int maxConcurrentAttacks, string attackType)
+    {
+        int currentAttack = stateMachine.Player.Animator.GetInteger(attackType);
+        return currentAttack >= maxConcurrentAttacks;
+    }
+
     protected void ResetAnimationIndex(string attackType, int startAttackIndex = 0)
     {
         SetAnimationInteger(attackType, startAttackIndex);
@@ -88,11 +97,11 @@ public class PlayerAttackingState : PlayerGroundedState
 
     protected void SetRotationForAttack(Vector3 newRotationVector, out Quaternion initialRotation)
     {
-        var weapon = stateMachine.Player.WeaponParentTransform.GetChild(0);
-        initialRotation = weapon.transform.rotation;
+        Transform weapon = stateMachine.Player.WeaponParentTransform.GetChild(0);
+        initialRotation = weapon.rotation;
 
-        Quaternion newRotation = Quaternion.Euler(newRotationVector.x, newRotationVector.y, newRotationVector.z);
-        weapon.transform.rotation = newRotation;
+        Quaternion newRotation = Quaternion.Euler(newRotationVector);
+        weapon.rotation = newRotation;
     }
 
     private void EnableWeaponObject()

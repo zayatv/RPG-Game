@@ -13,7 +13,7 @@ public class PlayerSpearAttackingState : PlayerMeleeAttackingState
     {
         base.Enter();
 
-        //StartAnimation(stateMachine.Player.AnimationData.SpearEquippedParameterHash);
+        StartAnimation(stateMachine.Player.AnimationData.SpearEquippedParameterHash);
 
         Debug.Log(stateMachine.Player.Animator.GetBool(stateMachine.Player.AnimationData.SpearEquippedParameterHash));
     }
@@ -48,10 +48,13 @@ public class PlayerSpearAttackingState : PlayerMeleeAttackingState
             NextConcurrentAttack(stateMachine.Player.AnimationData.SpearAttackParameterName);
             if (!IsNextAttackConcurrent(spearAttackData.StartingSpearAttackAnimationIndex, spearAttackData.LastConcurrentSpearAttackAnimationIndex, stateMachine.Player.AnimationData.SpearAttackParameterName))
             {
+                stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
                 stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
             }
             return;
         }
+
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
     }
 
 }

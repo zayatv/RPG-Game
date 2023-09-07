@@ -190,7 +190,6 @@ public class PlayerGroundedState : PlayerMovementState
                 break;
 
             case WeaponType.Spear:
-                StartAnimation(stateMachine.Player.AnimationData.SpearEquippedParameterHash);
                 stateMachine.ChangeState(stateMachine.SpearAttackingState);
                 break;
 
@@ -211,7 +210,7 @@ public class PlayerGroundedState : PlayerMovementState
                 break;
 
             case WeaponType.Bow:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                stateMachine.ChangeState(stateMachine.BowAttackingState);
                 break;
 
             default:

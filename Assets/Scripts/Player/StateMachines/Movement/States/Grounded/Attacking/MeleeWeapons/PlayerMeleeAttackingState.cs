@@ -2,8 +2,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMeleeAttackingState : PlayerAttackingState
 {
-    protected bool useNextConcurrentAttack;
-
     public PlayerMeleeAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
     }

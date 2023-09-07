@@ -325,6 +325,11 @@ public class PlayerMovementState : IState
 
     protected void UpdateCameraRecenteringState(Vector2 movementInput)
     {
+        if (stateMachine.Player.IsAttacking)
+        {
+            return;
+        }
+
         if (movementInput == Vector2.zero)
         {
             return;

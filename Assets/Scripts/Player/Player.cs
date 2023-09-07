@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
+    [field: Header("Playable Characters")]
+    [field: SerializeField] public PlayerCharacterDataSO CharacterData { get; private set; }
+
     [field: Header("Weapons")]
     [field: SerializeField] public WeaponSO CurrentEquippedWeapon { get; private set; }
 

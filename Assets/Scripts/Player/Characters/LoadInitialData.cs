@@ -5,13 +5,12 @@ public class LoadInitialData : MonoBehaviour
 {
     [SerializeField] private Transform playerObject;
     [SerializeField] private Player player;
-    [SerializeField] private PlayerCharacterDataSO characterData;
 
     private void Awake()
     {
         Destroy(playerObject.GetChild(0).gameObject);
 
-        var playableCharacter = Instantiate(characterData.CurrentPlayableCharacter.CharacterModel, playerObject);
+        var playableCharacter = Instantiate(player.CharacterData.CurrentPlayableCharacter.CharacterModel, playerObject);
 
         playableCharacter.transform.SetParent(playerObject);
         playableCharacter.transform.SetAsFirstSibling();
@@ -20,7 +19,6 @@ public class LoadInitialData : MonoBehaviour
 
         player.WeaponParentTransform = FindChild.RecursiveFindChild(playableCharacter.transform, "Weapon");
         ApplyWeaponToCharacter();
-
     }
 
     private void ApplyWeaponToCharacter()

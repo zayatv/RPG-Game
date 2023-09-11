@@ -12,6 +12,9 @@ public class PauseMenuUI : MonoBehaviour
     private void OnDisable()
     {
         ClosePauseMenu();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void CloseGame()

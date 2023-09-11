@@ -18,6 +18,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuObject;
     [field: SerializeField] public KeyCode OpenPauseMenuKeyCode { get; private set; }
 
+    private void Awake()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     void Start()
     {
         characterMenuObject.SetActive(false);
@@ -61,6 +67,7 @@ public class UIManager : MonoBehaviour
 
         SetCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         player.Input.PlayerActions.Disable();
 
@@ -85,14 +92,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             SetCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));
-        }
 
-        if (Input.GetKey(KeyCode.LeftAlt))
-        {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        else
+        else if (Input.GetKeyUp(KeyCode.LeftAlt))
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;

@@ -21,13 +21,6 @@ public class PlayerBowAttackingState : PlayerRangedAttackingState
         stateMachine.Player.Input.PlayerActions.ChargedAttack.performed -= OnChargedAttackStarted;
     }
 
-    public override void OnAnimationExitEvent()
-    {
-        base.OnAnimationExitEvent();
-
-        stateMachine.ChangeState(stateMachine.IdlingState);
-    }
-
     protected void OnNormalAttackStarted(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.BowNormalAttackingState);
@@ -36,5 +29,12 @@ public class PlayerBowAttackingState : PlayerRangedAttackingState
     protected void OnChargedAttackStarted(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.BowChargedAttackingState);
+    }
+
+    public override void OnAnimationExitEvent()
+    {
+        base.OnAnimationExitEvent();
+
+        stateMachine.ChangeState(stateMachine.IdlingState);
     }
 }

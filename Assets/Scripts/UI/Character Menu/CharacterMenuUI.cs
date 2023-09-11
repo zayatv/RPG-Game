@@ -43,6 +43,12 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         OpenCharacterMenu();
     }
 
+    private void OnDisable()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     private void Update()
     {
         SetCharacterMenuUI();

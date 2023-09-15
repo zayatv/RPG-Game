@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerBowChargedAttackingState : PlayerBowAttackingState
+public class PlayerBowChargedAttackingState : PlayerRangedAttackingState
 {
     public PlayerBowChargedAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {

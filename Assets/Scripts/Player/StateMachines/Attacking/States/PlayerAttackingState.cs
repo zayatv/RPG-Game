@@ -167,7 +167,7 @@ public class PlayerAttackingState : IState
                 break;
 
             case WeaponType.Wand:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                stateMachine.ChangeState(stateMachine.RangedAttackingState);
                 break;
 
             case WeaponType.Hammer:
@@ -183,7 +183,7 @@ public class PlayerAttackingState : IState
                 break;
 
             case WeaponType.Bow:
-                stateMachine.ChangeState(stateMachine.BowAttackingState);
+                stateMachine.ChangeState(stateMachine.RangedAttackingState);
                 break;
 
             default:

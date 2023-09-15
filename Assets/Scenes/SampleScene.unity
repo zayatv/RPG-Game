@@ -5960,7 +5960,7 @@ MonoBehaviour:
     fallParameterName: isFalling
     spearEquippedParameterName: hasEquippedSpear
   <CharacterData>k__BackingField: {fileID: 11400000, guid: d5c5edab61914704e86db996d28f5d33, type: 2}
-  <CurrentEquippedWeapon>k__BackingField: {fileID: 11400000, guid: 52ae7e70c56eb97489ee84e455e49ae5, type: 2}
+  <CurrentEquippedWeapon>k__BackingField: {fileID: 11400000, guid: a7e03ddc22e2291459fdb8dd2fa564b6, type: 2}
 --- !u!114 &803682131
 MonoBehaviour:
   m_ObjectHideFlags: 0

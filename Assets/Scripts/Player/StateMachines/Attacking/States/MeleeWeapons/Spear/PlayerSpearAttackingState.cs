@@ -1,11 +1,10 @@
-using UnityEngine;
-
 public class PlayerSpearAttackingState : PlayerMeleeAttackingState
 {
     private PlayerSpearAttackData spearAttackData;
 
     public PlayerSpearAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
+        spearAttackData = attackData.SpearAttackData;
     }
 
     public override void Enter()
@@ -13,8 +12,6 @@ public class PlayerSpearAttackingState : PlayerMeleeAttackingState
         base.Enter();
 
         StartAnimation(stateMachine.Player.AnimationData.SpearEquippedParameterHash);
-
-        Debug.Log(stateMachine.Player.Animator.GetBool(stateMachine.Player.AnimationData.SpearEquippedParameterHash));
     }
 
     public override void Exit()

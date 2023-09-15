@@ -42,4 +42,14 @@ public class PlayerCameraUtility
     {
         cinemachinePOV.m_HorizontalRecentering.m_enabled = false;
     }
+
+    public void EnableMainCamera()
+    {
+        VirtualCamera.gameObject.SetActive(true);
+    }
+
+    public void DisableMainCamera()
+    {
+        VirtualCamera.gameObject.SetActive(false);
+    }
 }

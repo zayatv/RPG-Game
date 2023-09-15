@@ -183,6 +183,7 @@ public class PlayerAttackingState : IState
                 break;
 
             case WeaponType.Bow:
+                StartAnimation(stateMachine.Player.AnimationData.BowEquippedParameterHash);
                 stateMachine.ChangeState(stateMachine.RangedAttackingState);
                 break;
 

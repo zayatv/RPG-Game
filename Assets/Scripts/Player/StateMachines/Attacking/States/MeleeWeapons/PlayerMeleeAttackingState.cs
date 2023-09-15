@@ -13,6 +13,8 @@ public class PlayerMeleeAttackingState : PlayerAttackingState
         base.Enter();
 
         useNextConcurrentAttack = false;
+
+        EnableWeaponObject();
     }
 
     protected override void AddInputActionsCallbacks()

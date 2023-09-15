@@ -22,8 +22,6 @@ public class PlayerAttackingIdleState : PlayerAttackingState
         base.Exit();
 
         StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
-
-        EnableWeaponObject();
     }
 
     protected override void AddInputActionsCallbacks()

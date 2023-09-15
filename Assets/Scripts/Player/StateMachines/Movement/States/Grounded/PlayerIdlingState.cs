@@ -23,6 +23,8 @@ public class PlayerIdlingState : PlayerGroundedState
         stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
 
         ResetVelocity();
+
+        stateMachine.Player.CanAttack = true;
     }
 
     public override void Exit()
@@ -30,6 +32,8 @@ public class PlayerIdlingState : PlayerGroundedState
         base.Exit();
 
         StopAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
+
+        stateMachine.Player.CanAttack = false;
     }
 
     public override void Update()
@@ -56,7 +60,7 @@ public class PlayerIdlingState : PlayerGroundedState
         ResetVelocity();
     }
 
-    protected override void AddInputActionsCallbacks()
+    /*protected override void AddInputActionsCallbacks()
     {
         base.AddInputActionsCallbacks();
 
@@ -68,5 +72,5 @@ public class PlayerIdlingState : PlayerGroundedState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
-    }
+    }*/
 }

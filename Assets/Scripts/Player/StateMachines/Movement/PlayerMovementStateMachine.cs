@@ -12,12 +12,14 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerMediumStoppingState MediumStoppingState { get; }
     public PlayerHardStoppingState HardStoppingState { get; }
 
-    public PlayerSwordAttackingState SwordAttackingState { get; }
+    public PlayerMovementAttackingState AttackingState { get; }
+
+    /*public PlayerSwordAttackingState SwordAttackingState { get; }
     public PlayerSpearAttackingState SpearAttackingState { get; }
 
     public PlayerBowAttackingState BowAttackingState { get; }
     public PlayerBowChargedAttackingState BowChargedAttackingState { get; }
-    public PlayerBowNormalAttackingState BowNormalAttackingState { get; }
+    public PlayerBowNormalAttackingState BowNormalAttackingState { get; }*/
 
     public PlayerLightLandingState LightLandingState { get; }
     
@@ -43,12 +45,14 @@ public class PlayerMovementStateMachine : StateMachine
         MediumStoppingState = new PlayerMediumStoppingState(this);
         HardStoppingState = new PlayerHardStoppingState(this);
 
-        SwordAttackingState = new PlayerSwordAttackingState(this);
+        AttackingState = new PlayerMovementAttackingState(this);
+
+        /*SwordAttackingState = new PlayerSwordAttackingState(this);
         SpearAttackingState = new PlayerSpearAttackingState(this);
 
         BowAttackingState = new PlayerBowAttackingState(this);
         BowChargedAttackingState = new PlayerBowChargedAttackingState(this);
-        BowNormalAttackingState = new PlayerBowNormalAttackingState(this);
+        BowNormalAttackingState = new PlayerBowNormalAttackingState(this);*/
 
         JumpingState = new PlayerJumpingState(this);
         FallingState = new PlayerFallingState(this);

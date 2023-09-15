@@ -31,8 +31,10 @@ public class Player : MonoBehaviour
     public PlayerInput Input { get; private set; }
 
     public bool IsAttacking { get; set; }
+    public bool CanAttack { get; set; }
 
     private PlayerMovementStateMachine movementStateMachine;
+    private PlayerAttackingStateMachine attackingStateMachine;
 
     private void Awake()
     {
@@ -51,8 +53,10 @@ public class Player : MonoBehaviour
         MainCameraTransform = Camera.main.transform;
 
         IsAttacking = false;
+        CanAttack = false;
 
         movementStateMachine = new PlayerMovementStateMachine(this);
+        attackingStateMachine = new PlayerAttackingStateMachine(this);
     }
 
     private void OnValidate() 
@@ -64,51 +68,72 @@ public class Player : MonoBehaviour
     private void Start()
     {
         movementStateMachine.ChangeState(movementStateMachine.IdlingState);
+
+        attackingStateMachine.ChangeState(attackingStateMachine.AttackingIdleState);
     }
 
     private void OnTriggerEnter(Collider collider) 
     {
         movementStateMachine.OnTriggerEnter(collider);
+
+        attackingStateMachine.OnTriggerEnter(collider);
     }
 
     private void OnTriggerExit(Collider collider) 
     {
         movementStateMachine.OnTriggerExit(collider);
+
+        attackingStateMachine.OnTriggerExit(collider);
     }
 
     private void Update()
     {
         movementStateMachine.HandleInput();
         movementStateMachine.Update();
+
+        attackingStateMachine.HandleInput();
+        attackingStateMachine.Update();
     }
 
     private void FixedUpdate()
     {
         movementStateMachine.PhysicsUpdate();
+
+        attackingStateMachine.PhysicsUpdate();
     }
 
     public void OnMovementStateAnimationEnterEvent()
     {
         movementStateMachine.OnAnimationEnterEvent();
+
+        attackingStateMachine.OnAnimationEnterEvent();
     }
 
     public void OnMovementStateAnimationExitEvent()
     {
         movementStateMachine.OnAnimationExitEvent();
+
+        attackingStateMachine.OnAnimationExitEvent();
     }
 
     public void OnMovementStateAnimationTransitionEvent()
     {
         movementStateMachine.OnAnimationTransitionEvent();
+
+        attackingStateMachine.OnAnimationTransitionEvent();
     }
 
     public void OnEnableWeapon()
     {
         movementStateMachine.EnableWeapon();
+
+        attackingStateMachine.EnableWeapon();
     }
 
     public void OnDisableWeapon()
     {
         movementStateMachine.DisableWeapon();
+
+        attackingStateMachine.DisableWeapon();
     }
 }

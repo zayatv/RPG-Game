@@ -9,6 +9,8 @@ public class PlayerMovingState : PlayerGroundedState
         base.Enter();
 
         StartAnimation(stateMachine.Player.AnimationData.MovingParameterHash);
+
+        stateMachine.Player.CanAttack = true;
     }
 
     public override void Exit()
@@ -16,9 +18,11 @@ public class PlayerMovingState : PlayerGroundedState
         base.Exit();
 
         StopAnimation(stateMachine.Player.AnimationData.MovingParameterHash);
+
+        stateMachine.Player.CanAttack = false;
     }
 
-    protected override void AddInputActionsCallbacks()
+    /*protected override void AddInputActionsCallbacks()
     {
         base.AddInputActionsCallbacks();
 
@@ -30,5 +34,5 @@ public class PlayerMovingState : PlayerGroundedState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
-    }
+    }*/
 }

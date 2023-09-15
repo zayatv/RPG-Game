@@ -19,6 +19,8 @@ public class PlayerStoppingState : PlayerGroundedState
         base.Enter();
 
         StartAnimation(stateMachine.Player.AnimationData.StoppingParameterHash);
+
+        stateMachine.Player.CanAttack = true;
     }
 
     public override void Exit()
@@ -26,6 +28,8 @@ public class PlayerStoppingState : PlayerGroundedState
         base.Exit();
 
         StopAnimation(stateMachine.Player.AnimationData.StoppingParameterHash);
+
+        stateMachine.Player.CanAttack = false;
     }
 
     public override void PhysicsUpdate()
@@ -52,7 +56,7 @@ public class PlayerStoppingState : PlayerGroundedState
         base.AddInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.started += OnMovementStarted;
-        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+        //stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -60,7 +64,7 @@ public class PlayerStoppingState : PlayerGroundedState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Movement.started -= OnMovementStarted;
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+        //stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
     }
 
     private void OnMovementStarted(InputAction.CallbackContext context)

@@ -4,9 +4,8 @@ public class PlayerSpearAttackingState : PlayerMeleeAttackingState
 {
     private PlayerSpearAttackData spearAttackData;
 
-    public PlayerSpearAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public PlayerSpearAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
-        spearAttackData = movementData.SpearAttackData;
     }
 
     public override void Enter()
@@ -35,7 +34,7 @@ public class PlayerSpearAttackingState : PlayerMeleeAttackingState
         }
 
         ResetAnimationIndex(stateMachine.Player.AnimationData.SpearAttackParameterName);
-        stateMachine.ChangeState(stateMachine.IdlingState);
+        stateMachine.ChangeState(stateMachine.AttackingIdleState);
     }
 
     public override void OnAnimationTransitionEvent()

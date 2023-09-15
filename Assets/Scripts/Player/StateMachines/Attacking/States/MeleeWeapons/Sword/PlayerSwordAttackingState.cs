@@ -1,12 +1,10 @@
-using UnityEngine;
-
 public class PlayerSwordAttackingState : PlayerMeleeAttackingState
 {
     private PlayerSwordAttackData swordAttackData;
 
-    public PlayerSwordAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public PlayerSwordAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
-        swordAttackData = movementData.SwordAttackData;
+        swordAttackData = attackData.SwordAttackData;
     }
 
     public override void OnAnimationExitEvent()
@@ -19,7 +17,7 @@ public class PlayerSwordAttackingState : PlayerMeleeAttackingState
         }
 
         ResetAnimationIndex(stateMachine.Player.AnimationData.SwordAttackParameterName);
-        stateMachine.ChangeState(stateMachine.IdlingState);
+        stateMachine.ChangeState(stateMachine.AttackingIdleState);
     }
 
     public override void OnAnimationTransitionEvent()

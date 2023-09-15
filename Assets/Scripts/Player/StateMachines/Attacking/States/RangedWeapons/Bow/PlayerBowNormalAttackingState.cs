@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBowNormalAttackingState : PlayerBowAttackingState
 {
-    public PlayerBowNormalAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public PlayerBowNormalAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
     }
 

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerBowAttackingState : PlayerRangedAttackingState
 {
-    public PlayerBowAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
+    public PlayerBowAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
     }
 
@@ -35,6 +35,6 @@ public class PlayerBowAttackingState : PlayerRangedAttackingState
     {
         base.OnAnimationExitEvent();
 
-        stateMachine.ChangeState(stateMachine.IdlingState);
+        stateMachine.ChangeState(stateMachine.AttackingIdleState);
     }
 }

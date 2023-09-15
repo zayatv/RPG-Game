@@ -115,6 +115,8 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
+
+        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -124,6 +126,8 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.Player.Input.PlayerActions.Dash.started -= OnDashStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
+
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
     }
 
     protected virtual void OnMove()
@@ -183,38 +187,8 @@ public class PlayerGroundedState : PlayerMovementState
     {
         if (UIManager.IsInMenu) return;
 
-        switch (stateMachine.Player.CurrentEquippedWeapon.WeaponType)
-        {
-            case WeaponType.Sword:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
-                break;
+        if (!stateMachine.Player.IsAttacking) return;
 
-            case WeaponType.Spear:
-                stateMachine.ChangeState(stateMachine.SpearAttackingState);
-                break;
-
-            case WeaponType.Wand:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
-                break;
-
-            case WeaponType.Hammer:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
-                break;
-
-            case WeaponType.Gauntlet:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
-                break;
-
-            case WeaponType.Dagger:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
-                break;
-
-            case WeaponType.Bow:
-                stateMachine.ChangeState(stateMachine.BowAttackingState);
-                break;
-
-            default:
-                break;
-        }
+        stateMachine.ChangeState(stateMachine.AttackingState);
     }
 }

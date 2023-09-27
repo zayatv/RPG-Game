@@ -188,7 +188,10 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
         mousePositionDelta = Mouse.current.delta.ReadValue();
-        characterModelTransform.Rotate(transform.up, -Vector2.Dot(mousePositionDelta, uiCamera.transform.right) * characterRotationModifier);
+
+        float dotProduct = -Vector2.Dot(mousePositionDelta, uiCamera.transform.right);
+        characterModelTransform.Rotate(transform.up, dotProduct * characterRotationModifier);
+
         prevMousePosition = eventData.position;
     }
 

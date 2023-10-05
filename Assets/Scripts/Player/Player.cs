@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [field: SerializeField] public WeaponSO CurrentEquippedWeapon { get; private set; }
     [field: SerializeField] public GameObject CurrentEquippedWeaponPrefab { get; private set; }
 
+    [field: Header("Items")]
+    [field: SerializeField] public PlayerInventoryData InventoryData { get; private set; }
+
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; set; }
     public Transform WeaponParentTransform { get; set; }
@@ -48,8 +51,8 @@ public class Player : MonoBehaviour
         ColliderUtility.CalculateCapsuleColliderDimensions();
         
         CameraUtility.Initialize();
-
         AnimationData.Initialize();
+        InventoryData.Initialize();
 
         MainCameraTransform = Camera.main.transform;
 

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bbc52e24c47274d90636ebc14cb82a, type: 3}
+  m_Name: ATKSP_Rune
+  m_EditorClassIdentifier: 
+  <RunestoneName>k__BackingField: Attack Speed Rune
+  <RunestoneDescription>k__BackingField: Increases attack speed by 1.5x.
+  <MyRunestoneColor>k__BackingField: 0
+  <RuneModel>k__BackingField: {fileID: 0}
+  <BaseAttack>k__BackingField:
+    <StatType>k__BackingField: 0
+    <BaseValue>k__BackingField: 0
+    <FlatModifier>k__BackingField: 0
+    <PercentageModifier>k__BackingField: 0
+  <PrimaryStat>k__BackingField:
+    <StatType>k__BackingField: 0
+    <BaseValue>k__BackingField: 0
+    <FlatModifier>k__BackingField: 0
+    <PercentageModifier>k__BackingField: 0
+  <SecondaryStat>k__BackingField:
+    <StatType>k__BackingField: 0
+    <BaseValue>k__BackingField: 0
+    <FlatModifier>k__BackingField: 0
+    <PercentageModifier>k__BackingField: 0
+  <EquippedSkills>k__BackingField: []

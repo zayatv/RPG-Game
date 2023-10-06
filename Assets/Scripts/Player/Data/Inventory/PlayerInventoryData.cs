@@ -16,6 +16,11 @@ public class PlayerInventoryData
     [field: SerializeField, SerializedDictionary("Item", "Amount")] public SerializedDictionary<InventoryItemSO, int> Other { get; private set; }
     [field: SerializeField, SerializedDictionary("Item", "Amount")] public SerializedDictionary<InventoryItemSO, int> KeyItems { get; private set; }
 
+    [field: Header("Currencies")]
+    [field: SerializeField] public int Gold { get; set; }
+    [field: SerializeField] public int FruitsOfLife { get; set; }
+    [field: SerializeField] public int AscensionScore { get; set; }
+
     public void Initialize()
     {
         Weapons = new List<InventoryItemSO>();
@@ -25,14 +30,20 @@ public class PlayerInventoryData
         Potions = new SerializedDictionary<InventoryItemSO, int>();
         Other = new SerializedDictionary<InventoryItemSO, int>();
         KeyItems = new SerializedDictionary<InventoryItemSO, int>();
+
+        Gold = 0;
+        FruitsOfLife = 0;
+        AscensionScore = 0;
+
+        LoadInventoryData();
     }
 
-    public void LoadInventoryData()
+    private void LoadInventoryData()
     {
         //Load Saved Inventory Data
     }
 
-    public void UnloadInventoryData()
+    private void UnloadInventoryData()
     {
         SaveInventoryData();
 
@@ -45,7 +56,7 @@ public class PlayerInventoryData
         KeyItems.Clear();
     }
 
-    public void SaveInventoryData()
+    private void SaveInventoryData()
     {
 
     }

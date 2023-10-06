@@ -83,6 +83,8 @@ public class TabGroup : MonoBehaviour
 
                 var inventoryItem = Instantiate(inventoryItemPrefab, scrollContainer);
                 inventoryItem.transform.GetChild(0).GetComponent<Image>().sprite = item.Icon;
+
+                inventoryItem.GetComponent<InventoryItemUI>().Item = item;
             }
         }
         else
@@ -98,6 +100,8 @@ public class TabGroup : MonoBehaviour
 
                 Transform amountText = inventoryItem.transform.GetChild(inventoryItem.transform.childCount - 1);
                 amountText.GetComponent<TextMeshProUGUI>().text = item.Value.ToString();
+
+                inventoryItem.GetComponent<InventoryItemUI>().Item = item.Key;
             }
         }
     }

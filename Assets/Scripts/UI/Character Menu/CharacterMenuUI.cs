@@ -22,7 +22,6 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private PlayableCharacterSO selectedCharacter;
 
     private Vector2 mousePositionWhenEnteredDragging;
-    private Vector2 prevMousePosition = Vector2.zero;
     private Vector2 mousePositionDelta = Vector2.zero;
 
     private Transform characterModelTransform;
@@ -189,13 +188,10 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         mousePositionDelta = Mouse.current.delta.ReadValue();
         characterModelTransform.Rotate(transform.up, -Vector2.Dot(mousePositionDelta, uiCamera.transform.right) * characterRotationModifier);
-        prevMousePosition = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        prevMousePosition = Vector2.zero;
-
         Mouse.current.WarpCursorPosition(mousePositionWhenEnteredDragging);
 
         Cursor.visible = true;

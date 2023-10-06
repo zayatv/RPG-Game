@@ -4095,6 +4095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430062108}
   - component: {fileID: 430062109}
+  - component: {fileID: 430062110}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -4139,6 +4140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 803682130}
   uiManager: {fileID: 539740933}
+--- !u!114 &430062110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430062107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6be53d37640014ebef6d50284fdc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpPrefab: {fileID: 1302666386088282222, guid: b5b8fbe8f20e9784fae51467aae8ab13, type: 3}
 --- !u!1 &440697773
 GameObject:
   m_ObjectHideFlags: 0
@@ -6911,6 +6925,9 @@ MonoBehaviour:
       _serializedList: []
     <KeyItems>k__BackingField:
       _serializedList: []
+    <Gold>k__BackingField: 0
+    <FruitsOfLife>k__BackingField: 0
+    <AscensionScore>k__BackingField: 0
 --- !u!114 &803682131
 MonoBehaviour:
   m_ObjectHideFlags: 0

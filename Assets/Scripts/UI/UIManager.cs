@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +15,10 @@ public class UIManager : MonoBehaviour
     [Header("Pause Menu")]
     [SerializeField] private GameObject pauseMenuObject;
     [field: SerializeField] public KeyCode OpenPauseMenuKeyCode { get; private set; }
+
+    [Header("Inventory")]
+    [SerializeField] private GameObject inventoryMenuObject;
+    [field: SerializeField] public KeyCode OpenInventoryMenuKeyCode { get; private set; }
 
     private void Awake()
     {
@@ -46,6 +48,10 @@ public class UIManager : MonoBehaviour
         {
             OpenPauseMenu();
         }
+        else if (Input.GetKeyDown(OpenInventoryMenuKeyCode))
+        {
+            OpenInventoryMenu();
+        }
     }
 
     public void OpenPauseMenu()
@@ -58,6 +64,12 @@ public class UIManager : MonoBehaviour
     {
         OpenUiMenu();
         characterMenuObject.SetActive(true);
+    }
+
+    public void OpenInventoryMenu()
+    {
+        OpenUiMenu();
+        inventoryMenuObject.SetActive(true);
     }
 
     private void OpenUiMenu()

@@ -1,7 +1,8 @@
 using AYellowpaper.SerializedCollections;
-using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TabGroup : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TabGroup : MonoBehaviour
     private TabButton selectedTab;
 
     [SerializeField] private Transform scrollContainer;
+    [SerializeField] private GameObject inventoryItemPrefab;
+    [SerializeField] private GameObject inventoryItemStackablePrefab;
 
     [SerializeField] private Player player;
 
@@ -49,6 +52,7 @@ public class TabGroup : MonoBehaviour
         button.background.sprite = tabActive;
 
         int index = button.transform.GetSiblingIndex();
+        Debug.Log(index);
         LoadInventoryTab(index);
     }
 
@@ -66,13 +70,19 @@ public class TabGroup : MonoBehaviour
 
     private void LoadInventoryTab(int index)
     {
+        Debug.Log("LoadInventoryTab Index: " + index);
         if (index < 2)
         {
+            Debug.Log("Setting Inventory List");
             List<InventoryItemSO> inventoryPage = GetInventoryList(index);
 
             foreach (InventoryItemSO item in inventoryPage)
             {
                 //Instantiate Inventory Item Image
+                Debug.Log("Instantiating Inventory Item");
+
+                var inventoryItem = Instantiate(inventoryItemPrefab, scrollContainer);
+                inventoryItem.transform.GetChild(0).GetComponent<Image>().sprite = item.Icon;
             }
         }
         else
@@ -82,6 +92,12 @@ public class TabGroup : MonoBehaviour
             foreach (KeyValuePair<InventoryItemSO, int> item in inventoryPage)
             {
                 //Instantiate Inventory Item Image
+
+                var inventoryItem = Instantiate(inventoryItemStackablePrefab, scrollContainer);
+                inventoryItem.transform.GetChild(0).GetComponent<Image>().sprite = item.Key.Icon;
+
+                Transform amountText = inventoryItem.transform.GetChild(inventoryItem.transform.childCount - 1);
+                amountText.GetComponent<TextMeshProUGUI>().text = item.Value.ToString();
             }
         }
     }
@@ -94,6 +110,7 @@ public class TabGroup : MonoBehaviour
         {
             case 0:
                 inventoryPage = player.InventoryData.Weapons;
+                Debug.Log("Weapon List Selected");
                 break;
             case 1:
                 inventoryPage = player.InventoryData.Armor;
@@ -102,6 +119,8 @@ public class TabGroup : MonoBehaviour
                 inventoryPage = new List<InventoryItemSO>();
                 break;
         }
+
+        Debug.Log("List Selection done!");
 
         return inventoryPage;
     }

@@ -1,10 +1,11 @@
 public enum WeaponType
 {
+    Hammer,
+    Axe,
+    Gauntlet,
     Sword,
     Spear,
-    Wand,
-    Hammer,
-    Gauntlet,
     Dagger,
     Bow,
+    Wand
 }

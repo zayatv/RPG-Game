@@ -28,13 +28,15 @@ public class PlayerAttackingIdleState : PlayerAttackingState
     {
         base.AddInputActionsCallbacks();
 
-        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled += OnNormalAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.performed += OnNormalAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
     {
         base.RemoveInputActionsCallbacks();
 
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnNormalAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.performed -= OnNormalAttackStarted;
     }
 }

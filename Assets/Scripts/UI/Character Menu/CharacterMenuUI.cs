@@ -76,7 +76,7 @@ public class CharacterMenuUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             Destroy(child.gameObject);
         }
 
-        var currentWeapon = Instantiate(player.CurrentEquippedWeapon.WeaponModel, player.WeaponParentTransform);
+        var currentWeapon = Instantiate(player.CurrentEquippedWeapon.WeaponPrefab, player.WeaponParentTransform);
         currentWeapon.transform.SetParent(player.WeaponParentTransform);
     }
 

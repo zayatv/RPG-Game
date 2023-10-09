@@ -15,21 +15,12 @@ MonoBehaviour:
   <WeaponName>k__BackingField: Spear
   <WeaponDescription>k__BackingField: It's a Spear. Trust me.
   <Rarity>k__BackingField: 1
-  <WeaponType>k__BackingField: 1
-  <WeaponModel>k__BackingField: {fileID: 6848693681318058648, guid: 6c1a37ddb1ba0144aa1f3d707b92d050, type: 3}
+  <WeaponType>k__BackingField: 4
+  <WeaponPrefab>k__BackingField: {fileID: 6848693681318058648, guid: 6c1a37ddb1ba0144aa1f3d707b92d050, type: 3}
   <BaseAttack>k__BackingField:
     <StatType>k__BackingField: 0
     <BaseValue>k__BackingField: 0
     <FlatModifier>k__BackingField: 0
     <PercentageModifier>k__BackingField: 0
-  <PrimaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <SecondaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <EquippedSkills>k__BackingField: []
+  <SubStats>k__BackingField: []
+  <EquippedRunestones>k__BackingField: []

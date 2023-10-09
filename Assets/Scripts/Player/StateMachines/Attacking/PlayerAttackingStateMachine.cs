@@ -4,12 +4,13 @@ public class PlayerAttackingStateMachine : StateMachine
     public PlayerStateReusableData ReusableData { get; }
 
     public PlayerRangedAttackingState RangedAttackingState { get; }
-    public PlayerMeleeAttackingState MeleeAttackingState { get; }
+
+    public PlayerMeleeNormalAttackingState MeleeNormalAttackingState { get; }
 
     public PlayerAttackingIdleState AttackingIdleState { get; }
 
-    public PlayerSwordAttackingState SwordAttackingState { get; }
-    public PlayerSpearAttackingState SpearAttackingState { get; }
+    public PlayerSwordNormalAttackingState SwordNormalAttackingState { get; }
+    public PlayerSpearNormalAttackingState SpearNormalAttackingState { get; }
 
     public PlayerBowChargedAttackingState BowChargedAttackingState { get; }
     public PlayerBowNormalAttackingState BowNormalAttackingState { get; }
@@ -20,12 +21,13 @@ public class PlayerAttackingStateMachine : StateMachine
         ReusableData = new PlayerStateReusableData();
 
         RangedAttackingState = new PlayerRangedAttackingState(this);
-        MeleeAttackingState = new PlayerMeleeAttackingState(this);
+
+        MeleeNormalAttackingState = new PlayerMeleeNormalAttackingState(this);
 
         AttackingIdleState = new PlayerAttackingIdleState(this);
 
-        SwordAttackingState = new PlayerSwordAttackingState(this);
-        SpearAttackingState = new PlayerSpearAttackingState(this);
+        SwordNormalAttackingState = new PlayerSwordNormalAttackingState(this);
+        SpearNormalAttackingState = new PlayerSpearNormalAttackingState(this);
 
         BowChargedAttackingState = new PlayerBowChargedAttackingState(this);
         BowNormalAttackingState = new PlayerBowNormalAttackingState(this);

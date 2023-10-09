@@ -15,21 +15,12 @@ MonoBehaviour:
   <WeaponName>k__BackingField: Wand
   <WeaponDescription>k__BackingField: A rare Wand. Literally, it's rare.
   <Rarity>k__BackingField: 2
-  <WeaponType>k__BackingField: 2
-  <WeaponModel>k__BackingField: {fileID: 4915473104339168175, guid: f959e3b2f53fa674f8dc370c5606468a, type: 3}
+  <WeaponType>k__BackingField: 7
+  <WeaponPrefab>k__BackingField: {fileID: 4915473104339168175, guid: f959e3b2f53fa674f8dc370c5606468a, type: 3}
   <BaseAttack>k__BackingField:
     <StatType>k__BackingField: 0
     <BaseValue>k__BackingField: 0
     <FlatModifier>k__BackingField: 0
     <PercentageModifier>k__BackingField: 0
-  <PrimaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <SecondaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <EquippedSkills>k__BackingField: []
+  <SubStats>k__BackingField: []
+  <EquippedRunestones>k__BackingField: []

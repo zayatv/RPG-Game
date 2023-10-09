@@ -2,10 +2,16 @@ public enum StatType
 {
     Health,
     Mana,
-    Attack,
     Strength,
     Defense,
-    AttackSpeed,
-    CriticalHitChance,
-    CriticalHitDamage,
+    CriticalHits,
+    Agility,
+    MovementSpeed,
+    Luck,
+    Stamina,
+    Attack,
+    Durability,
+    Arcane,
+    Potential,
+    AttackSpeed
 }

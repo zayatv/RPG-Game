@@ -74,15 +74,6 @@
                     "id": "af76d6b6-1c1f-44b1-b2bb-7da964b53e07",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChargedAttack",
-                    "type": "Button",
-                    "id": "2971c447-e719-45dc-bec9-4b2e3607a29c",
-                    "expectedControlType": "Button",
-                    "processors": "",
                     "interactions": "Hold(duration=0.15)",
                     "initialStateCheck": false
                 }
@@ -239,17 +230,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6bc5c34c-d9df-47fb-aaad-6c2442eb37b4",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChargedAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

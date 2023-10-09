@@ -11,14 +11,14 @@ public class PlayerRangedAttackingState : PlayerAttackingState
     {
         stateMachine.Player.Input.PlayerActions.Attack.canceled += OnNormalAttackStarted;
 
-        stateMachine.Player.Input.PlayerActions.ChargedAttack.performed += OnChargedAttackStarted;
+        //stateMachine.Player.Input.PlayerActions.ChargedAttack.performed += OnChargedAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
     {
         stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnNormalAttackStarted;
 
-        stateMachine.Player.Input.PlayerActions.ChargedAttack.performed -= OnChargedAttackStarted;
+        //stateMachine.Player.Input.PlayerActions.ChargedAttack.performed -= OnChargedAttackStarted;
     }
 
     protected void OnNormalAttackStarted(InputAction.CallbackContext context)

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
@@ -14,7 +12,6 @@ public class WeaponHandler : MonoBehaviour
 
     private Stat BaseAttack, PrimaryStat, SecondaryStat;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Player>();
@@ -25,9 +22,24 @@ public class WeaponHandler : MonoBehaviour
         currentWeaponGO = player.CurrentEquippedWeaponPrefab;
         currentWeaponSO = player.CurrentEquippedWeaponPrefab.GetComponent<WeaponHolder>().weaponSO;
         BaseAttack = currentWeaponSO.BaseAttack;
-        PrimaryStat = currentWeaponSO.PrimaryStat;
-        SecondaryStat = currentWeaponSO.SecondaryStat;
+        SetWeaponSubstats();
         weaponGround = currentWeaponGO.GetComponent<WeaponGround>();
         weaponAffinity = currentWeaponGO.GetComponent<WeaponAffinity>();
+    }
+
+    private void SetWeaponSubstats()
+    {
+        switch (currentWeaponSO.SubStats.Count)
+        {
+            case 1:
+                PrimaryStat = currentWeaponSO.SubStats[0];
+                break;
+            case 2:
+                PrimaryStat = currentWeaponSO.SubStats[0];
+                SecondaryStat = currentWeaponSO.SubStats[1];
+                break;
+            default:
+                break;
+        }
     }
  }

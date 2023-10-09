@@ -17,8 +17,6 @@ public class PlayerAttackingState : IState
     public virtual void Enter()
     {
         AddInputActionsCallbacks();
-
-        Debug.Log(GetType().Name);
     }
 
     public virtual void Exit()
@@ -94,36 +92,12 @@ public class PlayerAttackingState : IState
         return stateMachine.Player.Animator.GetInteger(parameterName);
     }
 
-    protected bool IsNextAttackConcurrent(int startAttack, int maxConcurrentAttacks, string attackType)
-    {
-        int currentAttack = stateMachine.Player.Animator.GetInteger(attackType);
-        return currentAttack < maxConcurrentAttacks && currentAttack >= startAttack;
-    }
-
-    protected bool IsCurrentAttackLastAttack(int maxConcurrentAttacks, string attackType)
-    {
-        int currentAttack = stateMachine.Player.Animator.GetInteger(attackType);
-        return currentAttack >= maxConcurrentAttacks;
-    }
-
     protected void ResetAnimationIndex(string attackType, int startAttackIndex = 0)
     {
         SetAnimationInteger(attackType, startAttackIndex);
     }
 
-    protected void NextConcurrentAttack(string parameterName)
-    {
-        // if (!IsNextAttackConcurrent(startAttack, maxConcurrentAttacks, parameterName))
-        // {
-        //     StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
-        //     SetAnimationInteger(parameterName, startAttack);
-        //     return;
-        // }
-
-        SetAnimationInteger(parameterName, GetAnimationIndex(parameterName) + 1);
-    }
-
-    protected void SetRotationForAttack(Vector3 newRotationVector, out Quaternion initialRotation)
+    protected void SetWeaponRotationForAttack(Vector3 newRotationVector, out Quaternion initialRotation)
     {
         Transform weapon = stateMachine.Player.WeaponParentTransform.GetChild(0);
         initialRotation = weapon.rotation;
@@ -152,39 +126,85 @@ public class PlayerAttackingState : IState
         stateMachine.Player.Animator.SetBool(animationHash, false);
     }
 
-    protected void OnAttackStarted(InputAction.CallbackContext context)
+    protected void OnNormalAttackStarted(InputAction.CallbackContext context)
     {
         if (UIManager.IsInMenu || !stateMachine.Player.CanAttack) return;
 
         switch (stateMachine.Player.CurrentEquippedWeapon.WeaponType)
         {
-            case WeaponType.Sword:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
-                break;
-
-            case WeaponType.Spear:
-                stateMachine.ChangeState(stateMachine.SpearAttackingState);
-                break;
-
-            case WeaponType.Wand:
-                stateMachine.ChangeState(stateMachine.RangedAttackingState);
-                break;
-
             case WeaponType.Hammer:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Axe:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
                 break;
 
             case WeaponType.Gauntlet:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Sword:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Spear:
+                stateMachine.ChangeState(stateMachine.SpearNormalAttackingState);
                 break;
 
             case WeaponType.Dagger:
-                stateMachine.ChangeState(stateMachine.SwordAttackingState);
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Wand:
+                stateMachine.ChangeState(stateMachine.BowNormalAttackingState);
                 break;
 
             case WeaponType.Bow:
-                StartAnimation(stateMachine.Player.AnimationData.BowEquippedParameterHash);
-                stateMachine.ChangeState(stateMachine.RangedAttackingState);
+                stateMachine.ChangeState(stateMachine.BowNormalAttackingState);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    protected void OnChargedAttackStarted(InputAction.CallbackContext context)
+    {
+        if (UIManager.IsInMenu || !stateMachine.Player.CanAttack) return;
+
+        switch (stateMachine.Player.CurrentEquippedWeapon.WeaponType)
+        {
+            case WeaponType.Hammer:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Axe:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Gauntlet:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Sword:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Spear:
+                stateMachine.ChangeState(stateMachine.SpearNormalAttackingState);
+                break;
+
+            case WeaponType.Dagger:
+                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                break;
+
+            case WeaponType.Wand:
+                stateMachine.ChangeState(stateMachine.BowChargedAttackingState);
+                break;
+
+            case WeaponType.Bow:
+                stateMachine.ChangeState(stateMachine.BowChargedAttackingState);
                 break;
 
             default:

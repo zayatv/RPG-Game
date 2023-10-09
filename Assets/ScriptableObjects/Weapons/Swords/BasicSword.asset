@@ -14,22 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponName>k__BackingField: Basic Sword
   <WeaponDescription>k__BackingField: It's just a basic sword
-  <Rarity>k__BackingField: 5
-  <WeaponType>k__BackingField: 0
-  <WeaponModel>k__BackingField: {fileID: 4532974462588519870, guid: 5d0509bcee24c7141a359346edffcfb1, type: 3}
+  <Rarity>k__BackingField: 4
+  <WeaponType>k__BackingField: 3
+  <WeaponPrefab>k__BackingField: {fileID: 4532974462588519870, guid: 5d0509bcee24c7141a359346edffcfb1, type: 3}
   <BaseAttack>k__BackingField:
     <StatType>k__BackingField: 0
     <BaseValue>k__BackingField: 0
     <FlatModifier>k__BackingField: 0
     <PercentageModifier>k__BackingField: 0
-  <PrimaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <SecondaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <EquippedSkills>k__BackingField: []
+  <SubStats>k__BackingField: []
+  <EquippedRunestones>k__BackingField: []

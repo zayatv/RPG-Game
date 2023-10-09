@@ -23,12 +23,12 @@ public class PlayerBowChargedAttackingState : PlayerRangedChargedAttackingState
 
     protected override void AddInputActionsCallbacks()
     {
-        stateMachine.Player.Input.PlayerActions.ChargedAttack.canceled += OnBowShoot;
+        //stateMachine.Player.Input.PlayerActions.ChargedAttack.canceled += OnBowShoot;
     }
 
     protected override void RemoveInputActionsCallbacks()
     {
-        stateMachine.Player.Input.PlayerActions.ChargedAttack.canceled -= OnBowShoot;
+        //stateMachine.Player.Input.PlayerActions.ChargedAttack.canceled -= OnBowShoot;
     }
 
     private void OnBowShoot(InputAction.CallbackContext context)

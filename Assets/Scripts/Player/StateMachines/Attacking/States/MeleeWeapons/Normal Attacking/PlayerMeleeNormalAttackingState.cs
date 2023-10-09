@@ -1,10 +1,10 @@
 using UnityEngine.InputSystem;
 
-public class PlayerMeleeAttackingState : PlayerAttackingState
+public class PlayerMeleeNormalAttackingState : PlayerNormalAttackingState
 {
     protected bool useNextConcurrentAttack;
 
-    public PlayerMeleeAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
+    public PlayerMeleeNormalAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
     }
 
@@ -19,12 +19,12 @@ public class PlayerMeleeAttackingState : PlayerAttackingState
 
     protected override void AddInputActionsCallbacks()
     {
-        stateMachine.Player.Input.PlayerActions.Attack.started += OnMeleeAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled += OnMeleeAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
     {
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnMeleeAttackStarted;
     }
 
     protected void OnMeleeAttackStarted(InputAction.CallbackContext context)

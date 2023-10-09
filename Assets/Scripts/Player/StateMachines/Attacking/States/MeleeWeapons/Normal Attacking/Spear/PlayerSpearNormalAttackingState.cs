@@ -1,8 +1,8 @@
-public class PlayerSpearAttackingState : PlayerMeleeAttackingState
+public class PlayerSpearNormalAttackingState : PlayerMeleeNormalAttackingState
 {
     private PlayerSpearAttackData spearAttackData;
 
-    public PlayerSpearAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
+    public PlayerSpearNormalAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
         spearAttackData = attackData.SpearAttackData;
     }
@@ -45,7 +45,7 @@ public class PlayerSpearAttackingState : PlayerMeleeAttackingState
             if (!IsNextAttackConcurrent(spearAttackData.StartingSpearAttackAnimationIndex, spearAttackData.LastConcurrentSpearAttackAnimationIndex, stateMachine.Player.AnimationData.SpearAttackParameterName))
             {
                 stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
-                stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+                stateMachine.Player.Input.PlayerActions.Attack.started -= OnNormalAttackStarted;
             }
             return;
         }

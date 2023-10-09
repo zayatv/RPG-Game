@@ -1,8 +1,8 @@
-public class PlayerSwordAttackingState : PlayerMeleeAttackingState
+public class PlayerSwordNormalAttackingState : PlayerMeleeNormalAttackingState
 {
     private PlayerSwordAttackData swordAttackData;
 
-    public PlayerSwordAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
+    public PlayerSwordNormalAttackingState(PlayerAttackingStateMachine playerAttackingStateMachine) : base(playerAttackingStateMachine)
     {
         swordAttackData = attackData.SwordAttackData;
     }
@@ -31,7 +31,7 @@ public class PlayerSwordAttackingState : PlayerMeleeAttackingState
             if (!IsNextAttackConcurrent(swordAttackData.StartingSwordAttackAnimationIndex, swordAttackData.LastConcurrentSwordAttackAnimationIndex, stateMachine.Player.AnimationData.SwordAttackParameterName))
             {
                 stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeAttackStarted;
-                stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+                stateMachine.Player.Input.PlayerActions.Attack.started -= OnNormalAttackStarted;
             }
             return;
         }

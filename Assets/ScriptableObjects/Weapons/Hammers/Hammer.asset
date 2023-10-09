@@ -15,21 +15,12 @@ MonoBehaviour:
   <WeaponName>k__BackingField: Hammer
   <WeaponDescription>k__BackingField: A Hammer
   <Rarity>k__BackingField: 3
-  <WeaponType>k__BackingField: 3
-  <WeaponModel>k__BackingField: {fileID: 5241497351252124151, guid: 62159d9b55bfd224888575b2d6147951, type: 3}
+  <WeaponType>k__BackingField: 0
+  <WeaponPrefab>k__BackingField: {fileID: 5241497351252124151, guid: 62159d9b55bfd224888575b2d6147951, type: 3}
   <BaseAttack>k__BackingField:
     <StatType>k__BackingField: 0
     <BaseValue>k__BackingField: 0
     <FlatModifier>k__BackingField: 0
     <PercentageModifier>k__BackingField: 0
-  <PrimaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <SecondaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <EquippedSkills>k__BackingField: []
+  <SubStats>k__BackingField: []
+  <EquippedRunestones>k__BackingField: []

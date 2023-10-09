@@ -16,20 +16,11 @@ MonoBehaviour:
   <WeaponDescription>k__BackingField: Dagger
   <Rarity>k__BackingField: 4
   <WeaponType>k__BackingField: 5
-  <WeaponModel>k__BackingField: {fileID: 8441501330787745564, guid: fef8b3ed37c167e4380a2fbb6b74ec9e, type: 3}
+  <WeaponPrefab>k__BackingField: {fileID: 8441501330787745564, guid: fef8b3ed37c167e4380a2fbb6b74ec9e, type: 3}
   <BaseAttack>k__BackingField:
     <StatType>k__BackingField: 0
     <BaseValue>k__BackingField: 0
     <FlatModifier>k__BackingField: 0
     <PercentageModifier>k__BackingField: 0
-  <PrimaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <SecondaryStat>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <EquippedSkills>k__BackingField: []
+  <SubStats>k__BackingField: []
+  <EquippedRunestones>k__BackingField: []

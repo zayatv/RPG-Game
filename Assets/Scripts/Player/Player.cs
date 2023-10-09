@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
+    [field: Header("Stats")]
+    [field: SerializeField] public PlayerStats Stats { get; private set; }
+
     [field: Header("Playable Characters")]
     [field: SerializeField] public PlayerCharacterDataSO CharacterData { get; private set; }
 
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
         CameraUtility.Initialize();
         AnimationData.Initialize();
         InventoryData.Initialize();
+        Stats.Initialize();
 
         MainCameraTransform = Camera.main.transform;
 

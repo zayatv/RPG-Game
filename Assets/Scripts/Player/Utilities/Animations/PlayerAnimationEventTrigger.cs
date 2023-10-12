@@ -41,25 +41,25 @@ public class PlayerAnimationEventTrigger : MonoBehaviour
         player.OnMovementStateAnimationTransitionEvent();
     }
 
-    public void TriggerOnEnableWeapon()
+    public void TriggerOnEnableWeaponCollider()
     {
         if (IsInAnimationTransition())
         {
             return;
         }
         
-        player.OnEnableWeapon();
+        player.OnEnableWeaponCollider();
     }
 
 
-    public void TriggerOnDisableWeapon()
+    public void TriggerOnDisableWeaponCollider()
     {
         if (IsInAnimationTransition())
         {
             return;
         }
         
-        player.OnDisableWeapon();
+        player.OnDisableWeaponCollider();
     }
 
 

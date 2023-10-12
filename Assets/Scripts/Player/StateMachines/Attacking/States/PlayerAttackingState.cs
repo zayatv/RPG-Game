@@ -48,20 +48,12 @@ public class PlayerAttackingState : IState
     {
     }
 
-    public virtual void EnableWeapon()
+    public virtual void EnableWeaponCollider()
     {
-        if (stateMachine.Player.WeaponParentTransform.GetChild(0).TryGetComponent<CapsuleCollider>(out CapsuleCollider collider))
-        {
-            collider.enabled = true;
-        }
     }
 
-    public virtual void DisableWeapon()
+    public virtual void DisableWeaponCollider()
     {
-        if (stateMachine.Player.WeaponParentTransform.GetChild(0).TryGetComponent<CapsuleCollider>(out CapsuleCollider collider))
-        {
-            collider.enabled = false;
-        }
     }
 
     public virtual void OnTriggerEnter(Collider collider)
@@ -188,7 +180,7 @@ public class PlayerAttackingState : IState
                 break;
 
             case WeaponType.Sword:
-                stateMachine.ChangeState(stateMachine.SwordNormalAttackingState);
+                stateMachine.ChangeState(stateMachine.SwordChargedAttackingState);
                 break;
 
             case WeaponType.Spear:

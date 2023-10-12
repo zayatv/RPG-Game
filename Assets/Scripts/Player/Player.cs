@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     [field: Header("Weapons")]
     [field: SerializeField] public WeaponSO CurrentEquippedWeapon { get; private set; }
-    [field: SerializeField] public GameObject CurrentEquippedWeaponPrefab { get; private set; }
+    [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
 
     [field: Header("Items")]
     [field: SerializeField] public PlayerInventoryData InventoryData { get; private set; }
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
         AnimationData.Initialize();
         InventoryData.Initialize();
         Stats.Initialize();
+        WeaponHandler.Initialize(this);
 
         MainCameraTransform = Camera.main.transform;
 
@@ -131,17 +132,17 @@ public class Player : MonoBehaviour
         attackingStateMachine.OnAnimationTransitionEvent();
     }
 
-    public void OnEnableWeapon()
+    public void OnEnableWeaponCollider()
     {
-        movementStateMachine.EnableWeapon();
+        movementStateMachine.EnableWeaponCollider();
 
-        attackingStateMachine.EnableWeapon();
+        attackingStateMachine.EnableWeaponCollider();
     }
 
-    public void OnDisableWeapon()
+    public void OnDisableWeaponCollider()
     {
-        movementStateMachine.DisableWeapon();
+        movementStateMachine.DisableWeaponCollider();
 
-        attackingStateMachine.DisableWeapon();
+        attackingStateMachine.DisableWeaponCollider();
     }
 }

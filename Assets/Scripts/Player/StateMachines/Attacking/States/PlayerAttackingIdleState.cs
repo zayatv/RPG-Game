@@ -29,7 +29,7 @@ public class PlayerAttackingIdleState : PlayerAttackingState
         base.AddInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Attack.canceled += OnNormalAttackStarted;
-        stateMachine.Player.Input.PlayerActions.Attack.performed += OnNormalAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.performed += OnChargedAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -37,6 +37,6 @@ public class PlayerAttackingIdleState : PlayerAttackingState
         base.RemoveInputActionsCallbacks();
 
         stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnNormalAttackStarted;
-        stateMachine.Player.Input.PlayerActions.Attack.performed -= OnNormalAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.performed -= OnChargedAttackStarted;
     }
 }

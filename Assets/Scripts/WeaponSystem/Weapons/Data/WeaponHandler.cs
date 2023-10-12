@@ -1,45 +1,30 @@
+using System;
 using UnityEngine;
 
-public class WeaponHandler : MonoBehaviour
+[Serializable]
+public class WeaponHandler
 {
+    [field: SerializeField] public WeaponStats WeaponStats { get; private set; }
+    public WeaponGround WeaponGround { get; private set; }
+    public WeaponAffinity WeaponAffinity { get; private set; }
+
     private Player player;
-    [SerializeField] private GameObject currentWeaponGO;
-    [SerializeField] private WeaponSO currentWeaponSO;
 
-    [SerializeField] private WeaponGround weaponGround;
-
-    [SerializeField] private WeaponAffinity weaponAffinity;
-
-    private Stat BaseAttack, PrimaryStat, SecondaryStat;
-
-    void Start()
+    public void Initialize(Player player)
     {
-        player = GetComponent<Player>();
+        this.player = player;
+
         SetWeaponValues();
+        SetWeaponStats();
     }
 
-    void SetWeaponValues() {
-        currentWeaponGO = player.CurrentEquippedWeaponPrefab;
-        currentWeaponSO = player.CurrentEquippedWeaponPrefab.GetComponent<WeaponHolder>().weaponSO;
-        BaseAttack = currentWeaponSO.BaseAttack;
-        SetWeaponSubstats();
-        weaponGround = currentWeaponGO.GetComponent<WeaponGround>();
-        weaponAffinity = currentWeaponGO.GetComponent<WeaponAffinity>();
+    private void SetWeaponValues() {
+        WeaponGround = player.CurrentEquippedWeapon.WeaponPrefab.GetComponent<WeaponGround>();
+        WeaponAffinity = player.CurrentEquippedWeapon.WeaponPrefab.GetComponent<WeaponAffinity>();
     }
 
-    private void SetWeaponSubstats()
+    private void SetWeaponStats()
     {
-        switch (currentWeaponSO.SubStats.Count)
-        {
-            case 1:
-                PrimaryStat = currentWeaponSO.SubStats[0];
-                break;
-            case 2:
-                PrimaryStat = currentWeaponSO.SubStats[0];
-                SecondaryStat = currentWeaponSO.SubStats[1];
-                break;
-            default:
-                break;
-        }
+        WeaponStats = player.CurrentEquippedWeapon.WeaponBaseStats;
     }
  }

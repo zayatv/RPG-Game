@@ -12,6 +12,8 @@ public class PlayerAttackingStateMachine : StateMachine
     public PlayerSwordNormalAttackingState SwordNormalAttackingState { get; }
     public PlayerSpearNormalAttackingState SpearNormalAttackingState { get; }
 
+    public PlayerSwordChargedAttackingState SwordChargedAttackingState { get; }
+
     public PlayerBowChargedAttackingState BowChargedAttackingState { get; }
     public PlayerBowNormalAttackingState BowNormalAttackingState { get; }
 
@@ -28,6 +30,8 @@ public class PlayerAttackingStateMachine : StateMachine
 
         SwordNormalAttackingState = new PlayerSwordNormalAttackingState(this);
         SpearNormalAttackingState = new PlayerSpearNormalAttackingState(this);
+
+        SwordChargedAttackingState = new PlayerSwordChargedAttackingState(this);
 
         BowChargedAttackingState = new PlayerBowChargedAttackingState(this);
         BowNormalAttackingState = new PlayerBowNormalAttackingState(this);

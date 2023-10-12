@@ -13,8 +13,8 @@ public class WeaponSO : ScriptableObject
     [field: SerializeField] public GameObject WeaponPrefab { get; private set; }
 
     [field: Header("Stats")]
-    [field: SerializeField] public Stat BaseAttack { get; private set; }
-    [field: SerializeField] public List<Stat> SubStats { get; private set; }
+    [field: SerializeField] public WeaponStats WeaponBaseStats { get; private set; }
+    [field: SerializeField] public List<StatType> SubStats { get; private set; }
 
     [field: Header("Runestones")]
     [field: SerializeField] public List<string> EquippedRunestones { get; private set; }

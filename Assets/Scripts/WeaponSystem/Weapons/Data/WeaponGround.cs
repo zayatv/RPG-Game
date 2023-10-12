@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponGround : MonoBehaviour
 {
-    public float percentageModifier;
+    public float percentageModifier {  get; private set; }
 
     void Update()
     {
@@ -11,7 +11,7 @@ public class WeaponGround : MonoBehaviour
         }
     }
 
-    private void RestoreWeapon() {
+    public void RestoreWeapon() {
         percentageModifier = 0f;
     }
 }

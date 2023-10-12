@@ -116,7 +116,7 @@ public class PlayerGroundedState : PlayerMovementState
 
         stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
 
-        stateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -127,7 +127,7 @@ public class PlayerGroundedState : PlayerMovementState
 
         stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
 
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnAttackStarted;
     }
 
     protected virtual void OnMove()

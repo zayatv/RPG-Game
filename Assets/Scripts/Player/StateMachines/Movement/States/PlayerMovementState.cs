@@ -65,12 +65,12 @@ public class PlayerMovementState : IState
         
     }
 
-    public virtual void EnableWeapon()
+    public virtual void EnableWeaponCollider()
     {
 
     }
 
-    public virtual void DisableWeapon()
+    public virtual void DisableWeaponCollider()
     {
         
     }

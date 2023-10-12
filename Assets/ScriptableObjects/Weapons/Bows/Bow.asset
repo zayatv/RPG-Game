@@ -17,10 +17,31 @@ MonoBehaviour:
   <Rarity>k__BackingField: 4
   <WeaponType>k__BackingField: 6
   <WeaponPrefab>k__BackingField: {fileID: 1555795020925539164, guid: ca68e281c73e4024799aba195609fbc9, type: 3}
-  <BaseAttack>k__BackingField:
-    <StatType>k__BackingField: 0
-    <BaseValue>k__BackingField: 0
-    <FlatModifier>k__BackingField: 0
-    <PercentageModifier>k__BackingField: 0
-  <SubStats>k__BackingField: []
+  <WeaponBaseStats>k__BackingField:
+    <Attack>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <Durability>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <Arcane>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <Potential>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <AttackSpeed>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+  <SubStats>k__BackingField: 0000000000000000
   <EquippedRunestones>k__BackingField: []

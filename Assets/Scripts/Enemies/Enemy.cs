@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [field: Header("Stats")]
+    [field: SerializeField] public EnemyStats Stats { get; private set; }
 
-    void Update()
+    private void Awake()
     {
-        
+        Stats.Initialize();
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -115,8 +114,6 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
-
-        stateMachine.Player.Input.PlayerActions.Attack.canceled += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -126,8 +123,6 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.Player.Input.PlayerActions.Dash.started -= OnDashStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
-
-        stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnAttackStarted;
     }
 
     protected virtual void OnMove()
@@ -181,14 +176,5 @@ public class PlayerGroundedState : PlayerMovementState
     protected virtual void OnJumpStarted(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.JumpingState);
-    }
-
-    protected void OnAttackStarted(InputAction.CallbackContext context)
-    {
-        if (UIManager.IsInMenu) return;
-
-        if (!stateMachine.Player.IsAttacking) return;
-
-        stateMachine.ChangeState(stateMachine.AttackingState);
     }
 }

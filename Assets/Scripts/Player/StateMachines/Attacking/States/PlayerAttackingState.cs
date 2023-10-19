@@ -98,16 +98,6 @@ public class PlayerAttackingState : IState
         weapon.rotation = newRotation;
     }
 
-    protected void EnableWeaponObject()
-    {
-        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(true);
-    }
-
-    protected void DisableWeaponObject()
-    {
-        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(false);
-    }
-
     protected void StartAnimation(int animationHash)
     {
         stateMachine.Player.Animator.SetBool(animationHash, true);
@@ -161,7 +151,7 @@ public class PlayerAttackingState : IState
         }
     }
 
-    protected void OnChargedAttackStarted(InputAction.CallbackContext context)
+    protected void OnChargedAttackStarted()
     {
         if (UIManager.IsInMenu || !stateMachine.Player.CanAttack) return;
 

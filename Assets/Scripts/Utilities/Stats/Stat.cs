@@ -13,7 +13,7 @@ public class Stat
     public float CurrentValue { get; private set; }
     public float TotalValue { get; private set; }
 
-    public void AddValue(float valueToAdd, StatValueType valueType)
+    public void AddModifierValue(float valueToAdd, StatValueType valueType)
     {
         switch (valueType)
         {
@@ -36,7 +36,7 @@ public class Stat
         CalculateTotalStatValue();
     }
 
-    public void RemoveValue(float valueToRemove, StatValueType valueType)
+    public void RemoveModifierValue(float valueToRemove, StatValueType valueType)
     {
         switch (valueType)
         {
@@ -64,6 +64,11 @@ public class Stat
         float oldTotalValue = TotalValue;
         TotalValue = (BaseValue + FlatModifier) * (PercentageModifier / 100 + 1);
         CurrentValue += TotalValue - oldTotalValue;
+    }
+
+    public void RemoveCurrentValue(float valueToRemove)
+    {
+        CurrentValue -= valueToRemove;
     }
 }
 

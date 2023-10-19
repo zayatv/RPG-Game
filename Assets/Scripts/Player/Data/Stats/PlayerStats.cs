@@ -16,14 +16,14 @@ public class PlayerStats
 
     public void Initialize()
     {
-        Health = new Stat();
-        Mana = new Stat();
-        Strength = new Stat();
-        Defense = new Stat();
-        CriticalHits = new Stat();
-        Agility = new Stat();
-        MovementSpeed = new Stat();
-        Luck = new Stat();
-        Stamina = new Stat();
+        Health.CalculateTotalStatValue();
+        Mana.CalculateTotalStatValue();
+        Strength.CalculateTotalStatValue();
+        Defense.CalculateTotalStatValue();
+        CriticalHits.CalculateTotalStatValue();
+        Agility.CalculateTotalStatValue();
+        MovementSpeed.CalculateTotalStatValue();
+        Luck.CalculateTotalStatValue();
+        Stamina.CalculateTotalStatValue();
     }
 }

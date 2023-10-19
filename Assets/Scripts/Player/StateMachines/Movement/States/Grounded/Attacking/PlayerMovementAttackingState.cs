@@ -16,15 +16,6 @@ public class PlayerMovementAttackingState : PlayerGroundedState
 
         ResetVelocity();
         DisableCameraRecentering();
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        if (!stateMachine.Player.IsAttacking)
-        {
-            stateMachine.ChangeState(stateMachine.IdlingState);
-        }
+        EnableWeaponObject();
     }
 }

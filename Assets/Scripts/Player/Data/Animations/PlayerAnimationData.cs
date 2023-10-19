@@ -27,12 +27,11 @@ public class PlayerAnimationData
     [SerializeField] private string fallParameterName = "isFalling";
 
     [field: Header("Attacking Parameter Names")]
-    [SerializeField] public string SwordAttackParameterName { get; private set; } = "swordAttackState";
-    [SerializeField] public string SpearAttackParameterName { get; private set; } = "spearAttackState";
+    [field: SerializeField] public string SwordAttackParameterName { get; private set; } = "swordAttackState";
+    [field: SerializeField] public string SpearAttackParameterName { get; private set; } = "spearAttackState";
     [SerializeField] private string spearEquippedParameterName = "hasEquippedSpear";
 
-    [SerializeField] private string chargeAttackParameterName = "chargeAttackWeapon";
-    [SerializeField] private string normalAttackParameterName = "normalAttackWeapon";
+    [SerializeField] private string chargeAttackParameterName = "chargeAttack";
 
     [SerializeField] private string bowEquippedParameterName = "hasEquippedBow";
     [SerializeField] private string hasShotBowParameterName = "hasShotBow";
@@ -59,7 +58,6 @@ public class PlayerAnimationData
     public int SpearEquippedParameterHash {  get; private set; }
 
     public int ChargeAttackParameterHash { get; private set; }
-    public int NormalAttackParameterHash { get; private set; }
 
     public int BowEquippedParameterHash { get; private set; }
     public int BowShotParameterHash { get; private set; }
@@ -88,7 +86,6 @@ public class PlayerAnimationData
         SpearEquippedParameterHash = Animator.StringToHash(spearEquippedParameterName);
 
         ChargeAttackParameterHash = Animator.StringToHash(chargeAttackParameterName);
-        NormalAttackParameterHash = Animator.StringToHash(normalAttackParameterName);
 
         BowEquippedParameterHash = Animator.StringToHash(bowEquippedParameterName);
         BowShotParameterHash = Animator.StringToHash(hasShotBowParameterName);

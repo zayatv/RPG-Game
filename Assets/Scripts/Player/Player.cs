@@ -40,8 +40,8 @@ public class Player : MonoBehaviour
     public bool IsAttacking { get; set; }
     public bool CanAttack { get; set; }
 
-    private PlayerMovementStateMachine movementStateMachine;
-    private PlayerAttackingStateMachine attackingStateMachine;
+    public PlayerMovementStateMachine MovementStateMachine { get; private set; }
+    public PlayerAttackingStateMachine AttackingStateMachine { get; private set; }
 
     private void Awake()
     {
@@ -64,8 +64,8 @@ public class Player : MonoBehaviour
         IsAttacking = false;
         CanAttack = false;
 
-        movementStateMachine = new PlayerMovementStateMachine(this);
-        attackingStateMachine = new PlayerAttackingStateMachine(this);
+        MovementStateMachine = new PlayerMovementStateMachine(this);
+        AttackingStateMachine = new PlayerAttackingStateMachine(this);
     }
 
     private void OnValidate() 
@@ -76,73 +76,73 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        movementStateMachine.ChangeState(movementStateMachine.IdlingState);
+        MovementStateMachine.ChangeState(MovementStateMachine.IdlingState);
 
-        attackingStateMachine.ChangeState(attackingStateMachine.AttackingIdleState);
+        AttackingStateMachine.ChangeState(AttackingStateMachine.AttackingIdleState);
     }
 
     private void OnTriggerEnter(Collider collider) 
     {
-        movementStateMachine.OnTriggerEnter(collider);
+        MovementStateMachine.OnTriggerEnter(collider);
 
-        attackingStateMachine.OnTriggerEnter(collider);
+        AttackingStateMachine.OnTriggerEnter(collider);
     }
 
     private void OnTriggerExit(Collider collider) 
     {
-        movementStateMachine.OnTriggerExit(collider);
+        MovementStateMachine.OnTriggerExit(collider);
 
-        attackingStateMachine.OnTriggerExit(collider);
+        AttackingStateMachine.OnTriggerExit(collider);
     }
 
     private void Update()
     {
-        movementStateMachine.HandleInput();
-        movementStateMachine.Update();
+        MovementStateMachine.HandleInput();
+        MovementStateMachine.Update();
 
-        attackingStateMachine.HandleInput();
-        attackingStateMachine.Update();
+        AttackingStateMachine.HandleInput();
+        AttackingStateMachine.Update();
     }
 
     private void FixedUpdate()
     {
-        movementStateMachine.PhysicsUpdate();
+        MovementStateMachine.PhysicsUpdate();
 
-        attackingStateMachine.PhysicsUpdate();
+        AttackingStateMachine.PhysicsUpdate();
     }
 
     public void OnMovementStateAnimationEnterEvent()
     {
-        movementStateMachine.OnAnimationEnterEvent();
+        MovementStateMachine.OnAnimationEnterEvent();
 
-        attackingStateMachine.OnAnimationEnterEvent();
+        AttackingStateMachine.OnAnimationEnterEvent();
     }
 
     public void OnMovementStateAnimationExitEvent()
     {
-        movementStateMachine.OnAnimationExitEvent();
+        MovementStateMachine.OnAnimationExitEvent();
 
-        attackingStateMachine.OnAnimationExitEvent();
+        AttackingStateMachine.OnAnimationExitEvent();
     }
 
     public void OnMovementStateAnimationTransitionEvent()
     {
-        movementStateMachine.OnAnimationTransitionEvent();
+        MovementStateMachine.OnAnimationTransitionEvent();
 
-        attackingStateMachine.OnAnimationTransitionEvent();
+        AttackingStateMachine.OnAnimationTransitionEvent();
     }
 
     public void OnEnableWeaponCollider()
     {
-        movementStateMachine.EnableWeaponCollider();
+        MovementStateMachine.EnableWeaponCollider();
 
-        attackingStateMachine.EnableWeaponCollider();
+        AttackingStateMachine.EnableWeaponCollider();
     }
 
     public void OnDisableWeaponCollider()
     {
-        movementStateMachine.DisableWeaponCollider();
+        MovementStateMachine.DisableWeaponCollider();
 
-        attackingStateMachine.DisableWeaponCollider();
+        AttackingStateMachine.DisableWeaponCollider();
     }
 }

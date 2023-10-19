@@ -8,16 +8,7 @@ public class PlayerRangedNormalAttackingState : PlayerRangedAttackingState
     {
         base.Enter();
 
-        StartAnimation(stateMachine.Player.AnimationData.NormalAttackParameterHash);
-
-        EnableWeaponObject();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        StopAnimation(stateMachine.Player.AnimationData.NormalAttackParameterHash);
+        //EnableWeaponObject();
     }
 
     public override void OnAnimationExitEvent()

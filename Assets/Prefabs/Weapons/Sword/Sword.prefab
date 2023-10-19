@@ -76,7 +76,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5716681864270162303, guid: dd0682cd55d7f8342b8026ebb1cfc4a5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -118,9 +119,9 @@ CapsuleCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
-  m_Height: 2
+  m_Height: 1.5
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.55}
+  m_Center: {x: 0, y: 0, z: -0.59}
 --- !u!114 &8726364677457994946
 MonoBehaviour:
   m_ObjectHideFlags: 0

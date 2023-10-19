@@ -114,9 +114,6 @@ MonoBehaviour:
       <HardDecelerationForce>k__BackingField: 5
     <RollData>k__BackingField:
       <SpeedModifier>k__BackingField: 1
-    <SwordAttackData>k__BackingField:
-      <StartingSwordAttackAnimationIndex>k__BackingField: 0
-      <LastConcurrentSwordAttackAnimationIndex>k__BackingField: 2
   <AirborneData>k__BackingField:
     <JumpData>k__BackingField:
       <RotationData>k__BackingField:
@@ -223,3 +220,12 @@ MonoBehaviour:
     <FallData>k__BackingField:
       <FallSpeedLimit>k__BackingField: 15
       <MinimumDistanceToBeConsideredHardFall>k__BackingField: 3
+  <AttackData>k__BackingField:
+    <SwordAttackData>k__BackingField:
+      <StartingSwordAttackAnimationIndex>k__BackingField: 0
+      <LastConcurrentSwordAttackAnimationIndex>k__BackingField: 2
+    <SpearAttackData>k__BackingField:
+      <StartingSpearAttackAnimationIndex>k__BackingField: 0
+      <LastConcurrentSpearAttackAnimationIndex>k__BackingField: 1
+    <MeleeNormalAttackingData>k__BackingField:
+      <TimeToStartRegisterConcurrentAttack>k__BackingField: 0.2

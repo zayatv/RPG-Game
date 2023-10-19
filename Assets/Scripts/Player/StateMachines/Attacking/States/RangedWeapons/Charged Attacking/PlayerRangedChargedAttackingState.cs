@@ -10,7 +10,7 @@ public class PlayerRangedChargedAttackingState : PlayerRangedAttackingState
 
         StartAnimation(stateMachine.Player.AnimationData.ChargeAttackParameterHash);
 
-        EnableWeaponObject();
+        //EnableWeaponObject();
 
         stateMachine.Player.CameraUtility.DisableMainCamera();
     }

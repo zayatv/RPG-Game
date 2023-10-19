@@ -8,4 +8,5 @@ public class PlayerAttackData
     [field: SerializeField] public PlayerSpearAttackData SpearAttackData { get; private set; }
 
     [field: SerializeField] public MeleeNormalAttackingData MeleeNormalAttackingData { get; private set; }
+    [field: SerializeField] public PlayerChargedAttackingData ChargedAttackingData { get; private set; }
 }

@@ -34,6 +34,8 @@ public class PlayerIdlingState : PlayerGroundedState
         StopAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
 
         stateMachine.Player.CanAttack = false;
+
+        DisableWeaponObject();
     }
 
     public override void Update()

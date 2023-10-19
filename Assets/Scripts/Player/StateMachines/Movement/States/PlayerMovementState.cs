@@ -396,6 +396,16 @@ public class PlayerMovementState : IState
         stateMachine.Player.CameraUtility.DisableRecentering();
     }
 
+    protected void EnableWeaponObject()
+    {
+        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(true);
+    }
+
+    protected void DisableWeaponObject()
+    {
+        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(false);
+    }
+
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
         stateMachine.ReusableData.ShouldWalk = !stateMachine.ReusableData.ShouldWalk;

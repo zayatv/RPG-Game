@@ -44,13 +44,13 @@ public class PlayerSpearNormalAttackingState : PlayerMeleeNormalAttackingState
             NextConcurrentAttack(stateMachine.Player.AnimationData.SpearAttackParameterName);
             if (!IsNextAttackConcurrent(spearAttackData.StartingSpearAttackAnimationIndex, spearAttackData.LastConcurrentSpearAttackAnimationIndex, stateMachine.Player.AnimationData.SpearAttackParameterName))
             {
-                stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeNormalAttackStarted;
+                stateMachine.Player.Input.PlayerActions.Attack.started -= OnConcurrentNormalAttackOnTransition;
                 stateMachine.Player.Input.PlayerActions.Attack.started -= OnNormalAttackStarted;
             }
             return;
         }
 
-        stateMachine.Player.Input.PlayerActions.Attack.started -= OnMeleeNormalAttackStarted;
+        stateMachine.Player.Input.PlayerActions.Attack.started -= OnConcurrentNormalAttackOnTransition;
     }
 
 }

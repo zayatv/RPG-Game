@@ -948,14 +948,14 @@ Transform:
   m_GameObject: {fileID: 473258692}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25670242, y: 1.0284371, z: -4.4836187}
+  m_LocalPosition: {x: 0, y: 1.79, z: -2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1170996126}
   - {fileID: 808297777}
   - {fileID: 1237559735}
-  m_Father: {fileID: 1630402781}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &473258694
 MonoBehaviour:
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 2
+    m_MaxSpeed: 3
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 500
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -1535,7 +1535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808297776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11154794, y: 0.000000004274748, z: -4.7983395e-10, w: 0.9937591}
+  m_LocalRotation: {x: 0.11154794, y: -0.00000000427475, z: 4.798342e-10, w: 0.9937591}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2330,7 +2330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170996125}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14015315, y: 0.000000017036555, z: -0.000000002411529, w: 0.9901299}
+  m_LocalRotation: {x: 0.14015315, y: -0.00000001703655, z: 0.000000002411528, w: 0.9901299}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2980,38 +2980,6 @@ Transform:
   - {fileID: 1220917436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1630402780
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1630402781}
-  m_Layer: 0
-  m_Name: Cameras
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1630402781
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630402780}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25670242, y: 0.7615629, z: 2.2336187}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 473258693}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1679752216
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,7 +3040,35 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 753f649a-20e6-4450-8668-1a37fd89a71f
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 811f3861-0a7f-4836-a316-eda1ce45f98a
+    m_ActionName: Player/Look[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6abda13a-e6f4-4cae-95be-941fec47ede7
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 51e23e8f-ec47-4800-bfc0-b61a30f91295
+    m_ActionName: Player/Dash[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3fcca28f-1b50-44ff-8e45-e5043af24b88
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da8a9e7b-996a-494e-880a-55774dc830b1
+    m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0b76d3c4-c706-4cdc-8b28-67e2ccd9df7c
+    m_ActionName: Player/Charge Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -3165,7 +3161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11154795, y: 0.000000008549499, z: -9.596682e-10, w: 0.9937591}
+  m_LocalRotation: {x: 0.11154795, y: -0.0000000085495, z: 9.596683e-10, w: 0.9937591}
   m_LocalPosition: {x: 0, y: 1.79, z: -2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4617,7 +4613,10 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652846858786}
   - component: {fileID: 5866666021151701080}
+  - component: {fileID: 5866666021151701084}
+  - component: {fileID: 5866666021151701083}
   - component: {fileID: 1679767894}
+  - component: {fileID: 5866666021151701082}
   - component: {fileID: 5866666021151701081}
   m_Layer: 0
   m_Name: Character
@@ -6033,7 +6032,7 @@ Animator:
   m_GameObject: {fileID: 919132148841347224}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1b9e47393f91ebb42b4e9c47130a9685, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: f6e3fff830da11847b2852ade76405c5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -6053,11 +6052,80 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132148841347224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f06eec9c890ab4a9276f1d942ec9cb, type: 3}
+  m_Script: {fileID: 11500000, guid: a347cebe047bb724b997f6213efa1e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 4980584948572027010, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
-  chargeAttack: {fileID: 1108476591451425314, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
+  moveSpeed: 1.2
+  turnSpeed: 18
+  sprintMulti: 2
+  groundCheckDistance: 0.2
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 243
+--- !u!114 &5866666021151701082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148841347224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55797146b6530cf41af6dc2c4f308a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAction: {fileID: -6703268112475816381, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
+  sprintAction: {fileID: 5239449662439943169, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
+--- !u!136 &5866666021151701083
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148841347224}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!54 &5866666021151701084
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148841347224}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!4 &5901452234912247969
 Transform:
   m_ObjectHideFlags: 0
@@ -6862,7 +6930,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1687258585}
-  - {fileID: 1630402781}
+  - {fileID: 473258693}
   - {fileID: 2138677393}
   - {fileID: 653260038}
   - {fileID: 1679752217}

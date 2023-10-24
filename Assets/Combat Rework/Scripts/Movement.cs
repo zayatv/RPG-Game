@@ -4,7 +4,7 @@ namespace CombatSystem
 {
     public class Movement : MonoBehaviour
     {
-        public float moveSpeed = 2;
+        public float moveSpeed = 1;
         public float turnSpeed = 25;
         public float sprintMulti = 2f;
         public float groundCheckDistance = 0.2f;
@@ -24,6 +24,8 @@ namespace CombatSystem
 
         private void OnAnimatorMove()
         {
+            //Movement is primarily from root motion built into animations
+            //This function is used to override the rootmotion to be able to tweak speed
             if (IsGrounded && Time.deltaTime > 0)
             {
                 var velocity = (animator.deltaPosition * moveSpeed) / Time.deltaTime;
@@ -64,6 +66,22 @@ namespace CombatSystem
             var startPos = transform.position + Vector3.up * 0.1f;
             var ray = new Ray(startPos, Vector3.down);
             return Physics.Raycast(ray, groundCheckDistance, groundLayers);
+        }
+
+        //Animation pack being used has these events
+        public void FootR()
+        {
+
+        }
+
+        public void FootL()
+        {
+
+        }
+
+        public void Hit()
+        {
+
         }
     }
 }

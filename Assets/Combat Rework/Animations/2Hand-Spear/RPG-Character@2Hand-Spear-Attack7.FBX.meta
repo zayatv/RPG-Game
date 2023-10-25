@@ -358,14 +358,19 @@ ModelImporter:
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'B_Spine1' has translation animation that
-      will be discarded.\n"
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftLowerLeg
-      average position error 0.3 mm and maximum position error 3.3 mm at time 0:
-      0 (0.0%) Frame 0\n\tRightLowerLeg average position error 0.2 mm and maximum
-      position error 1.9 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average position
-      error 0.2 mm and maximum position error 1.7 mm at time 0:16 (44.4%) Frame 16\n\tLeftFoot
-      average orientation error 0.1 deg and maximum orientation error 0.6 deg at
-      time 0:25 (69.4%) Frame 25\n"
+      will be discarded.\n\t'B_Spine2' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n"
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftUpperArm
+      average position error 23.9 mm and maximum position error 43.3 mm at time 0:
+      9 (25.0%) Frame 9\n\tLeftLowerArm average position error 19.5 mm and maximum
+      position error 43.5 mm at time 0: 9 (25.0%) Frame 9\n\tLeftHand average position
+      error 16.8 mm and maximum position error 39.8 mm at time 0: 6 (16.7%) Frame
+      6\n\tRightUpperArm average position error 14.8 mm and maximum position error
+      23.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerArm average position error
+      9.6 mm and maximum position error 16.4 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand
+      average position error 6.1 mm and maximum position error 13.5 mm at time 0:
+      0 (0.0%) Frame 0\n\tHead average position error 49.7 mm and maximum position
+      error 82.3 mm at time 0: 0 (0.0%) Frame 0\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -409,6 +414,93 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Charge Start
+      takeName: Take 001
+      internalID: 1339499455213237349
+      firstFrame: 0
+      lastFrame: 8.7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Charge Loop
+      takeName: Take 001
+      internalID: 4943347514407283697
+      firstFrame: 8.7
+      lastFrame: 8.9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Charge Attack
+      takeName: Take 001
+      internalID: -6155653082154970448
+      firstFrame: 8.9
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}

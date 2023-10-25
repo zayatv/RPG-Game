@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7480a32ac60823f4ba6e49baf7ca7ee5, type: 3}
   m_Name: Single Attack
   m_EditorClassIdentifier: 
-  input: {fileID: 0}
-  animation: {fileID: 0}
+  input: {fileID: 4980584948572027010, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
+  animation: {fileID: 7400000, guid: 82d5b5f0c15f39540a67037f33d533b1, type: 3}
   targetState: Attack
   validStates:
   - Movement_Exploration
   - Movement_Combat
+  onHitEffect: {fileID: 11400000, guid: c97a46aeaaf393740938ad49c0e47645, type: 2}

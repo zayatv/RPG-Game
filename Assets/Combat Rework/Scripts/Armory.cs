@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CombatSystem
 {
-    public class PlayerCombat : MonoBehaviour
+    public class Armory : MonoBehaviour
     {
         public Weapon startingWeapon;
         public Transform rightHand;

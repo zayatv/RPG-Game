@@ -28,7 +28,6 @@ MonoBehaviour:
   m_Name: Charge Attack
   m_EditorClassIdentifier: 
   input: {fileID: 1108476591451425314, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
-  infiniteHold: 1
   maxHoldTime: 2
   validStates:
   - Movement_Exploration
@@ -50,7 +49,7 @@ MonoBehaviour:
   - {fileID: -8311983474554694767}
   - {fileID: 6688210582842118556}
   - {fileID: -7824088670251621383}
-  type: Charge Attack
+  type: Combo Attack
 --- !u!114 &6688210582842118556
 MonoBehaviour:
   m_ObjectHideFlags: 0

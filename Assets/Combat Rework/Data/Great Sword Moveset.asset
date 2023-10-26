@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-489752106338214453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5496e982587824eb3d0b84af212c7b, type: 3}
+  m_Name: Charge Attack
+  m_EditorClassIdentifier: 
+  input: {fileID: 1108476591451425314, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
+  maxHoldTime: 2
+  validStates:
+  - Movement_Exploration
+  - Movement_Combat
+  onHitEffect: {fileID: 11400000, guid: c97a46aeaaf393740938ad49c0e47645, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab33610ed5e888498aa22252339c40b, type: 3}
+  m_Name: Great Sword Moveset
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 901638305054108962}
+  - {fileID: -489752106338214453}
+  - {fileID: 7533423417482231508}
+  type: Override Animator
+--- !u!114 &901638305054108962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc54dea5e4bd6a489a5c4e019fbece6, type: 3}
+  m_Name: Override Animator
+  m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 5e581ace70a3b69438a50b0384c4aec3, type: 2}
+  defaultWhenUnequipped: 1
+--- !u!114 &7533423417482231508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1aa8abbb41dcd3438fd20c10d485a22, type: 3}
+  m_Name: Combo Attack
+  m_EditorClassIdentifier: 
+  input: {fileID: 4980584948572027010, guid: 0d126e70df903fe45a74489f76ddb8b8, type: 3}
+  combo:
+  - animation: {fileID: 7400000, guid: 7b5b17e2d42e0424f9c36012595dc9b6, type: 3}
+    overrideDuration: 0
+    duration: 2
+    ignoreInputFor: 0
+    onHitEffect: {fileID: 11400000, guid: c97a46aeaaf393740938ad49c0e47645, type: 2}
+  - animation: {fileID: 8412729274818923451, guid: cdd2643e8053d5b419629acf98510a71, type: 3}
+    overrideDuration: 0
+    duration: 2
+    ignoreInputFor: 0.3
+    onHitEffect: {fileID: 11400000, guid: c97a46aeaaf393740938ad49c0e47645, type: 2}
+  - animation: {fileID: 7400000, guid: 06e24acb759a2ac4c965d56b0101f8ba, type: 3}
+    overrideDuration: 0
+    duration: 2
+    ignoreInputFor: 0.3
+    onHitEffect: {fileID: 11400000, guid: c97a46aeaaf393740938ad49c0e47645, type: 2}
+  validStates:
+  - Movement_Exploration
+  - Movement_Combat

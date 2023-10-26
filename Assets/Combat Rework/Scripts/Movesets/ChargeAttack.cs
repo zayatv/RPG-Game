@@ -7,7 +7,7 @@ namespace CombatSystem.Movesets
 {
     public class ChargeAttack : MovesetComponent
     {
-        //We set the charge animations on the Animator Override for the spear directly but they
+        //We set the charge animations on the Animator Override for the weapon directly but they
         //absolutely can be changed here through code (see SingleAttack for reference)
         //Just showing all the possible ways Animator Override Controllers can be used.
 

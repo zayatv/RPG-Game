@@ -42,6 +42,7 @@ namespace CombatSystem
 
             IsGrounded = GroundCheck();
             animator.SetBool("OnGround", IsGrounded);
+            //The animator has been setup with Jump/Falling states but no animations are currently put into the overrides.
 
             if (InCombat)
             {

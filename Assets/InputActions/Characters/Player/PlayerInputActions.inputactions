@@ -20,7 +20,7 @@
                     "id": "204ded55-8530-46bb-aec0-1184fb320e55",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -71,10 +71,28 @@
                 {
                     "name": "Attack",
                     "type": "Button",
-                    "id": "af76d6b6-1c1f-44b1-b2bb-7da964b53e07",
+                    "id": "328350be-62c4-4475-b3c5-c361c9374cac",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Charge Attack",
+                    "type": "Button",
+                    "id": "136c2603-cd32-46cc-b01c-89af0c3d8c89",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slide",
+                    "type": "Button",
+                    "id": "cfc7beb6-1fff-4f5f-bbe9-3fdf66471394",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.2)",
                     "initialStateCheck": false
                 }
             ],
@@ -224,12 +242,34 @@
                 },
                 {
                     "name": "",
-                    "id": "f892c97f-e4c7-4b18-b27e-c75e1adf2a5b",
+                    "id": "eaa2ee11-af37-4903-a3db-863b190d8cd1",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a053752-d533-428f-93c6-1bcea427810a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Charge Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f914ce18-432d-4be7-a0b2-d6e00e07760a",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

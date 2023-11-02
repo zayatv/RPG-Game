@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftAlt))
         {
             Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

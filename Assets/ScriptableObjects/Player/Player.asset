@@ -217,6 +217,10 @@ MonoBehaviour:
       <MediumForce>k__BackingField: {x: 3.5, y: 5, z: 3.5}
       <StrongForce>k__BackingField: {x: 5, y: 5, z: 5}
       <DecelerationForce>k__BackingField: 1.5
+    <AirJumpData>k__BackingField:
+      <TimeToAirJump>k__BackingField: 0
+      <JumpForce>k__BackingField: {x: 5, y: 5, z: 5}
+      <DecelerationForce>k__BackingField: 1.5
     <FallData>k__BackingField:
       <FallSpeedLimit>k__BackingField: 15
       <MinimumDistanceToBeConsideredHardFall>k__BackingField: 3

@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     [field: Header("References")]
     [field: SerializeField] public PlayerSO PlayerData { get; private set; }
 
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();

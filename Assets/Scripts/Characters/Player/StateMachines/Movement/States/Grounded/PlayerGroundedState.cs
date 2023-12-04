@@ -116,6 +116,8 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
+
+        stateMachine.Player.Input.PlayerActions.Attack.performed += OnAttackStarted;
     }
 
     protected override void RemoveInputActionsCallbacks()
@@ -125,6 +127,8 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.Player.Input.PlayerActions.Dash.started -= OnDashStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
+
+        stateMachine.Player.Input.PlayerActions.Attack.performed -= OnAttackStarted;
     }
 
     protected virtual void OnMove()
@@ -178,5 +182,10 @@ public class PlayerGroundedState : PlayerMovementState
     protected virtual void OnJumpStarted(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.JumpingState);
+    }
+
+    protected void OnAttackStarted(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.AttackingState);
     }
 }

@@ -27,4 +27,16 @@ public class PlayerMovementAttackingState : PlayerGroundedState
 
         StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
     }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (stateMachine.ReusableData.MovementInput == Vector2.zero)
+        {
+            return;
+        }
+
+        OnMove();
+    }
 }

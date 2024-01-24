@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: Single Attack
   m_EditorClassIdentifier: 
   input: {fileID: 4721099182435987724, guid: 027ca0f5d94b90e4088a131cadc2011b, type: 3}
-  animation: {fileID: 7400000, guid: ee581e681fcbd9f47a0d870b2abe75ad, type: 2}
+  animation: {fileID: -203655887218126122, guid: 6086c5347f314134381ae21b60460564, type: 3}
   targetState: Attack
   validStates:
   - Grounded

@@ -6,8 +6,11 @@ public class PlayerMovementAttackingState : PlayerGroundedState
     {
     }
 
+    private bool canMove;
+
     public override void Enter()
     {
+        canMove = false;
         stateMachine.ReusableData.MovementSpeedModifier = 0f;
 
         base.Enter();
@@ -32,11 +35,25 @@ public class PlayerMovementAttackingState : PlayerGroundedState
     {
         base.Update();
 
-        if (stateMachine.ReusableData.MovementInput == Vector2.zero)
+        if (stateMachine.ReusableData.MovementInput == Vector2.zero || !canMove)
         {
             return;
         }
 
         OnMove();
+    }
+
+    public override void OnAnimationTransitionEvent()
+    {
+        base.OnAnimationTransitionEvent();
+
+        canMove = true;
+    }
+
+    public override void OnAnimationExitEvent()
+    {
+        base.OnAnimationExitEvent();
+
+        stateMachine.ChangeState(stateMachine.IdlingState);
     }
 }

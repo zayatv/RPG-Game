@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     public bool IsAttacking { get; set; }
     public bool CanAttack { get; set; }
 
-    private PlayerMovementStateMachine movementStateMachine { get; set; }
+    public PlayerMovementStateMachine MovementStateMachine { get; private set; }
 
     private void Awake()
     {
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         IsAttacking = false;
         CanAttack = false;
 
-        movementStateMachine = new PlayerMovementStateMachine(this);
+        MovementStateMachine = new PlayerMovementStateMachine(this);
     }
 
     private void OnValidate() 
@@ -79,52 +79,52 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        movementStateMachine.ChangeState(movementStateMachine.IdlingState);
+        MovementStateMachine.ChangeState(MovementStateMachine.IdlingState);
     }
 
     private void OnTriggerEnter(Collider collider) 
     {
-        movementStateMachine.OnTriggerEnter(collider);
+        MovementStateMachine.OnTriggerEnter(collider);
     }
 
     private void OnTriggerExit(Collider collider) 
     {
-        movementStateMachine.OnTriggerExit(collider);
+        MovementStateMachine.OnTriggerExit(collider);
     }
 
     private void Update()
     {
-        movementStateMachine.HandleInput();
-        movementStateMachine.Update();
+        MovementStateMachine.HandleInput();
+        MovementStateMachine.Update();
     }
 
     private void FixedUpdate()
     {
-        movementStateMachine.PhysicsUpdate();
+        MovementStateMachine.PhysicsUpdate();
     }
 
     public void OnMovementStateAnimationEnterEvent()
     {
-        movementStateMachine.OnAnimationEnterEvent();
+        MovementStateMachine.OnAnimationEnterEvent();
     }
 
     public void OnMovementStateAnimationExitEvent()
     {
-        movementStateMachine.OnAnimationExitEvent();
+        MovementStateMachine.OnAnimationExitEvent();
     }
 
     public void OnMovementStateAnimationTransitionEvent()
     {
-        movementStateMachine.OnAnimationTransitionEvent();
+        MovementStateMachine.OnAnimationTransitionEvent();
     }
 
     public void OnEnableWeaponCollider()
     {
-        movementStateMachine.EnableWeaponCollider();
+        MovementStateMachine.EnableWeaponCollider();
     }
 
     public void OnDisableWeaponCollider()
     {
-        movementStateMachine.DisableWeaponCollider();
+        MovementStateMachine.DisableWeaponCollider();
     }
 }

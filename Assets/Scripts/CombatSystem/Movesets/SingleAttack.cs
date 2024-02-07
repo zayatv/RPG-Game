@@ -67,6 +67,8 @@ namespace CombatSystem.Movesets
             if (!IsAttacking())
                 return;
 
+            Debug.Log("Hit");
+
             //using a placeholder Health component to determine if collider hit is a valid target
             //use desired method in production (tag, interface etc.)
             var health = other.GetComponent<Health>();

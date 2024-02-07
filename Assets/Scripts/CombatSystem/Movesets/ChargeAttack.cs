@@ -12,8 +12,8 @@ namespace CombatSystem.Movesets
         //Just showing all the possible ways Animator Override Controllers can be used.
 
         public float maxHoldTime = 2f;
-        [Tooltip("The Animator must be in one of these states to allow attacking.")]
-        public List<string> validStates = new List<string> { "Movement_Exploration", "Movement_Combat" };
+        [Tooltip("The Animator must be in one of the states having these tags to allow attacking.")]
+        public List<string> validStates = new List<string> { "Grounded" };
         public OnHitEffect onHitEffect;
         public override IMovesetBehavior GetBehavior()
         {

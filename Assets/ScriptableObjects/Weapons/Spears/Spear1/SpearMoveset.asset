@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 1414545736613243625}
+  - {fileID: 4199940912404322865}
   - {fileID: 7275807815353700458}
-  type: Single Attack
+  type: Charge Attack
 --- !u!114 &1414545736613243625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,6 +32,23 @@ MonoBehaviour:
   input: {fileID: 0}
   animatorOverride: {fileID: 22100000, guid: 619a8942eaed1ea45bc0f3f38f08048a, type: 2}
   defaultWhenUnequipped: 1
+--- !u!114 &4199940912404322865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5496e982587824eb3d0b84af212c7b, type: 3}
+  m_Name: Charge Attack
+  m_EditorClassIdentifier: 
+  input: {fileID: 4721099182435987724, guid: 027ca0f5d94b90e4088a131cadc2011b, type: 3}
+  maxHoldTime: 3
+  validStates:
+  - Grounded
+  onHitEffect: {fileID: 11400000, guid: e81b62f5bfc5cab479ed8a8fb61d954f, type: 2}
 --- !u!114 &7275807815353700458
 MonoBehaviour:
   m_ObjectHideFlags: 0

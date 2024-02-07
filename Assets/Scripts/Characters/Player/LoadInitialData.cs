@@ -8,7 +8,7 @@ public class LoadInitialData : MonoBehaviour
 
     private void Awake()
     {
-        Destroy(playerObject.GetChild(0).gameObject);
+        Destroy(playerObject.GetComponentInChildren<PlayerAnimationEventTrigger>().gameObject);
 
         var playableCharacter = Instantiate(player.CharacterData.CurrentPlayableCharacter.CharacterModel, playerObject);
 
@@ -17,7 +17,8 @@ public class LoadInitialData : MonoBehaviour
 
         player.Animator = playableCharacter.GetComponent<Animator>();
 
-        player.WeaponParentTransform = GetComponentInChildren<Armory>().rightHand;
+        player.Armory = GetComponentInChildren<Armory>();
+        player.WeaponParentTransform = player.Armory.rightHand;
         //ApplyWeaponToCharacter();
     }
 

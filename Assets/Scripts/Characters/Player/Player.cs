@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
 
     public PlayerInput Input { get; private set; }
 
+    public Armory Armory { get; set; }
+
     public bool IsAttacking { get; set; }
     public bool CanAttack { get; set; }
 
@@ -52,7 +54,6 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();
-        WeaponParentTransform = GetComponentInChildren<Armory>().rightHand;
 
         ColliderUtility.Initialize(gameObject);
         ColliderUtility.CalculateCapsuleColliderDimensions();
@@ -61,7 +62,6 @@ public class Player : MonoBehaviour
         AnimationData.Initialize();
         InventoryData.Initialize();
         Stats.Initialize();
-        //WeaponHandler.Initialize(this);
 
         MainCameraTransform = Camera.main.transform;
 

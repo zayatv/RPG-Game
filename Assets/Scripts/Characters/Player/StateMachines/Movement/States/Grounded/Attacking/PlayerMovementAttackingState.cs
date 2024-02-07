@@ -15,6 +15,8 @@ public class PlayerMovementAttackingState : PlayerGroundedState
 
         base.Enter();
 
+        stateMachine.Player.Armory.rightHand.gameObject.SetActive(true);
+
         StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
 
         stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
@@ -27,6 +29,8 @@ public class PlayerMovementAttackingState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
+
+        stateMachine.Player.Armory.rightHand.gameObject.SetActive(false);
 
         StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
     }

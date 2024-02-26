@@ -9,4 +9,15 @@ public class Enemy : MonoBehaviour
     {
         Stats.Initialize();
     }
+
+    public void damage(int dmgAmmount)
+    {
+        Stats.Health.CurrentValue -= dmgAmmount;
+
+        if(Stats.Health.CurrentValue<=0)
+        {
+            //KILL Enemy;
+            
+        }
+    }
 }

@@ -10,8 +10,8 @@ public class Stat
     [field: SerializeField] public float FlatModifier { get; private set; }
     [field: SerializeField] public float PercentageModifier { get; private set; }
 
-    public float CurrentValue { get; private set; }
-    public float TotalValue { get; private set; }
+    [field: SerializeField]  public float CurrentValue { get;  set; }
+    public float TotalValue { get; set; }
 
     public void AddModifierValue(float valueToAdd, StatValueType valueType)
     {

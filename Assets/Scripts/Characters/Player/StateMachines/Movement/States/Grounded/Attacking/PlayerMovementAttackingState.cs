@@ -10,54 +10,69 @@ public class PlayerMovementAttackingState : PlayerGroundedState
 
     public override void Enter()
     {
-        canMove = false;
-        stateMachine.ReusableData.MovementSpeedModifier = 0f;
+        if (stateMachine.Player.Armory.equippedBow == false)
+        {
+            canMove = false;
+            stateMachine.ReusableData.MovementSpeedModifier = 0f;
 
-        base.Enter();
+            base.Enter();
 
-        stateMachine.Player.Armory.rightHand.gameObject.SetActive(true);
+            stateMachine.Player.Armory.rightHand.gameObject.SetActive(true);
 
-        StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+            StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
 
-        stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
+            stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
 
-        ResetVelocity();
-        DisableCameraRecentering();
-        EnableWeaponObject();
+            ResetVelocity();
+            DisableCameraRecentering();
+            EnableWeaponObject();
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 
     public override void Exit()
     {
-        base.Exit();
+        if (stateMachine.Player.Armory.equippedBow == false)
+        {
+            base.Exit();
 
-        stateMachine.Player.Armory.rightHand.gameObject.SetActive(false);
+            stateMachine.Player.Armory.rightHand.gameObject.SetActive(false);
 
-        StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+            StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
+        }
     }
 
     public override void Update()
     {
-        base.Update();
+      base.Update();
 
-        if (stateMachine.ReusableData.MovementInput == Vector2.zero || !canMove)
-        {
-            return;
-        }
+            if (stateMachine.ReusableData.MovementInput == Vector2.zero || !canMove)
+            {
+                return;
+            }
 
-        OnMove();
+            OnMove();
+        
     }
 
     public override void OnAnimationTransitionEvent()
     {
-        base.OnAnimationTransitionEvent();
+       
+            base.OnAnimationTransitionEvent();
 
-        canMove = true;
+            canMove = true;
+        
     }
 
     public override void OnAnimationExitEvent()
     {
-        base.OnAnimationExitEvent();
+       
+            base.OnAnimationExitEvent();
 
-        stateMachine.ChangeState(stateMachine.IdlingState);
+            stateMachine.ChangeState(stateMachine.IdlingState);
+        
     }
 }

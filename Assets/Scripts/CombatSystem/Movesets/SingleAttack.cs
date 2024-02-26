@@ -32,18 +32,22 @@ namespace CombatSystem.Movesets
 
         public override void Equip(GameObject user)
         {
-            base.Equip(user);
-
-            animator = user.GetComponent<Animator>();
-
-            //Change the attack animation on the controller
-            //The animator for the player is an override controller by default which allows this to work
-            //(see Combat Rework/Animations folder)
-            overrideController = (AnimatorOverrideController)animator.runtimeAnimatorController;
-            overrideController[data.targetState] = data.animation;
-
             armory = user.GetComponent<Armory>();
-            armory.CurrentWeaponBehavior.OnHit += OnTriggerEnter;
+            if (armory.equippedBow == false)
+            {
+                base.Equip(user);
+
+                animator = user.GetComponent<Animator>();
+
+                //Change the attack animation on the controller
+                //The animator for the player is an override controller by default which allows this to work
+                //(see Combat Rework/Animations folder)
+                overrideController = (AnimatorOverrideController)animator.runtimeAnimatorController;
+                overrideController[data.targetState] = data.animation;
+
+
+                armory.CurrentWeaponBehavior.OnHit += OnTriggerEnter;
+            }
         }
 
         public override void Unequip()
@@ -55,11 +59,13 @@ namespace CombatSystem.Movesets
 
         protected override void OnInputPerformed(InputAction.CallbackContext obj)
         {
-            base.OnInputPerformed(obj);
+          
+                base.OnInputPerformed(obj);
 
-            //Directly play the desired animation without bothering with transitions
-            if (CanAttack())
-                animator.CrossFade(data.targetState, 0.1f, 0);
+                //Directly play the desired animation without bothering with transitions
+                if (CanAttack())
+                    animator.CrossFade(data.targetState, 0f, 0);
+            
         }
 
         private void OnTriggerEnter(Collider other)

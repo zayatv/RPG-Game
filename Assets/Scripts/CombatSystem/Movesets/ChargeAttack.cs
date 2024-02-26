@@ -36,12 +36,17 @@ namespace CombatSystem.Movesets
 
         public override void Equip(GameObject user)
         {
-            base.Equip(user);
-
-            animator = user.GetComponent<Animator>();
             armory = user.GetComponent<Armory>();
+            animator = user.GetComponent<Animator>();
+            if (armory.equippedBow == false)
+            {
+                base.Equip(user);
 
-            armory.CurrentWeaponBehavior.OnHit += OnTriggerEnter;
+               
+                armory = user.GetComponent<Armory>();
+
+                armory.CurrentWeaponBehavior.OnHit += OnTriggerEnter;
+            }
         }
 
         public override void Unequip()
@@ -53,13 +58,16 @@ namespace CombatSystem.Movesets
 
         protected override void OnInputPerformed(InputAction.CallbackContext obj)
         {
-            base.OnInputPerformed(obj);
-
-            if (CanAttack() && !charging)
+            if (armory.equippedBow == false)
             {
-                charging = true;
-                animator.CrossFade("Charge_Start", 0.1f, 0);
-                chargeStartTime = Time.time;
+                base.OnInputPerformed(obj);
+
+                if (CanAttack() && !charging)
+                {
+                    charging = true;
+                    animator.CrossFade("Charge_Start", 0, 0);
+                    chargeStartTime = Time.time;
+                }
             }
         }
 

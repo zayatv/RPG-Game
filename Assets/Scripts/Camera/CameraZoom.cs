@@ -5,29 +5,43 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 10f)] private float defaultDistance = 6f;
-    [SerializeField] [Range(0f, 10f)] private float minimumDistance = 1f;
-    [SerializeField] [Range(0f, 10f)] private float maximumDistance = 6f;
+    [SerializeField] [Range(0f, 10f)] public float defaultDistance = 6f;
+    [SerializeField] [Range(0f, 10f)] public float minimumDistance = 1f;
+    [SerializeField] [Range(0f, 10f)] public float maximumDistance = 6f;
 
     [SerializeField] [Range(0f, 10f)] private float smoothing = 4f;
     [SerializeField] [Range(0f, 10f)] private float zoomSensitivity = 1f;
 
-    private CinemachineFramingTransposer framingTransposer;
+    public CinemachineFramingTransposer framingTransposer;
     private CinemachineInputProvider inputProvider;
 
     private float currentTargetDistance;
+    public CinemachineVirtualCamera cam;
+    public CinemachineComposer composer;
+    public GameObject bow;
+    public GameObject anim;
 
     private void Awake() 
     {
+        
         framingTransposer = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         inputProvider = GetComponent<CinemachineInputProvider>();
 
         currentTargetDistance = defaultDistance;
+        
     }
-
-    private void Update() 
+    private void Start()
     {
+       
+    }
+    private void Update() 
+    {if(bow==null)
+        {
+            bow = GameObject.FindGameObjectWithTag("bow");
+        }
         Zoom();
+       
+
     }
 
     private void Zoom()

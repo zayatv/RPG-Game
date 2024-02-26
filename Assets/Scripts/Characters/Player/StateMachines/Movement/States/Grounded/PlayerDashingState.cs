@@ -18,23 +18,26 @@ public class PlayerDashingState : PlayerGroundedState
 
     public override void Enter()
     {
-        stateMachine.ReusableData.MovementSpeedModifier = dashData.SpeedModifier;
-        
-        base.Enter();
+        if (stateMachine.Player.Armory.equippedBow == false)
+        {
+            stateMachine.ReusableData.MovementSpeedModifier = dashData.SpeedModifier;
 
-        StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
+            base.Enter();
 
-        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
+            StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
 
-        stateMachine.ReusableData.RotationData = dashData.RotationData;
+            stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
 
-        Dash();
+            stateMachine.ReusableData.RotationData = dashData.RotationData;
 
-        shouldKeepRotating = stateMachine.ReusableData.MovementInput != Vector2.zero;
+            Dash();
 
-        UpdateConsecutiveDashes();
+            shouldKeepRotating = stateMachine.ReusableData.MovementInput != Vector2.zero;
 
-        startTime = Time.time;
+            UpdateConsecutiveDashes();
+
+            startTime = Time.time;
+        }
     }
 
     public override void Exit()

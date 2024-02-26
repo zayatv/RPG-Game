@@ -6,7 +6,7 @@ namespace CombatSystem
     public abstract class MovesetBehavior<T> : IMovesetBehavior where T : MovesetComponent
     {
         protected T data;
-
+        
         public MovesetBehavior(T data)
         {
             this.data = data;
@@ -37,6 +37,7 @@ namespace CombatSystem
 
         protected virtual void OnInputPerformed(InputAction.CallbackContext obj)
         {
+            Debug.Log("Input Performed");
             Player.Instance.MovementStateMachine.ChangeState(Player.Instance.MovementStateMachine.AttackingState);
         }
 

@@ -18,7 +18,7 @@ namespace CombatSystem.Utilities
     {
         [Space(10f), InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
         [ListDrawerSettings(OnBeginListElementGUI = "OnBeginDrawElement", OnEndListElementGUI = "OnEndDrawElement",
-            CustomRemoveIndexFunction = "OnElementRemoved", HideAddButton = true, Expanded = true)]
+            CustomRemoveIndexFunction = "OnElementRemoved", HideAddButton = true, ShowFoldout = true)]
         public List<Data> components;
 
 #if UNITY_EDITOR

@@ -82,7 +82,7 @@ namespace CombatSystem.Movesets
 
             //using a placeholder Health component to determine if collider hit is a valid target
             //use desired method in production (tag, interface etc.)
-            var health = other.GetComponent<Health>();
+            /*var health = other.GetComponent<Health>();
 
             if (health != null)
             {
@@ -105,7 +105,7 @@ namespace CombatSystem.Movesets
                 //Run all OnHitEffects to using the HitData for this attack
                 var onHitBehaviors = data.onHitEffect.components.Select(e => e.GetBehavior()).ToList();
                 onHitBehaviors.ForEach(b => b.OnHit(hitData));
-            }
+            }*/
         }
 
         //Maybe a bit too simple but we see what state the animator is currently in

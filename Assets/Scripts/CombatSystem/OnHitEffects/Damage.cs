@@ -18,10 +18,10 @@
 
         public override void OnHit(HitData hitData)
         {
-            var health = hitData.Target.GetComponent<Health>();
+            /*var health = hitData.Target.GetComponent<Health>();
 
             if (health != null)
-                health.TakeDamage(data.amount);
+                health.TakeDamage(data.amount);*/
         }
     }
 }

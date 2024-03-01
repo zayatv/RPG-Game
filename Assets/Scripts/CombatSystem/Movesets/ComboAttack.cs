@@ -90,7 +90,7 @@ namespace CombatSystem.Movesets
                 //Start the next attack after the current one finishes
                 if (timePassed > currentAttack.ignoreInputFor)
                 {
-                    var timeLeft = length - timePassed;
+                    var timeLeft = currentAttack.animation.length - timePassed < 0f ? 0f : currentAttack.animation.length - timePassed;
                     armory.StartCoroutine(Attack(timeLeft));
                 }
             }
@@ -125,6 +125,10 @@ namespace CombatSystem.Movesets
                 state = "Attack";
 
             overrideController[state] = current.animation;
+
+            if (IsInAniamtionTransition())
+                yield return new WaitForSeconds(animator.GetAnimatorTransitionInfo(0).duration);
+
             animator.CrossFade(state, 0.1f);
 
             lastAttackTime = Time.time;
@@ -149,7 +153,7 @@ namespace CombatSystem.Movesets
 
             foreach (var stateName in data.validStates)
             {
-                if (state.IsName(stateName))
+                if (state.IsTag(stateName))
                 {
                     match = true;
                     break;
@@ -157,6 +161,11 @@ namespace CombatSystem.Movesets
             }
 
             return match;
+        }
+
+        private bool IsInAniamtionTransition(int layerIndex = 0)
+        {
+            return animator.IsInTransition(layerIndex);
         }
     }
 }

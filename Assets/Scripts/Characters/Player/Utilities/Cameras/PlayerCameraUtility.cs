@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCameraUtility
 {
     [field: SerializeField] public CinemachineVirtualCamera VirtualCamera { get; private set; }
+    [field: SerializeField] public CinemachineVirtualCamera AimCamera { get; private set; }
     [field: SerializeField] public float DefaultHorizontalWaitTime { get; private set; } = 0f;
     [field: SerializeField] public float DefaultHorizontalRecenteringTime { get; private set; } = 4f;
 

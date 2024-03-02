@@ -57,6 +57,8 @@ namespace CombatSystem.Movesets
         {
             base.OnInputPerformed(obj);
 
+            Player.Instance.MovementStateMachine.ChangeState(Player.Instance.MovementStateMachine.AttackingState);
+
             //Directly play the desired animation without bothering with transitions
             if (CanAttack())
                 animator.CrossFade(data.targetState, 0.1f, 0);

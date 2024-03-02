@@ -37,12 +37,10 @@ namespace CombatSystem
 
         protected virtual void OnInputPerformed(InputAction.CallbackContext obj)
         {
-            Player.Instance.MovementStateMachine.ChangeState(Player.Instance.MovementStateMachine.AttackingState);
         }
 
         protected virtual void OnInputCanceled(InputAction.CallbackContext obj)
         {
-            Debug.Log("Input Canceled");
         }
     }
 }

@@ -1,8 +1,8 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class PlayerChargedAttackingData
 {
-    public float DamageMultiplier { get; set; }
-    public float TimeAfterEnteredChargedAttack { get; set; }
+    [field: SerializeField][field: Range(0f, 1f)] public float SpeedModifier { get; private set; } = 0.255f;
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimationEventTrigger : MonoBehaviour
@@ -61,7 +59,6 @@ public class PlayerAnimationEventTrigger : MonoBehaviour
         
         player.OnDisableWeaponCollider();
     }
-
 
     private bool IsInAnimationTransition(int layerIndex = 0)
     {

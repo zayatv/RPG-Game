@@ -6117,7 +6117,7 @@ Transform:
   m_GameObject: {fileID: 697953523}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3432976, y: 1.138437, z: -6.2336187}
+  m_LocalPosition: {x: 0.8432976, y: 1.138437, z: -6.2336187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6186,10 +6186,10 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 9
+  m_Priority: 0
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1369366141}
-  m_Follow: {fileID: 1369366141}
+  m_LookAt: {fileID: 892135607}
+  m_Follow: {fileID: 892135607}
   m_Lens:
     FieldOfView: 30
     OrthographicSize: 5
@@ -6938,6 +6938,7 @@ MonoBehaviour:
       m_Bits: 64
   <CameraUtility>k__BackingField:
     <VirtualCamera>k__BackingField: {fileID: 917355536}
+    <AimCamera>k__BackingField: {fileID: 697953528}
     <DefaultHorizontalWaitTime>k__BackingField: 0
     <DefaultHorizontalRecenteringTime>k__BackingField: 4
   <AnimationData>k__BackingField:

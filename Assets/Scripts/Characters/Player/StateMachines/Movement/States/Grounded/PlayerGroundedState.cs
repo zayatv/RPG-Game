@@ -37,6 +37,17 @@ public class PlayerGroundedState : PlayerMovementState
         Float();
     }
 
+    public override void Update()
+    {
+        base.Update();
+
+        //Just for testing purposes
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            stateMachine.ChangeState(stateMachine.ChargeAttackingState);
+        }
+    }
+
     private void UpdateShouldSprintState()
     {
         if (!stateMachine.ReusableData.ShouldSprint)
@@ -52,7 +63,7 @@ public class PlayerGroundedState : PlayerMovementState
         stateMachine.ReusableData.ShouldSprint = false;
     }
 
-    private void Float()
+    protected void Float()
     {
         Vector3 capsuleColliderCenterInWorldSpace = stateMachine.Player.ColliderUtility.CapsuleColliderData.Collider.bounds.center;
 

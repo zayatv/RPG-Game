@@ -73,6 +73,8 @@ namespace CombatSystem.Movesets
         {
             base.OnInputPerformed(obj);
 
+            Player.Instance.MovementStateMachine.ChangeState(Player.Instance.MovementStateMachine.AttackingState);
+
             if (nextAttackIndex > 0)
             {
                 if (attackQueued)

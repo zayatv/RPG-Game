@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6640866627371897893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc54dea5e4bd6a489a5c4e019fbece6, type: 3}
+  m_Name: Override Animator
+  m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 6e62cbea8d2a0b345b51ffefa90968b9, type: 2}
+  defaultWhenUnequipped: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab33610ed5e888498aa22252339c40b, type: 3}
+  m_Name: SwordMoveset
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -6640866627371897893}
+  - {fileID: 7071475734861009730}
+  type: Single Attack
+--- !u!114 &7071475734861009730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7480a32ac60823f4ba6e49baf7ca7ee5, type: 3}
+  m_Name: Single Attack
+  m_EditorClassIdentifier: 
+  input: {fileID: 4721099182435987724, guid: 027ca0f5d94b90e4088a131cadc2011b, type: 3}
+  animation: {fileID: 7400000, guid: 7c9c25ab5fa8be345a6f2a65e6f6383f, type: 2}
+  targetState: Attack
+  validStates:
+  - Grounded
+  onHitEffect: {fileID: 11400000, guid: 21bff9c9ba41f1147830083818650c37, type: 2}

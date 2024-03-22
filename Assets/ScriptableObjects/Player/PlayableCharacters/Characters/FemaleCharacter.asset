@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e871654aba9ab37438acf66ac0a55bde, type: 3}
+  m_Name: FemaleCharacter
+  m_EditorClassIdentifier: 
+  <CharacterName>k__BackingField: Female
+  <CharacterRarity>k__BackingField: 5
+  <CharacterModel>k__BackingField: {fileID: 6830751880673399583, guid: ee558f4d1577b1340850acb9dc1e97f7, type: 3}
+  <UISprite>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

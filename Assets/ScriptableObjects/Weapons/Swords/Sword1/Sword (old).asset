@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cf16bb0295c2645b24b53e4bace322, type: 3}
+  m_Name: Sword (old)
+  m_EditorClassIdentifier: 
+  <WeaponName>k__BackingField: Basic Sword
+  <WeaponDescription>k__BackingField: It's just a basic sword
+  <Rarity>k__BackingField: 4
+  <WeaponType>k__BackingField: 3
+  <WeaponPrefab>k__BackingField: {fileID: 4532974462588519870, guid: 5d0509bcee24c7141a359346edffcfb1, type: 3}
+  <WeaponBaseStats>k__BackingField:
+    <Attack>k__BackingField:
+      <StatType>k__BackingField: 9
+      <BaseValue>k__BackingField: 10
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <Durability>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <Arcane>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <Potential>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+    <AttackSpeed>k__BackingField:
+      <StatType>k__BackingField: 0
+      <BaseValue>k__BackingField: 0
+      <FlatModifier>k__BackingField: 0
+      <PercentageModifier>k__BackingField: 0
+  <SubStats>k__BackingField: 
+  <EquippedRunestones>k__BackingField: []

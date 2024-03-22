@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c03ec2bacae91459284e164a18b8b4, type: 3}
+  m_Name: SwordAttack
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 4930229014415258629}
+  type: Log To Console
+--- !u!114 &4930229014415258629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6e17e50e2313f47a5e6804d2a8be63, type: 3}
+  m_Name: Log To Console
+  m_EditorClassIdentifier: 
+  time: 1
+  weapon: 1
+  strength: 1

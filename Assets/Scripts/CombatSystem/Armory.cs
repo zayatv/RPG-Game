@@ -8,6 +8,7 @@ namespace CombatSystem
     {
         public Weapon startingWeapon;
         public Transform rightHand;
+        public Transform leftHand;
 
         public Weapon CurrentWeapon { get; private set; }
         public WeaponBehavior CurrentWeaponBehavior { get; private set; }
@@ -33,10 +34,17 @@ namespace CombatSystem
                 UnequipCurrentWeapon();
 
             CurrentWeapon = weapon;
+
             MovesetBehaviors = CurrentWeapon.moveset.components.Select(a => a.GetBehavior()).ToList();
-            CurrentWeaponBehavior = Instantiate(weapon.prefab, rightHand);
+            if (CurrentWeapon.weaponType == WeaponType.Bow)
+                CurrentWeaponBehavior = Instantiate(weapon.prefab, leftHand);
+            else
+                CurrentWeaponBehavior = Instantiate(weapon.prefab, rightHand);
 
             MovesetBehaviors.ForEach(a => a.Equip(gameObject));
+
+            rightHand.gameObject.SetActive(false);
+            leftHand.gameObject.SetActive(false);
         }
 
         public void UnequipCurrentWeapon()

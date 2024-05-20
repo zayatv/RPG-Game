@@ -35,7 +35,7 @@ public class PlayerIdlingState : PlayerGroundedState
 
         stateMachine.Player.CanAttack = false;
 
-        DisableWeaponObject();
+        DisableWeapon();
     }
 
     public override void Update()

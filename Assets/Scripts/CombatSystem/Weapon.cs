@@ -10,5 +10,6 @@ namespace CombatSystem
         public string description;
         public WeaponBehavior prefab;
         public Moveset moveset;
+        public WeaponType weaponType;
     }
 }

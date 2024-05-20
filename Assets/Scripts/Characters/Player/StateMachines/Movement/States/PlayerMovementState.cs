@@ -210,7 +210,7 @@ public class PlayerMovementState : IState
         return new Vector3(0f, stateMachine.Player.Rigidbody.velocity.y, 0f);
     }
 
-    protected void RotateTowardsTargetRotation()
+    protected void RotateTowardsTargetRotation(bool smoothedRotation = true)
     {
         float currentYAngle = stateMachine.Player.Rigidbody.rotation.eulerAngles.y;
 
@@ -220,7 +220,7 @@ public class PlayerMovementState : IState
 
         stateMachine.ReusableData.DampedTargetRotationPassedTime.y += Time.deltaTime;
 
-        Quaternion targetRotation = Quaternion.Euler(0f, smoothedYAngle, 0f);
+        Quaternion targetRotation = smoothedRotation ? Quaternion.Euler(0f, smoothedYAngle, 0f) : Quaternion.Euler(0f, stateMachine.ReusableData.CurrentTargetRotation.y, 0f);
 
         stateMachine.Player.Rigidbody.MoveRotation(targetRotation);
     }
@@ -396,14 +396,16 @@ public class PlayerMovementState : IState
         stateMachine.Player.CameraUtility.DisableRecentering();
     }
 
-    protected void EnableWeaponObject()
+    protected void EnableWeapon()
     {
-        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(true);
+        Transform weaponParent = stateMachine.Player.Armory.CurrentWeapon.weaponType == WeaponType.Bow ? stateMachine.Player.Armory.leftHand : stateMachine.Player.Armory.rightHand;
+        weaponParent.gameObject.SetActive(true);
     }
 
-    protected void DisableWeaponObject()
+    protected void DisableWeapon()
     {
-        stateMachine.Player.WeaponParentTransform.gameObject.SetActive(false);
+        Transform weaponParent = stateMachine.Player.Armory.CurrentWeapon.weaponType == WeaponType.Bow ? stateMachine.Player.Armory.leftHand : stateMachine.Player.Armory.rightHand;
+        weaponParent.gameObject.SetActive(false);
     }
 
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)

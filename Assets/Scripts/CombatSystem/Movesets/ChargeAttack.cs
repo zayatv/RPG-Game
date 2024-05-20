@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,7 @@ namespace CombatSystem.Movesets
         private bool charging;
         private float chargeStartTime;
         private float chargeEndTime;
+        private Player player;
 
         public ChargeAttackBehavior(ChargeAttack data) : base(data)
         {
@@ -40,6 +42,7 @@ namespace CombatSystem.Movesets
 
             animator = user.GetComponent<Animator>();
             armory = user.GetComponent<Armory>();
+            player = Player.Instance;
 
             armory.CurrentWeaponBehavior.OnHit += OnTriggerEnter;
         }
@@ -58,7 +61,8 @@ namespace CombatSystem.Movesets
             if (CanAttack() && !charging)
             {
                 charging = true;
-                animator.CrossFade("Charge_Start", 0.1f, 0);
+                animator.CrossFadeInFixedTime("Charge_Start", 0.1f, 0);
+                player.MovementStateMachine.ChangeState(player.MovementStateMachine.ChargeAttackingState);
                 chargeStartTime = Time.time;
             }
         }
@@ -80,32 +84,34 @@ namespace CombatSystem.Movesets
             if (!IsAttacking())
                 return;
 
+            Debug.Log("Test");
+
             //using a placeholder Health component to determine if collider hit is a valid target
             //use desired method in production (tag, interface etc.)
-            /*var health = other.GetComponent<Health>();
+            var enemy = other.GetComponent<Enemy>();
+            var health = enemy.GetComponent<EnemyStats>().Health;
 
-            if (health != null)
+            if (health == null) return;
+
+            //Get a value between 0 and 1 based on how long the attack was charged
+            var chargeDuration = chargeEndTime - chargeStartTime;
+            var strength = Mathf.InverseLerp(0, data.maxHoldTime, chargeDuration);
+
+            var hitData = new HitData()
             {
-                //Get a value between 0 and 1 based on how long the attack was charged
-                var chargeDuration = chargeEndTime - chargeStartTime;
-                var strength = Mathf.InverseLerp(0, data.maxHoldTime, chargeDuration);
+                Attacker = animator.gameObject,
+                Target = enemy.gameObject,
+                Weapon = armory.CurrentWeapon,
+                HitTime = Time.time,
+                HitStrength = strength
 
-                var hitData = new HitData()
-                {
-                    Attacker = animator.gameObject,
-                    Target = health.gameObject,
-                    Weapon = armory.CurrentWeapon,
-                    HitTime = Time.time,
-                    HitStrength = strength
-                    
-                    //The HitData class has more fields as example of what data should be passed in
-                    //Feel free to add or remove fields based on requirements.
-                };
+                //The HitData class has more fields as example of what data should be passed in
+                //Feel free to add or remove fields based on requirements.
+            };
 
-                //Run all OnHitEffects to using the HitData for this attack
-                var onHitBehaviors = data.onHitEffect.components.Select(e => e.GetBehavior()).ToList();
-                onHitBehaviors.ForEach(b => b.OnHit(hitData));
-            }*/
+            //Run all OnHitEffects to using the HitData for this attack
+            var onHitBehaviors = data.onHitEffect.components.Select(e => e.GetBehavior()).ToList();
+            onHitBehaviors.ForEach(b => b.OnHit(hitData));
         }
 
         //Maybe a bit too simple but we see what state the animator is currently in
@@ -115,9 +121,9 @@ namespace CombatSystem.Movesets
 
             var match = false;
 
-            foreach (var stateName in data.validStates)
+            foreach (var stateTag in data.validStates)
             {
-                if (state.IsName(stateName))
+                if (state.IsTag(stateTag))
                 {
                     match = true;
                     break;

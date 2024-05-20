@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovementAttackingState : PlayerGroundedState
+public class PlayerMovementAttackingState : PlayerAttackingState
 {
     public PlayerMovementAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
@@ -15,24 +15,12 @@ public class PlayerMovementAttackingState : PlayerGroundedState
 
         base.Enter();
 
-        stateMachine.Player.Armory.rightHand.gameObject.SetActive(true);
-
-        StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
-
-        stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
-
         ResetVelocity();
-        DisableCameraRecentering();
-        EnableWeaponObject();
     }
 
     public override void Exit()
     {
         base.Exit();
-
-        stateMachine.Player.Armory.rightHand.gameObject.SetActive(false);
-
-        StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
     }
 
     public override void Update()

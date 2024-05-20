@@ -10,7 +10,7 @@ public class Stat
     [field: SerializeField] public float FlatModifier { get; private set; }
     [field: SerializeField] public float PercentageModifier { get; private set; }
 
-    public float CurrentValue { get; private set; }
+    public float CurrentValue { get; set; }
     public float TotalValue { get; private set; }
 
     public void AddModifierValue(float valueToAdd, StatValueType valueType)
@@ -64,11 +64,6 @@ public class Stat
         float oldTotalValue = TotalValue;
         TotalValue = (BaseValue + FlatModifier) * (PercentageModifier / 100 + 1);
         CurrentValue += TotalValue - oldTotalValue;
-    }
-
-    public void RemoveCurrentValue(float valueToRemove)
-    {
-        CurrentValue -= valueToRemove;
     }
 }
 

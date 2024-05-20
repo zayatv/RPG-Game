@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6895189918844763718}
   - component: {fileID: 6644737155382714649}
   - component: {fileID: 1590526119794592030}
+  - component: {fileID: 8541714111166140668}
+  - component: {fileID: 1341582383902372491}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -105,3 +107,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &8541714111166140668
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651130832243180425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.5, z: 0.5}
+  m_Center: {x: -0.69, y: 0, z: 0}
+--- !u!114 &1341582383902372491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651130832243180425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc12d364f13c5449b902913854dae91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -61,7 +61,7 @@ namespace CombatSystem.Movesets
 
             //Directly play the desired animation without bothering with transitions
             if (CanAttack())
-                animator.CrossFade(data.targetState, 0.1f, 0);
+                animator.CrossFadeInFixedTime(data.targetState, 0.1f, 0);
         }
 
         private void OnTriggerEnter(Collider other)

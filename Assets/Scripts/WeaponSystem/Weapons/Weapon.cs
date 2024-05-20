@@ -20,11 +20,11 @@ public class Weapon : MonoBehaviour
             float damage = weaponStats.Attack.TotalValue * player.Stats.Strength.TotalValue - 2 * (weaponStats.Attack.TotalValue + player.Stats.Strength.TotalValue);
             if (damage > 1)
             {
-                enemy.Stats.Health.RemoveCurrentValue(damage);
+                enemy.Stats.Health.CurrentValue -= damage;
             }
             else
             {
-                enemy.Stats.Health.RemoveCurrentValue(1);
+                enemy.Stats.Health.CurrentValue -= 1;
             }
 
             Debug.Log(damage);

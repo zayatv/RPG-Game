@@ -27,6 +27,10 @@ public class PlayerAnimationData
     [SerializeField] private string fallParameterName = "isFalling";
     [SerializeField] private string airJumpParameterName = "isAirJumping";
 
+    [Header("Attacking Parameter Names")]
+    [SerializeField] private string chargeLoopXParameterName = "ChargeLoopX";
+    [SerializeField] private string chargeLoopYParameterName = "ChargeLoopY";
+
     public int GroundedParameterHash { get; private set; }
     public int MovingParameterHash { get; private set; }
     public int StoppingParameterHash { get; private set; }
@@ -46,6 +50,9 @@ public class PlayerAnimationData
     
     public int FallParameterHash { get; private set; }
     public int AirJumpParameterHash { get; private set; }
+
+    public int ChargeLoopXHash { get; private set; }
+    public int ChargeLoopYHash { get; private set; }
 
     public void Initialize()
     {
@@ -68,5 +75,8 @@ public class PlayerAnimationData
 
         FallParameterHash = Animator.StringToHash(fallParameterName);
         AirJumpParameterHash = Animator.StringToHash(airJumpParameterName);
+
+        ChargeLoopXHash = Animator.StringToHash(chargeLoopXParameterName);
+        ChargeLoopYHash = Animator.StringToHash(chargeLoopYParameterName);
     }
 }

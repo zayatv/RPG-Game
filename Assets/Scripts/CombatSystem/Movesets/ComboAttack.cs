@@ -101,8 +101,6 @@ namespace CombatSystem.Movesets
                 if (CanAttack())
                     armory.StartCoroutine(Attack(0f));
             }
-            
-            
         }
 
         //Coroutines can still be run on any MonoBehavior so we're free to use them if convenient
@@ -131,7 +129,7 @@ namespace CombatSystem.Movesets
             if (IsInAniamtionTransition())
                 yield return new WaitForSeconds(animator.GetAnimatorTransitionInfo(0).duration);
 
-            animator.CrossFade(state, 0.1f);
+            animator.CrossFadeInFixedTime(state, 0.1f);
 
             lastAttackTime = Time.time;
             currentAttack = current;

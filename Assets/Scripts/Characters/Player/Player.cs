@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     [field: Header("Weapons")]
     [field: SerializeField] public WeaponSO CurrentEquippedWeapon { get; private set; }
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
+    [field: SerializeField] public Transform Arrow { get; private set; }
 
     [field: Header("Items")]
     [field: SerializeField] public PlayerInventoryData InventoryData { get; private set; }

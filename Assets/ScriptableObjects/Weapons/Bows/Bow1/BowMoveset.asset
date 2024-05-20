@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7974289859655999222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3d08ad350427b43a5ac057d34f8d38, type: 3}
+  m_Name: Bow Aim Attack
+  m_EditorClassIdentifier: 
+  input: {fileID: -7151753291566717450, guid: 027ca0f5d94b90e4088a131cadc2011b, type: 3}
+  maxHoldTime: 2
+  validStates:
+  - Grounded
+  onHitEffect: {fileID: 11400000, guid: 7ed5a4b52f5210c48b6fc378cd1293f8, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab33610ed5e888498aa22252339c40b, type: 3}
+  m_Name: BowMoveset
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 4356342967026801517}
+  - {fileID: -7974289859655999222}
+  type: Bow Aim Attack
+--- !u!114 &4356342967026801517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc54dea5e4bd6a489a5c4e019fbece6, type: 3}
+  m_Name: Override Animator
+  m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 5d57e29025358c74d9c215d2c3c45701, type: 2}
+  defaultWhenUnequipped: 1

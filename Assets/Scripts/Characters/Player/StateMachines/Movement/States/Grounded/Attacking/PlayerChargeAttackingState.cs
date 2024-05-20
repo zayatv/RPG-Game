@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class PlayerChargeAttackingState : PlayerGroundedState
+public class PlayerChargeAttackingState : PlayerAttackingState
 {
     private PlayerChargedAttackingData chargeAttackData;
 
     private bool isCharging;
+
+    private Vector2 normalizedVector;
 
     public PlayerChargeAttackingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
@@ -19,24 +21,16 @@ public class PlayerChargeAttackingState : PlayerGroundedState
 
         base.Enter();
 
-        stateMachine.Player.Armory.rightHand.gameObject.SetActive(true);
-
-        StartAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
-
-        stateMachine.ReusableData.CurrentJumpForce = Vector3.zero;
-
         isCharging = true;
 
-        DisableCameraRecentering();
+        normalizedVector = new Vector2(1, 1).normalized;
     }
 
     public override void Exit()
     {
+        stateMachine.Player.CameraUtility.AimCamera.m_Priority = 0;
+
         base.Exit();
-
-        stateMachine.Player.Armory.rightHand.gameObject.SetActive(false);
-
-        StopAnimation(stateMachine.Player.AnimationData.AttackParameterHash);
 
         isCharging = false;
     }
@@ -45,29 +39,30 @@ public class PlayerChargeAttackingState : PlayerGroundedState
     {
         if (isCharging)
         {
+            stateMachine.Player.Animator.SetFloat(stateMachine.Player.AnimationData.ChargeLoopXHash, stateMachine.ReusableData.MovementInput.x / normalizedVector.x);
+            stateMachine.Player.Animator.SetFloat(stateMachine.Player.AnimationData.ChargeLoopYHash, stateMachine.ReusableData.MovementInput.y / normalizedVector.y);
             Float();
-            UpdateTargetRotation(stateMachine.Player.CameraUtility.AimCamera.transform.forward, false);
-            RotateTowardsTargetRotation();
+            Move();
             return;
         }
 
         base.PhysicsUpdate();
     }
 
-    public override void OnAnimationTransitionEvent()
+    public override void OnAnimationEnterEvent()
     {
         stateMachine.ReusableData.MovementSpeedModifier = 0f;
 
         stateMachine.Player.CameraUtility.AimCamera.m_Priority = 0;
 
-        base.OnAnimationTransitionEvent();
+        base.OnAnimationEnterEvent();
 
         ResetVelocity();
     }
 
-    public override void OnAnimationExitEvent()
+    public override void OnAnimationTransitionEvent()
     {
-        base.OnAnimationExitEvent();
+        base.OnAnimationTransitionEvent();
 
         if (stateMachine.ReusableData.MovementInput == Vector2.zero)
         {
@@ -76,5 +71,27 @@ public class PlayerChargeAttackingState : PlayerGroundedState
         }
 
         OnMove();
+    }
+
+    private void Move()
+    {
+        UpdateTargetRotation(stateMachine.Player.CameraUtility.AimCamera.transform.forward, false);
+        RotateTowardsTargetRotation(false);
+
+        if (stateMachine.ReusableData.MovementInput == Vector2.zero || stateMachine.ReusableData.MovementSpeedModifier == 0f)
+        {
+            stateMachine.Player.Rigidbody.velocity = new Vector3(0, stateMachine.Player.Rigidbody.velocity.y, 0);
+            return;
+        }
+
+        Vector3 movementDirection = GetMovementInputDirection();
+
+        Vector3 moveDir = (stateMachine.Player.transform.right * movementDirection.x + stateMachine.Player.transform.forward * movementDirection.z).normalized;
+
+        float movementSpeed = GetMovementSpeed();
+
+        Vector3 currentPlayerHorizontalVelocity = GetPlayerHorizontalVelocity();
+
+        stateMachine.Player.Rigidbody.AddForce(moveDir * movementSpeed - currentPlayerHorizontalVelocity, ForceMode.VelocityChange);
     }
 }

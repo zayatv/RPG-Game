@@ -65,8 +65,27 @@ public class PlayerAirJumpingState : PlayerAirborneState
 
     }
 
+    private void SetJumpForce()
+    {
+        if (stateMachine.ReusableData.MovementInput == Vector2.zero)
+        {
+            stateMachine.ReusableData.CurrentJumpForce = airJumpData.StationaryJumpForce;
+            return;
+        }
+
+        if (stateMachine.ReusableData.ShouldSprint)
+        {
+            stateMachine.ReusableData.CurrentJumpForce = airJumpData.StrongJumpForce;
+            return;
+        }
+
+        stateMachine.ReusableData.CurrentJumpForce = airJumpData.WeakJumpForce;
+    }
+
     private void Jump()
     {
+        SetJumpForce();
+
         Vector3 jumpForce = stateMachine.ReusableData.CurrentJumpForce;
 
         Vector3 jumpDirection = stateMachine.Player.transform.forward;

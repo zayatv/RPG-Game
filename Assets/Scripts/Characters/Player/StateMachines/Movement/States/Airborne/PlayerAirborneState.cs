@@ -16,6 +16,7 @@ public class PlayerAirborneState : PlayerMovementState
         StartAnimation(stateMachine.Player.AnimationData.AirborneParameterHash);
 
         ResetSprintState();
+        DisableCameraRecentering();
     }
 
     public override void Exit()

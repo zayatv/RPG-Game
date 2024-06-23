@@ -16,3 +16,15 @@ MonoBehaviour:
   description: Long thing
   prefab: {fileID: -3135816184872504241, guid: 6c1a37ddb1ba0144aa1f3d707b92d050, type: 3}
   moveset: {fileID: 11400000, guid: 6cad12c9847562e429e524f951aea2aa, type: 2}
+  attackCombo:
+  - animation:
+      _FadeDuration: 0.25
+      _Events:
+        _NormalizedTimes: []
+        _Callbacks: []
+        _Names: []
+      _Clip: {fileID: 0}
+      _Speed: 1
+      _NormalizedStartTime: NaN
+    onHitEffect: {fileID: 0}
+  weaponType: 0

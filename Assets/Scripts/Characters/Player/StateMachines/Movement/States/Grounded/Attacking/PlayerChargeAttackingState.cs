@@ -80,7 +80,7 @@ public class PlayerChargeAttackingState : PlayerAttackingState
 
         if (stateMachine.ReusableData.MovementInput == Vector2.zero || stateMachine.ReusableData.MovementSpeedModifier == 0f)
         {
-            stateMachine.Player.Rigidbody.velocity = new Vector3(0, stateMachine.Player.Rigidbody.velocity.y, 0);
+            stateMachine.Player.Rigidbody.linearVelocity = new Vector3(0, stateMachine.Player.Rigidbody.linearVelocity.y, 0);
             return;
         }
 

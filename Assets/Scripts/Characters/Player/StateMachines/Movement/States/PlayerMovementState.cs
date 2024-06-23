@@ -198,7 +198,7 @@ public class PlayerMovementState : IState
 
     protected Vector3 GetPlayerHorizontalVelocity()
     {
-        Vector3 playerHorizontalVelocity = stateMachine.Player.Rigidbody.velocity;
+        Vector3 playerHorizontalVelocity = stateMachine.Player.Rigidbody.linearVelocity;
 
         playerHorizontalVelocity.y = 0f;
 
@@ -207,7 +207,7 @@ public class PlayerMovementState : IState
 
     protected Vector3 GetPlayerVerticalVelocity()
     {
-        return new Vector3(0f, stateMachine.Player.Rigidbody.velocity.y, 0f);
+        return new Vector3(0f, stateMachine.Player.Rigidbody.linearVelocity.y, 0f);
     }
 
     protected void RotateTowardsTargetRotation(bool smoothedRotation = true)
@@ -249,14 +249,14 @@ public class PlayerMovementState : IState
 
     protected void ResetVelocity()
     {
-        stateMachine.Player.Rigidbody.velocity = Vector3.zero;
+        stateMachine.Player.Rigidbody.linearVelocity = Vector3.zero;
     }
 
     protected void ResetVerticalVelocity()
     {
         Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
 
-        stateMachine.Player.Rigidbody.velocity = playerHorizontalVelocity;
+        stateMachine.Player.Rigidbody.linearVelocity = playerHorizontalVelocity;
     }
 
     protected virtual void AddInputActionsCallbacks()

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -76,7 +75,7 @@ namespace CombatSystem.Movesets
                 animator.SetTrigger("Charge");
                 chargeEndTime = Time.time;
 
-                Rigidbody rb = projectiles.Last().AddComponent<Rigidbody>();
+                Rigidbody rb = projectiles.Last().gameObject.AddComponent<Rigidbody>();
                 rb.AddForce(player.transform.forward * 10, ForceMode.VelocityChange);
 
                 projectiles.Last().GetComponent<Projectile>().OnHit += OnTriggerEnter;

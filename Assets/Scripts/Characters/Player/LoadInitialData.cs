@@ -1,4 +1,4 @@
-using CombatSystem;
+using RPG.Combat;
 using UnityEngine;
 
 public class LoadInitialData : MonoBehaviour
@@ -18,7 +18,7 @@ public class LoadInitialData : MonoBehaviour
         player.Animator = playableCharacter.GetComponent<Animator>();
 
         player.Armory = GetComponentInChildren<Armory>();
-        player.WeaponParentTransform = player.Armory.rightHand;
+        //player.WeaponParentTransform = player.Armory.rightHand;
         //ApplyWeaponToCharacter();
     }
 

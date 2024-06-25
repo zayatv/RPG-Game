@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Gameplay
 {
-    public class Player : MonoBehaviour
+    public class Player : Actor
     {
         public PlayerCamera defaultCamera;
         public Transform camFollowPoint;
@@ -18,36 +18,15 @@ namespace RPG.Gameplay
         public InputActionReference dashInput;
 
         private Movement movement;
-        private KinematicCharacterMotor motor;
-        private CharacterModel currentCharacter;
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-
             movement = GetComponent<Movement>();
-            motor = GetComponent<KinematicCharacterMotor>();
+            Cursor.lockState = CursorLockMode.Locked;
 
             defaultCamera.SetFollowTransform(camFollowPoint);
             defaultCamera.IgnoredColliders.Clear();
             defaultCamera.IgnoredColliders.AddRange(GetComponentsInChildren<Collider>());
-
-            var startingCharacter = GetComponentInChildren<CharacterModel>();
-            if (startingCharacter != null)
-                UpdateCharacter(startingCharacter, false);
-        }
-
-        public void UpdateCharacter(CharacterModel character, bool isPrefab = true)
-        {
-            if (currentCharacter != null)
-                Destroy(currentCharacter.gameObject);
-
-            currentCharacter = isPrefab ? Instantiate(character) : character;
-            currentCharacter.transform.SetParent(transform);
-            currentCharacter.transform.localPosition = Vector3.zero;
-            currentCharacter.transform.localRotation = Quaternion.identity;
-
-            movement.Animator = currentCharacter.Animator;
         }
 
         private void Update()

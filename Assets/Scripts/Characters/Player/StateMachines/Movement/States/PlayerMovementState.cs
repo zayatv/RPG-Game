@@ -398,14 +398,14 @@ public class PlayerMovementState : IState
 
     protected void EnableWeapon()
     {
-        Transform weaponParent = stateMachine.Player.Armory.CurrentWeapon.weaponType == WeaponType.Bow ? stateMachine.Player.Armory.leftHand : stateMachine.Player.Armory.rightHand;
-        weaponParent.gameObject.SetActive(true);
+        //Transform weaponParent = stateMachine.Player.Armory.CurrentWeapon.weaponType == WeaponType.Bow ? stateMachine.Player.Armory.leftHand : stateMachine.Player.Armory.rightHand;
+        //weaponParent.gameObject.SetActive(true);
     }
 
     protected void DisableWeapon()
     {
-        Transform weaponParent = stateMachine.Player.Armory.CurrentWeapon.weaponType == WeaponType.Bow ? stateMachine.Player.Armory.leftHand : stateMachine.Player.Armory.rightHand;
-        weaponParent.gameObject.SetActive(false);
+        //Transform weaponParent = stateMachine.Player.Armory.CurrentWeapon.weaponType == WeaponType.Bow ? stateMachine.Player.Armory.leftHand : stateMachine.Player.Armory.rightHand;
+        //weaponParent.gameObject.SetActive(false);
     }
 
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)

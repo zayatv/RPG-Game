@@ -1,4 +1,4 @@
-using CombatSystem;
+using RPG.Combat;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInput))]

@@ -17,7 +17,8 @@ MonoBehaviour:
     _SceneLighting: 0
     _ShowSkybox: 0
     _SceneEnvironment: {fileID: 0}
-    _Models: []
+    _Models:
+    - {fileID: 7457979150171668952, guid: 374571717594b43609ceb649d90246b6, type: 3}
   _AnimationTimeFields:
     showApproximations: 1
     showNormalized: 1

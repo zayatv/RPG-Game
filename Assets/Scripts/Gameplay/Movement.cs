@@ -8,7 +8,7 @@ namespace RPG.Gameplay
     {
         [Header("Movement")]
         public float walkSpeed = 2f;
-        public float jogSpeed = 4f;
+        public float runSpeed = 4f;
         public float sprintSpeed = 6f;
         public float movementSharpness = 15f;
         public float rotationSharpness = 10f;
@@ -43,17 +43,20 @@ namespace RPG.Gameplay
         private float timeSinceJumpRequested = Mathf.Infinity;
         private float timeSinceLastAbleToJump = 0f;
 
-        private bool isDashing = false;
         private float dashStartTime = 0f;
         private float lastDashTime = 0f;
 
+        private Actor actor;
         private KinematicCharacterMotor motor;
 
-        public HybridAnimancerComponent Animator { get; set; }
+        private HybridAnimancerComponent Animator => actor.CurrentAnimator;
+        public bool isDashing { get; private set; }
+        public MoveState MoveState { get; private set; }
 
-        private void Awake()
+        private void Start()
         {
-            motor = GetComponent<KinematicCharacterMotor>();
+            actor = GetComponent<Actor>();
+            motor = actor.Motor;
             motor.CharacterController = this;
         }
 
@@ -73,14 +76,28 @@ namespace RPG.Gameplay
             moveInput = cameraPlanarRotation * moveInputVector;
             lookInput = moveInput;
 
-            if (input.Sprint)
+            if (moveInput.magnitude <= 0f)
+            {
+                currentMoveSpeed = 0f;
+                MoveState = MoveState.Idle;
+            }
+            else if (input.Sprint)
+            {
                 currentMoveSpeed = sprintSpeed;
+                MoveState = MoveState.Sprinting;
+            }
             else if (input.Walk)
+            {
                 currentMoveSpeed = walkSpeed;
+                MoveState = MoveState.Walking;
+            }
             else
-                currentMoveSpeed = jogSpeed;
+            {
+                currentMoveSpeed = runSpeed;
+                MoveState = MoveState.Running;
+            }
 
-            if (input.Dash && Time.time >= lastDashTime + dashCooldown)
+            if (input.Dash && Time.time >= lastDashTime + dashCooldown && !Animator.applyRootMotion)
             {
                 //Only dash when grounded if air dashes aren't allowed
                 if (motor.GroundingStatus.FoundAnyGround || allowDashWhileAirborne)
@@ -93,7 +110,7 @@ namespace RPG.Gameplay
                 }
             }
 
-            if (input.Jump && !isDashing)
+            if (input.Jump && !isDashing && !Animator.applyRootMotion)
             {
                 timeSinceJumpRequested = 0f;
                 jumpRequested = true;
@@ -114,11 +131,20 @@ namespace RPG.Gameplay
             var currentUp = currentRotation * Vector3.up;
             var smoothedGravityDir = Vector3.Slerp(currentUp, -gravity.normalized, 1 - Mathf.Exp(-verticalRotationSharpness * deltaTime));
             currentRotation = Quaternion.FromToRotation(currentUp, smoothedGravityDir) * currentRotation;
+
+            if (Animator.applyRootMotion)
+                currentRotation = actor.CharacterModel.AccumulatedRootRotation * currentRotation;
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            if (isDashing)
+            if (Animator.applyRootMotion && deltaTime > 0)
+            {
+                currentVelocity = actor.CharacterModel.AccumulatedRootMotion / deltaTime;
+                currentVelocity = motor.GetDirectionTangentToSurface(currentVelocity, 
+                    motor.GroundingStatus.GroundNormal) * currentVelocity.magnitude;
+            }
+            else if (isDashing)
                 currentVelocity = HandleDashing(currentVelocity, deltaTime);
             else if (motor.GroundingStatus.IsStableOnGround)
                 currentVelocity = HandleGroundedMovement(currentVelocity, deltaTime);
@@ -131,7 +157,7 @@ namespace RPG.Gameplay
 
             if (currentMoveSpeed == walkSpeed)
                 normalizedSpeed = 0.5f;
-            else if (currentMoveSpeed == jogSpeed)
+            else if (currentMoveSpeed == runSpeed)
                 normalizedSpeed = 1f;
             else if (currentMoveSpeed == sprintSpeed)
                 normalizedSpeed = 2f;
@@ -162,6 +188,12 @@ namespace RPG.Gameplay
             {
                 // Keep track of time since we were last able to jump (for grace period)
                 timeSinceLastAbleToJump += deltaTime;
+            }
+
+            if (Animator.applyRootMotion)
+            {
+                actor.CharacterModel.AccumulatedRootMotion = Vector3.zero;
+                actor.CharacterModel.AccumulatedRootRotation = Quaternion.identity;
             }
         }
         #endregion

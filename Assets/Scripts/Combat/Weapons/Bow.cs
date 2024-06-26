@@ -3,15 +3,19 @@ using RPG.Gameplay;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat
 {
-    public class MeleeWeapon : WeaponBehavior
+    public class Bow : WeaponBehavior
     {
+        [SerializeField] protected Arrow arrowPrefab;
+        [SerializeField] protected Transform arrowSpawnPoint;
+
         [Header("Standard Combo")]
         [SerializeField] protected AttackMotion[] attackCombo;
         [SerializeField] protected float comboCooldown = 0.3f; //How long after the last attack before the combo can be started again
-        
+
         [Header("Charge")]
         [SerializeField] protected float maxHoldTime = 2f;
         [SerializeField] protected bool autoReleaseAferMax = false; //Attack automatically when fully charged instead of waiting for user to release input
@@ -23,20 +27,17 @@ namespace RPG.Combat
         [Header("Specials")]
         [SerializeField] protected bool allowSprintAttack = true;
         [SerializeField, ShowIf(nameof(allowSprintAttack))] protected AttackMotion sprintAttack;
-        [SerializeField] protected bool allowDashAttack = true;
-        [SerializeField, ShowIf(nameof(allowDashAttack))] protected AttackMotion dashAttack;
-        [SerializeField, ShowIf(nameof(allowDashAttack))] protected bool attackAfterDash = true; //Queue the attack to play after the dash, interrupt dash if false.
 
         private Movement movement;
-        
+        private PlayerTargeting targeting;
+        private Transform currentTarget;
+
         private AnimancerState currentComboState;
         private float lastAttackEndTime;
         private bool comboQueued;
         private int currentAttackIndex = 0;
 
-        private bool dashAttackQueued;
         private bool specialAttacking;
-
         private bool chargingAttack;
         private float chargeStartTime;
         private float chargeEndTime;
@@ -45,9 +46,9 @@ namespace RPG.Combat
         {
             base.Start();
             movement = user.GetComponent<Movement>();
+            targeting = user.GetComponent<PlayerTargeting>();
 
             chargeStartAnim.Events.OnEnd += BeginChargeLoop;
-            dashAttack.animation.Events.OnEnd += OnDashAttackEnd;
             sprintAttack.animation.Events.OnEnd += OnSprintAttackEnd;
             chargeAttackAnim.Events.OnEnd += OnChargeAttackEnd;
         }
@@ -55,16 +56,6 @@ namespace RPG.Combat
         protected override void Update()
         {
             base.Update();
-
-            if (dashAttackQueued)
-            {
-                if (!movement.isDashing)
-                {
-                    //Wait for the dash to finish and then attack
-                    dashAttackQueued = false;
-                    DashAttack();
-                }
-            }
 
             if (autoReleaseAferMax)
             {
@@ -88,14 +79,7 @@ namespace RPG.Combat
             }
             else
             {
-                if (movement.isDashing && allowDashAttack)
-                {
-                    if (attackAfterDash)
-                        dashAttackQueued = true;
-                    else
-                        DashAttack();
-                }
-                else if (movement.MoveState == MoveState.Sprinting && allowSprintAttack)
+                if (movement.MoveState == MoveState.Sprinting && allowSprintAttack)
                 {
                     SprintAttack();
                 }
@@ -124,6 +108,8 @@ namespace RPG.Combat
             user.CurrentAnimator.Play(chargeStartAnim);
             user.CurrentAnimator.applyRootMotion = true;
             chargeStartTime = Time.time;
+
+            targeting.StartAiming();
         }
 
         protected override void ChargeInput_Release(InputAction.CallbackContext context)
@@ -135,6 +121,7 @@ namespace RPG.Combat
                 specialAttacking = true;
                 user.CurrentAnimator.Play(chargeAttackAnim);
                 chargeEndTime = Time.time;
+                targeting.StopAiming();
             }
         }
 
@@ -159,6 +146,14 @@ namespace RPG.Combat
             currentComboState = user.CurrentAnimator.Play(anim);
 
             user.CurrentAnimator.applyRootMotion = attackCombo[currentAttackIndex].rootMotion;
+
+            currentTarget = targeting.FindTarget(25f);
+
+            if (currentTarget != null)
+            {
+                var dir = (currentTarget.transform.position - user.transform.position).normalized;
+                movement.OverrideLookDir = dir;
+            }
         }
 
         private void OnComboAttackEnd()
@@ -167,6 +162,8 @@ namespace RPG.Combat
             anim.Events.OnEnd -= OnComboAttackEnd;
             currentComboState = null;
             lastAttackEndTime = Time.time;
+            movement.OverrideLookDir = Vector3.zero;
+            currentTarget = null;
 
             if (comboQueued && currentAttackIndex + 1 < attackCombo.Length)
             {
@@ -185,26 +182,19 @@ namespace RPG.Combat
             }
         }
 
-        protected virtual void DashAttack()
-        {
-            specialAttacking = true;
-            user.CurrentAnimator.Play(dashAttack.animation);
-            user.CurrentAnimator.applyRootMotion = dashAttack.rootMotion;
-        }
-
-        private void OnDashAttackEnd()
-        {
-            specialAttacking = false;
-            user.CurrentAnimator.PlayController();
-            user.CurrentAnimator.applyRootMotion = false;
-            currentAttackIndex = 0;
-        }
-
         protected virtual void SprintAttack()
         {
             specialAttacking = true;
             user.CurrentAnimator.Play(sprintAttack.animation);
             user.CurrentAnimator.applyRootMotion = sprintAttack.rootMotion;
+
+            currentTarget = targeting.FindTarget(25f);
+
+            if (currentTarget != null)
+            {
+                var dir = (currentTarget.transform.position - user.transform.position).normalized;
+                movement.OverrideLookDir = dir;
+            }
         }
 
         private void OnSprintAttackEnd()
@@ -213,6 +203,40 @@ namespace RPG.Combat
             user.CurrentAnimator.PlayController();
             user.CurrentAnimator.applyRootMotion = false;
             currentAttackIndex = 0;
+            movement.OverrideLookDir = Vector3.zero;
+            currentTarget = null;
+        }
+
+        //Call from animation events on each attack animation
+        public void ShootArrow()
+        {
+            var rotation = arrowSpawnPoint.rotation;
+
+            if (currentTarget != null)
+            {
+                //Fire at target's chest instead if there is a target
+                var targetPos = currentTarget.position + (currentTarget.up * 1.2f);
+                var dir = (targetPos - arrowSpawnPoint.position).normalized;
+                rotation = Quaternion.LookRotation(dir);
+            }
+            else if (chargingAttack)
+            {
+                //Fire at the point aimed at while charging.
+                //Could also replace standard arrow with a different charged arrow here
+                var aimDir = (targeting.AimTarget.position - arrowSpawnPoint.position).normalized;
+                rotation = Quaternion.LookRotation(aimDir);
+            }
+
+            var arrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, rotation);
+
+            if (chargingAttack)
+                arrow.OnHit = chargeHitEffect;
+            else if (specialAttacking)
+                arrow.OnHit = sprintAttack.onHitEffect;
+            else
+                arrow.OnHit = attackCombo[currentAttackIndex].onHitEffect;
+
+            arrow.Shoot();
         }
     }
 }

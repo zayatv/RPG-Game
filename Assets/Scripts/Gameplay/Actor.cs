@@ -50,12 +50,14 @@ namespace RPG.Gameplay
         /// </summary>
         public virtual void UpdateAnimatorController(RuntimeAnimatorController controller)
         {
-            if (controller == null && currentController != defaultController)
+            if (controller == null)
                 currentController = defaultController;
             else
                 currentController = controller;
             
             CurrentAnimator.runtimeAnimatorController = currentController;
+            CurrentAnimator.Controller = currentController;
+            CurrentAnimator.PlayController();
         }
     }
 }

@@ -35,7 +35,9 @@ namespace RPG.Combat
             if (CurrentWeapon.changeAnimator)
             {
                 if (CurrentWeapon.animatorController != actor.CurrentController)
+                {
                     actor.UpdateAnimatorController(CurrentWeapon.animatorController);
+                }
             }
         }
 

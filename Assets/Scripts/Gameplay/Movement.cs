@@ -52,6 +52,7 @@ namespace RPG.Gameplay
         private HybridAnimancerComponent Animator => actor.CurrentAnimator;
         public bool isDashing { get; private set; }
         public MoveState MoveState { get; private set; }
+        public Vector3 OverrideLookDir { get; set; } //Override current rotation and look in the given direction instead
 
         private void Start()
         {
@@ -120,6 +121,10 @@ namespace RPG.Gameplay
         #region Controller Functions
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
+            //If override look direction with direction to current target if there is one.
+            if (OverrideLookDir.sqrMagnitude > 0f)
+                lookInput = OverrideLookDir;
+            
             if (lookInput.sqrMagnitude > 0f && rotationSharpness > 0f)
             {
                 // Smoothly interpolate from current to target look direction

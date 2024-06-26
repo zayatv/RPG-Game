@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Bow
   description: Pew pew but medieval
-  prefab: {fileID: -3173530001378353270, guid: ae8b7c7d44efe1a45abce17e2b1070f4, type: 3}
+  prefab: {fileID: 3464797675725587448, guid: ae8b7c7d44efe1a45abce17e2b1070f4, type: 3}
   weaponType: 6
   changeAnimator: 1
-  animatorController: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: 014ecf9b9ad1ad24b8c8173f8a663188, type: 2}

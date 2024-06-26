@@ -4,7 +4,7 @@ using System;
 namespace RPG.Combat
 {
     [Serializable]
-    public class MeleeAttack
+    public class AttackMotion
     {
         public ClipTransition animation;
         public bool rootMotion = true;

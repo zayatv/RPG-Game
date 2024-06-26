@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1888661716983562432
+--- !u!1 &286510999196468617
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,253 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 787337896464502212}
-  - component: {fileID: 38218817207352927}
-  - component: {fileID: 3175794277975477818}
+  - component: {fileID: 7744457937761693186}
+  - component: {fileID: 3464797675725587448}
+  m_Layer: 0
+  m_Name: Bow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7744457937761693186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286510999196468617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.05286935, y: 0.6601888, z: -0.73461443, w: -0.14729969}
+  m_LocalPosition: {x: -0.051, y: 0.037, z: 0.003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2028925871425323437}
+  - {fileID: 965822896425874813}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 72.629, y: -65.731, z: -253.47699}
+--- !u!114 &3464797675725587448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286510999196468617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796e4a3605cb1f748a70f7adb8b695a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackInput: {fileID: 4721099182435987724, guid: 027ca0f5d94b90e4088a131cadc2011b, type: 3}
+  chargeInput: {fileID: -7151753291566717450, guid: 027ca0f5d94b90e4088a131cadc2011b, type: 3}
+  arrowPrefab: {fileID: -3776677379351111281, guid: da050591c92aa164e9bc371df5c44ff6, type: 3}
+  arrowSpawnPoint: {fileID: 965822896425874813}
+  attackCombo:
+  - animation:
+      _FadeDuration: 0.05
+      _Events:
+        _NormalizedTimes:
+        - 0.37
+        - NaN
+        _Callbacks:
+        - m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3464797675725587448}
+              m_TargetAssemblyTypeName: RPG.Combat.Bow, Assembly-CSharp
+              m_MethodName: ShootArrow
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _Names:
+        - Shoot
+      _Clip: {fileID: 1827226128182048838, guid: 7ba8a8dd07a156f44b64f4a0805aa5d6, type: 3}
+      _Speed: 1
+      _NormalizedStartTime: NaN
+    rootMotion: 1
+    onHitEffect: {fileID: 0}
+  - animation:
+      _FadeDuration: 0.05
+      _Events:
+        _NormalizedTimes:
+        - 0.22
+        - NaN
+        _Callbacks:
+        - m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3464797675725587448}
+              m_TargetAssemblyTypeName: RPG.Combat.Bow, Assembly-CSharp
+              m_MethodName: ShootArrow
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _Names:
+        - Shoot
+      _Clip: {fileID: 1827226128182048838, guid: 4d9b0c859b82f4f4db20768fbd923635, type: 3}
+      _Speed: 1
+      _NormalizedStartTime: NaN
+    rootMotion: 1
+    onHitEffect: {fileID: 0}
+  - animation:
+      _FadeDuration: 0.05
+      _Events:
+        _NormalizedTimes:
+        - 0.16
+        - NaN
+        _Callbacks:
+        - m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3464797675725587448}
+              m_TargetAssemblyTypeName: RPG.Combat.Bow, Assembly-CSharp
+              m_MethodName: ShootArrow
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _Names:
+        - Shoot
+      _Clip: {fileID: 1827226128182048838, guid: 9d0f5d74f30214b48946db8a727061ac, type: 3}
+      _Speed: 1
+      _NormalizedStartTime: NaN
+    rootMotion: 1
+    onHitEffect: {fileID: 0}
+  comboCooldown: 0.3
+  maxHoldTime: 2
+  autoReleaseAferMax: 0
+  chargeHitEffect: {fileID: 0}
+  chargeStartAnim:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 1827226128182048838, guid: b002ddd382739b74581510d5efd7e6f0, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  chargeLoopAnim:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 1827226128182048838, guid: 3b3101ad03809e942bd1ac5d9f0ef3f2, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  chargeAttackAnim:
+    _FadeDuration: 0
+    _Events:
+      _NormalizedTimes:
+      - 0
+      - NaN
+      _Callbacks:
+      - m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 3464797675725587448}
+            m_TargetAssemblyTypeName: RPG.Combat.Bow, Assembly-CSharp
+            m_MethodName: ShootArrow
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      _Names:
+      - Shoot
+    _Clip: {fileID: 1827226128182048838, guid: 03a63067225e94a4e8f62dd254960781, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  allowSprintAttack: 1
+  sprintAttack:
+    animation:
+      _FadeDuration: 0.1
+      _Events:
+        _NormalizedTimes:
+        - 0.3
+        - NaN
+        _Callbacks:
+        - m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3464797675725587448}
+              m_TargetAssemblyTypeName: RPG.Combat.Bow, Assembly-CSharp
+              m_MethodName: ShootArrow
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _Names:
+        - Shoot
+      _Clip: {fileID: 1827226128182048838, guid: b0e433a9eb277d140a1426aa3f7ffb70, type: 3}
+      _Speed: 1
+      _NormalizedStartTime: 0.112500004
+    rootMotion: 1
+    onHitEffect: {fileID: 0}
+--- !u!1 &1689338629520545974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965822896425874813}
+  m_Layer: 0
+  m_Name: Arrow Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &965822896425874813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689338629520545974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.322, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7744457937761693186}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &3074198217602073452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2028925871425323437}
+  - component: {fileID: 8561654307684921966}
+  - component: {fileID: 7980246339525740240}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -18,36 +262,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &787337896464502212
+--- !u!4 &2028925871425323437
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888661716983562432}
+  m_GameObject: {fileID: 3074198217602073452}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.70710665, y: 0.00000016136605, z: 0.00000022004453, w: 0.7071069}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0774, y: 1.0773998, z: 1.0773998}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4782739537089329380}
+  m_Father: {fileID: 7744457937761693186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &38218817207352927
+--- !u!33 &8561654307684921966
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888661716983562432}
-  m_Mesh: {fileID: -6665426260531058033, guid: 7d58dd8d9be70844ea75845156e4179d, type: 3}
---- !u!23 &3175794277975477818
+  m_GameObject: {fileID: 3074198217602073452}
+  m_Mesh: {fileID: -1248823045663161463, guid: c74ee470839ec3c489266cd5deb7fcd2, type: 3}
+--- !u!23 &7980246339525740240
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888661716983562432}
+  m_GameObject: {fileID: 3074198217602073452}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ee4688279d442648af0e658d7bb0cb8, type: 2}
+  - {fileID: -7588772447470521199, guid: c74ee470839ec3c489266cd5deb7fcd2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,48 +330,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4156618758011406716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4782739537089329380}
-  - component: {fileID: -3173530001378353270}
-  m_Layer: 0
-  m_Name: Bow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4782739537089329380
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4156618758011406716}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 787337896464502212}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3173530001378353270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4156618758011406716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591f56c197736ce41b79670b24f51bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
